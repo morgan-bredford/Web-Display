@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Test from "./Test";
 import User from "./User";
+import Users from "./Users";
 import axios from "axios";
 
 // async function getUsers() {
@@ -26,18 +27,20 @@ import axios from "axios";
 //     console.log(res.data);
 //   });
 // }
-function getUsers() {
-  axios
-    .get("https://jsonplaceholder.typicode.com/todos?_limit=3")
-    .then((res) => {
-      console.log(res.data);
-    });
-}
-getUsers();
+// function getUsers() {
+//   axios
+//     .get("https://jsonplaceholder.typicode.com/todos?_limit=3")
+//     .then((res) => {
+//       res.data.map(result => console.log(result))
+//     });
+// }
+// getUsers();
+
+const users = [{name: "werwerwe", gender:"male", height:"175"},{name: "werwerwe", gender:"male", height:"175"},{name: "werwerwe", gender:"male", height:"175"}]
 
 ReactDOM.render(
   <React.StrictMode>
-    getUsers();
+    <Users users={users} />
     <Test />
     <App />
   </React.StrictMode>,
