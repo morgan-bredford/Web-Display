@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Test from "./Test";
 import User from "./User";
-import Users from "./Users";
+import UsersClass from "./UsersClass";
 import axios from "axios";
+import RenderTest from './RenderTest'
+
 
 // async function getUsers() {
 //   try {
@@ -35,12 +37,26 @@ import axios from "axios";
 //     });
 // }
 // getUsers();
+function MyTestf(){
+  return <section>
+  <h1>Hello</h1>
+  <p>this is a paragraf</p>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul></section>
+}
 
 const users = [{name: "werwerwe", gender:"male", height:"175"},{name: "werwerwe", gender:"male", height:"175"},{name: "werwerwe", gender:"male", height:"175"}]
 
+
 ReactDOM.render(
   <React.StrictMode>
-    <Users users={users} />
+    <MyTestf />
+    <RenderTest />
+    <UsersClass users={users} />
+    
     <Test />
     <App />
   </React.StrictMode>,
