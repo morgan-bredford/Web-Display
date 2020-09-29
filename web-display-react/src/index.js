@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import Test from "./Test";
 import User from "./User";
 import UsersClass from "./UsersClass";
 import axios from "axios";
-import RenderTest from './RenderTest'
-
+import fakeusers from "./fakeusers";
 
 // async function getUsers() {
 //   try {
@@ -37,28 +35,31 @@ import RenderTest from './RenderTest'
 //     });
 // }
 // getUsers();
-function MyTestf(){
-  return <section>
-  <h1>Hello</h1>
-  <p>this is a paragraf</p>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-  </ul></section>
+function MyTestf() {
+  return (
+    <section>
+      <h1>Hello</h1>
+      <p>this is a paragraf</p>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </section>
+  );
 }
 
-const users = [{name: "werwerwe", gender:"male", height:"175"},{name: "werwerwe", gender:"male", height:"175"},{name: "werwerwe", gender:"male", height:"175"}]
-
+const users = [
+  { name: "werwerwe", gender: "male", height: "175" },
+  { name: "werwerwe", gender: "male", height: "175" },
+  { name: "werwerwe", gender: "male", height: "175" },
+];
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <MyTestf />
-    <RenderTest />
-    <UsersClass users={users} />
-    
-    <Test />
+    <UsersClass users={fakeusers} />
     <App />
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );
