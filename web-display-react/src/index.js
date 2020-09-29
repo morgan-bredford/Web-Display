@@ -1,10 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import User from "./User";
-import UsersClass from "./UsersClass";
 import axios from "axios";
-import fakeusers from "./fakeusers";
 
 // async function getUsers() {
 //   try {
@@ -58,7 +55,6 @@ const users = [
 ReactDOM.render(
   <React.Fragment>
     <MyTestf />
-    <UsersClass users={fakeusers} />
     <App />
   </React.Fragment>,
   document.getElementById("root")

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import User from "./User";
 import axios from "axios";
 import { render } from "@testing-library/react";
-import fs from "fs";
 
 class UsersClass extends Component {
   constructor() {
@@ -10,15 +9,21 @@ class UsersClass extends Component {
     this.state = {
       users: [],
     };
-
     this.addUser = this.addUser.bind(this);
-    ("");
+    this.removeUser = this.removeUser.bind(this);
   }
 
   addUser() {
     this.setState((previousState) => ({
       users: [...previousState.users, { name: "1", gender: "2", height: "23" }],
     }));
+  }
+
+  removeUser(id) {
+    const newState = this.state.users.filter((user) => user.id !== id);
+    console.log(newState);
+    this.setState({ users: newState });
+    console.log(this.state.users);
   }
 
   componentDidMount() {
@@ -51,6 +56,7 @@ class UsersClass extends Component {
           />
         ))}
         <button onClick={this.addUser}>test</button>
+        <button onClick={() => this.removeUser(3)}>test</button>
       </React.Fragment>
     );
   }
