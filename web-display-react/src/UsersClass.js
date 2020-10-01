@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import User from "./User";
 import axios from "axios";
 import { render } from "@testing-library/react";
+import fakeusers2 from "./fakeusers2";
 
 class UsersClass extends Component {
   constructor() {
@@ -11,6 +12,7 @@ class UsersClass extends Component {
     };
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
+    this.nodetest = this.nodetest.bind(this);
   }
 
   addUser() {
@@ -26,6 +28,13 @@ class UsersClass extends Component {
     console.log(this.state.users);
   }
 
+  nodetest() {
+    axios
+      .get("http://127.0.0.1:5000/?test=test")
+      .then((res) => console.log(res));
+    // .then(console.log(this.state.users));
+  }
+
   componentDidMount() {
     // axios
     //   .get("https://swapi.dev/api/people/?search=skywalker")
@@ -34,6 +43,10 @@ class UsersClass extends Component {
 
     this.setState({ users: this.props.users });
   }
+
+  // componentDidUpdate() {
+  //   this.setState({ users: fakeusers2 });
+  // }
 
   render() {
     return (
@@ -57,6 +70,7 @@ class UsersClass extends Component {
         ))}
         <button onClick={this.addUser}>test</button>
         <button onClick={() => this.removeUser(3)}>test</button>
+        <button onClick={this.nodetest}>test</button>
       </React.Fragment>
     );
   }
