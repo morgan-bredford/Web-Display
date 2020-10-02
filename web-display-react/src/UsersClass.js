@@ -19,6 +19,29 @@ class UsersClass extends Component {
     this.setState((previousState) => ({
       users: [...previousState.users, { name: "1", gender: "2", height: "23" }],
     }));
+
+    let formdata = new FormData();
+    //formdata.append("data", JSON.stringify(this.state.users));
+    // axios({
+    //   method: "post",
+    //   url: "http://127.0.0.1:5000",
+    //   data: formdata,
+    // })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    console.log(JSON.stringify(this.state.users));
+    axios
+      .post("http://127.0.0.1:5000", JSON.stringify(this.state.users))
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   removeUser(id) {
@@ -32,7 +55,7 @@ class UsersClass extends Component {
     axios
       .get("http://127.0.0.1:5000/?test=test")
       .then((res) => console.log(res))
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
     // .then(console.log(this.state.users));
   }
 
@@ -43,6 +66,9 @@ class UsersClass extends Component {
     //   .then(console.log(this.state.users));
 
     this.setState({ users: this.props.users });
+    // axios
+    //   .post("http://127.0.0.1:5000")
+    //   .then((res) => this.setState({ users: res }));
   }
 
   // componentDidUpdate() {
