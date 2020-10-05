@@ -65,7 +65,7 @@ class UsersClass extends Component {
     //   .then((res) => this.setState({ users: res.data.results }))
     //   .then(console.log(this.state.users));
 
-   // this.setState({ users: this.props.users });
+    // this.setState({ users: this.props.users });
     axios
       .get("http://127.0.0.1:5000/users")
       .then((res) => this.setState({ users: res.data }));
@@ -78,7 +78,6 @@ class UsersClass extends Component {
   render() {
     return (
       <React.Fragment>
-      
         {this.state.users.map((user) => (
           <User
             key={user.id}
