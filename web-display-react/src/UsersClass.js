@@ -15,8 +15,8 @@ class UsersClass extends Component {
     this.nodetest = this.nodetest.bind(this);
   }
 
-  addUser() {
-    this.setState((previousState) => ({
+  async addUser() {
+    await this.setState((previousState) => ({
       users: [...previousState.users, { name: "1", gender: "2", height: "23" }],
     }));
 
@@ -33,9 +33,9 @@ class UsersClass extends Component {
     //   .catch(function (error) {
     //     console.log(error);
     //   });
-    console.log(JSON.stringify(this.state.users));
+
     axios
-      .post("http://127.0.0.1:5000", JSON.stringify(this.state.users))
+      .post("http://127.0.0.1:5000/users/add", JSON.stringify(this.state.users))
       .then(function (response) {
         console.log(response.data);
       })
