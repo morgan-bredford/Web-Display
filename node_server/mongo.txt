@@ -1,0 +1,3 @@
+morgan.b@gmx.com 
+morgan/hampa
+mongodb+srv://morgan:<password>@cluster0.dsgtd.mongodb.net/<dbname>?retryWrites=true&w=majority

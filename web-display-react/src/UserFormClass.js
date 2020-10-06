@@ -12,10 +12,10 @@ class UserFormClass extends React.Component {
       height: "",
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     // const formdata = new FormData(e.target);
@@ -36,6 +36,8 @@ class UserFormClass extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  testfunc = () => console.log('testfunc')
+
   render() {
     return (
       <form name="createUserForm" onSubmit={this.handleSubmit}>
@@ -49,6 +51,7 @@ class UserFormClass extends React.Component {
           type="text"
           name="gender"
           onChange={this.handleChange}
+          onFocus={this.testfunc}
           placeholder="gender"
         />
         <input
