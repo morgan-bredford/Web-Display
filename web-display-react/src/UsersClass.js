@@ -35,7 +35,10 @@ class UsersClass extends Component {
     //   });
 
     axios
-      .post("http://127.0.0.1:5000/users/add", JSON.stringify({ name: "1", gender: "2", height: "23" }))
+      .post(
+        "http://127.0.0.1:5000/users/add",
+        JSON.stringify({ name: "1", gender: "2", height: "23" })
+      )
       .then(function (response) {
         console.log(response.data);
       })
@@ -43,7 +46,7 @@ class UsersClass extends Component {
         console.log(error);
       });
   }
- 
+
   removeUser(id) {
     const newState = this.state.users.filter((user) => user.id !== id);
     console.log(newState);
@@ -86,7 +89,7 @@ class UsersClass extends Component {
             height={user.height}
           />
         ))}
-        <button onClick={this.addUser}>test</button>
+        <button>test</button>
         <button onClick={() => this.removeUser(3)}>test</button>
         <button onClick={this.nodetest}>test</button>
       </React.Fragment>

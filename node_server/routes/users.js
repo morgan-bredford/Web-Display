@@ -14,18 +14,19 @@ router.route("/").get((req, res) => {
 router.route("/add").post((req, res) => {
   let rawdata1 = fs.readFileSync("./fakeusers.json");
   let usersjson = JSON.parse(rawdata1);
-  req.on("data", (chunk) => {
-    console.log("A chunk of data has arrived: ", JSON.parse(chunk));
-    let newpostdata = JSON.parse(chunk)
-    usersjson.push(newpostdata)
-    fs.writeFile("fakeusers.json", JSON.stringify(usersjson), "utf8", () =>
-      console.log("callback")
-    );
-    console.log(usersjson)
-  });
-  //   let rawdata = fs.readFileSync("fakeusers.json");
-  //   let ptest = JSON.parse(rawdata);
-  //   res.end(JSON.stringify(ptest));
+  usersjson.push(req.body);
+  fs.writeFile("fakeusers.json", JSON.stringify(usersjson), "utf8", () =>
+    console.log("callback")
+  );
+  // req.on("data", (chunk) => {
+  //   console.log("A chunk of data has arrived: ", JSON.parse(chunk));
+  //   let newpostdata = JSON.parse(chunk)
+  //   usersjson.push(newpostdata)
+  //   fs.writeFile("fakeusers.json", JSON.stringify(usersjson), "utf8", () =>
+  //     console.log("callback")
+  //   );
+  //   console.log(usersjson)
+  // });
   res.send("success");
 });
 

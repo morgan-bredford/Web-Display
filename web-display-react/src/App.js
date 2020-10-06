@@ -1,12 +1,13 @@
 import React from "react";
 import UsersClass from "./UsersClass";
 import fakeusers from "./fakeusers";
-import UserForm from "./UserForm"
+import UserForm from "./UserForm";
+import UserFormClass from "./UserFormClass";
 
 function App() {
   return (
     <div className="App">
-      <UserForm />
+      <UserFormClass />
       <UsersClass users={fakeusers} />
       <input type="checkbox" />
       <span>check it</span>
