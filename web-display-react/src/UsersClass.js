@@ -74,6 +74,12 @@ class UsersClass extends Component {
       .then((res) => this.setState({ users: res.data }));
   }
 
+  bdtest = () => {
+    axios
+      .get("http://127.0.0.1:5000/")
+      //.then((res) => JSON.parse(res.data))
+      .then((jsonres) => console.log(jsonres.data));
+  };
   // componentDidUpdate() {
   //   this.setState({ users: fakeusers2 });
   // }
@@ -89,7 +95,7 @@ class UsersClass extends Component {
             height={user.height}
           />
         ))}
-        <button>test</button>
+        <button onClick={this.bdtest}>test</button>
         <button onClick={() => this.removeUser(3)}>test</button>
         <button onClick={this.nodetest}>test</button>
       </React.Fragment>
