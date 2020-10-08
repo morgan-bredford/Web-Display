@@ -18,12 +18,11 @@ app.listen(port, () => {
 });
 
 // const uri = process.env.ATLAS_URI;
-// mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
-// );
+// mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 // const connection = mongoose.connection;
-// connection.once('open', () => {
+// connection.once("open", () => {
 //   console.log("MongoDB database connection established successfully");
-// })
+// });
 
 app.get("/", (req, res) => {
   res.json({ response: "success", anotherres: "suc2" });

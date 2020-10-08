@@ -62,17 +62,18 @@ class UsersClass extends Component {
     // .then(console.log(this.state.users));
   }
 
-  componentDidMount() {
-    // axios
-    //   .get("https://swapi.dev/api/people/?search=skywalker")
-    //   .then((res) => this.setState({ users: res.data.results }))
-    //   .then(console.log(this.state.users));
+  // componentDidMount() {
+  //   // axios
+  //   //   .get("https://swapi.dev/api/people/?search=skywalker")
+  //   //   .then((res) => this.setState({ users: res.data.results }))
+  //   //   .then(console.log(this.state.users));
 
-    // this.setState({ users: this.props.users });
-    axios
-      .get("http://127.0.0.1:5000/users")
-      .then((res) => this.setState({ users: res.data }));
-  }
+  //   // this.setState({ users: this.props.users });
+
+  //   axios
+  //     .get("http://127.0.0.1:5000/users")
+  //     .then((res) => this.setState({ users: res.data }));
+  // }
 
   bdtest = () => {
     axios
