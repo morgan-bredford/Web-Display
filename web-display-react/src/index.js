@@ -54,7 +54,6 @@ const users = [
 
 ReactDOM.render(
   <React.Fragment>
-    <MyTestf />
     <App />
   </React.Fragment>,
   document.getElementById("root")
