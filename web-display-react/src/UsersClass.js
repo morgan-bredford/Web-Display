@@ -10,6 +10,7 @@ class UsersClass extends Component {
     this.state = {
       users: [],
     };
+
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
     this.nodetest = this.nodetest.bind(this);
@@ -85,6 +86,18 @@ class UsersClass extends Component {
   //   this.setState({ users: fakeusers2 });
   // }
 
+  findPos = (obj) => {
+    let curleft = 0
+    let curtop = 0;
+    if (obj.offsetParent) {
+      do {
+        curleft += obj.offsetLeft;
+        curtop += obj.offsetTop;
+      } while (obj = obj.offsetParent);
+      return [curleft,curtop];
+      //console.log([curleft,curtop])
+    }
+  }
   render() {
     return (
       <React.Fragment>
@@ -96,9 +109,15 @@ class UsersClass extends Component {
             height={user.height}
           />
         ))}
-        <button onClick={this.bdtest}>test</button>
+        <button onClick={() => this.findPos(document.getElementById('xydiv'))}>test</button>
         <button onClick={() => this.removeUser(3)}>test</button>
         <button onClick={this.nodetest}>test</button>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          localStorage.setItem(e.target.storage.value,["a","b","c"])
+        }}>
+          <input type='text' name='storage' />
+        </form>
       </React.Fragment>
     );
   }
