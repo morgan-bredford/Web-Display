@@ -19,7 +19,7 @@ function ImageSearch() {
     getCoords()
     savedimages.map(image => {
       //document.getElementById(`item${image.id}`).addEventListener("mouseup", ()=>console.log('up'), false)
-console.log(image.id)
+//console.log(image.id)
       document.getElementById(image.id).addEventListener("mousedown", dragStart, false);
       document.getElementById(image.id).addEventListener("mousemove", drag, false);
       document.getElementById(image.id).addEventListener("mouseup", dragEnd, false);
@@ -62,9 +62,10 @@ console.log(image.id)
     savedimages.map( image => {
         const obj = document.getElementById(image.id)
         image.coords = findPos(obj)
+        image.coordsoffset = {xoff: 0, yoff: 0}
       }
     )
-    console.log(savedimages)
+    //console.log(savedimages)
   }
 
   const findPos = (obj) => {
@@ -87,47 +88,26 @@ console.log(image.id)
   let currentY;
   let initialX;
   let initialY;
-  let xOffset = 0;
-  let yOffset = 0;
+  let dragItem
 
   function dragStart(e) {
-    var dragItem = document.getElementById(e.target.id)
-    savedimages.map( image => { 
-      if(e.target.id == image.id){
-        console.log(image.coords.x+" "+image.coords.y)
-        initialX = image.coords.x
-        initialY = image.coords.y
-      }
-    })
-    
+    dragItem = document.getElementById(e.target.id)
 
-    // if (e.type === "touchstart") {
-    //   initialX = e.touches[0].clientX - xOffset;
-    //   initialY = e.touches[0].clientY - yOffset;
-    // } else {
-    //   initialX = e.clientX- xOffset;
-    //   initialY = e.clientY - yOffset;
-    // }
+    if (e.type === "touchstart") {
+      initialX = e.touches[0].clientX
+      initialY = e.touches[0].clientY
+    } else {
+      initialX = e.clientX
+      initialY = e.clientY
+    }
 
     if (e.target === dragItem) {
       active = true;
     }
   }
 
-  function dragEnd(e) {
-    
-    // initialX = currentX;
-    // initialY = currentY;
-
-    active = false;
-    document.removeEventListener("mousemove", drag, false);
-    console.log(active)
-  }
-
   function drag(e) {
-    var dragItem = document.getElementById(e.target.id)
     if (active) {
-    
       e.preventDefault();
     
       if (e.type === "touchmove") {
@@ -138,17 +118,36 @@ console.log(image.id)
         currentY = e.clientY - initialY;
       }
 
-      xOffset = currentX;
-      yOffset = currentY;
+      savedimages.map( image => { 
+        if(e.target.id == image.id){
+          currentX += image.coordsoffset.xoff
+          currentY += image.coordsoffset.yoff
+        }
+      })
 
-      //(dragItem && setTranslate(currentX, currentY, dragItem))
       setTranslate(currentX, currentY, dragItem)
-//console.log(currentX+" "+currentY)
     }
   }
 
   function setTranslate(xPos, yPos, el) {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+  }
+
+  function dragEnd(e) {
+    savedimages.map( image => { 
+      if(e.target.id == image.id){
+        image.coords.x = image.coords.x + currentX
+        image.coords.y = image.coords.y + currentY
+        image.coordsoffset.xoff = currentX
+        image.coordsoffset.yoff = currentY
+      }
+    })
+
+    active = false;
+    document.removeEventListener("mousemove", drag, false);
+    console.log(savedimages)
+    console.log(`c:${currentX} o:${e.clientX} i:${initialX}`)
+    console.log(`c:${currentY} o:${e.clientY} i:${initialY}`)
   }
 
   return (
@@ -162,15 +161,16 @@ console.log(image.id)
           addImage(e,image)} />
       ))}
       <br />
-      {savedimages.map(image =>
-        <span>
-          <Link to={`/imagesearch/`}>
-          <img src={image.previewURL} id={image.id}/>
-          </Link>
-          <span  onClick={ () => removeImage(image.id) } >X</span>
-        </span>       
-      )}
-  
+      <div className='imagecontainer'>
+        {savedimages.map(image =>
+          <span>
+            <Link to={`/imagesearch/`}>
+            <img src={image.previewURL} id={image.id}/>
+            </Link>
+            <span  onClick={ () => removeImage(image.id) } >X</span>
+          </span>       
+        )}
+    </div>
     </main>
   );
 }
