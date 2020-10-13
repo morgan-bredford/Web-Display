@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import LargeImage from "./LargeImage";
@@ -11,8 +11,8 @@ function ImageSearch() {
   const [pic, setPic] = useState("");
 
   useEffect( () => {
-    if(sessionStorage.getItem('imagearray')){setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))}
-    
+    //if(sessionStorage.getItem('imagearray')){setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))}
+    console.log('render')
   },[])
 
   useEffect( () => {
@@ -25,8 +25,10 @@ function ImageSearch() {
       document.getElementById(image.id).addEventListener("mouseup", dragEnd, false);
       }
     )
+    console.log('update')
   },[savedimages])
   
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   // axios
   //   .get(`${URL}?key=${apikey}&id=1149841`)
@@ -134,21 +136,51 @@ function ImageSearch() {
   }
 
   function dragEnd(e) {
+    let sendimage = {}
     savedimages.map( image => { 
       if(e.target.id == image.id){
         image.coords.x = image.coords.x + currentX
         image.coords.y = image.coords.y + currentY
         image.coordsoffset.xoff = currentX
         image.coordsoffset.yoff = currentY
+        sendimage = image
       }
     })
 
     active = false;
     document.removeEventListener("mousemove", drag, false);
-    console.log(savedimages)
+    
     console.log(`c:${currentX} o:${e.clientX} i:${initialX}`)
     console.log(`c:${currentY} o:${e.clientY} i:${initialY}`)
+    moveImage(sendimage)
   }
+
+const moveImage = (moveimage) => {
+  const temparray = []
+  savedimages.map(
+    image => {
+      if(image.id !== moveimage.id){
+        if(image.coords.x < moveimage.coords.x){
+          temparray.push(image)
+        } else if (moveimage.coords.y <= (image.coords.y + 50) && (moveimage.coords.y >= image.coords.y - 50)){
+          temparray.push(moveimage)
+          temparray.push(image)
+          moveimage.coords = {x:99999,y:99999}
+        } else {
+          temparray.push(image)
+        }
+      }
+    }
+  )
+  if(temparray.length === savedimages.length){
+    console.log('true')
+    setSavedimages(temparray)
+  }
+  else{
+    console.log('force')
+    forceUpdate();
+  }
+}
 
   return (
     <main>
