@@ -7,6 +7,7 @@ import ImageSearch from "./imagesearch";
 import Navbar from "./Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Match from "./match";
+import Gallery from "./Gallery";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         />
         <Route path="/imagesearch" component={ImageSearch} />
         <Route path="/imagesearch/:id" component={Match} />
+        <Route path="/gallery" component={Gallery} />
         <input type="checkbox" />
         <span>check it</span>
       </div>

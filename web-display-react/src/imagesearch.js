@@ -11,7 +11,7 @@ function ImageSearch() {
   const [pic, setPic] = useState("");
 
   useEffect( () => {
-    //if(sessionStorage.getItem('imagearray')){setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))}
+    if(sessionStorage.getItem('imagearray')){setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))}
     console.log('render')
   },[])
 
@@ -35,11 +35,11 @@ function ImageSearch() {
   //   .then((res) => setPic(res.data.hits[0].previewURL))
   //   .catch((err) => console.log(err));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e,page) => {
     e.preventDefault();
 
     axios
-      .get(`${URL}?key=${apikey}&q=${e.target.searchbox.value}&per_page=5`)
+      .get(`${URL}?key=${apikey}&q=${e.target.searchbox.value}&per_page=5&page=${page}`)
       .then((res) => setSearchimages(res.data.hits))
       .catch((err) => console.log(err));
   };
@@ -174,17 +174,25 @@ const moveImage = (moveimage) => {
   )
   if(temparray.length === savedimages.length){
     console.log('true')
+    sessionStorage.setItem('imagearray',JSON.stringify(temparray))
     setSavedimages(temparray)
+    window.location.reload(false)
   }
   else{
     console.log('force')
-    forceUpdate();
+    window.location.reload(false)
   }
 }
 
+const pages = () => {
+  for(let i=1;i<11;i++){
+    return <span onClick={(e) => handleSubmit(e,i)}>{i}</span>
+  }
+}
   return (
     <main>
-      <form onSubmit={handleSubmit}>
+      <a href="https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841&per_page=5&page=2">a</a>
+      <form onSubmit={(e) => handleSubmit(e,1)}>
         <input type="text" name="searchbox" />
         <button>Search</button>
       </form>
@@ -192,6 +200,12 @@ const moveImage = (moveimage) => {
         <img src={image.previewURL} onClick={(e) => 
           addImage(e,image)} />
       ))}
+      {
+       ( () => 
+        {for(let i=1;i<11;i++){
+          return <span onClick={(e) => handleSubmit(e,i)}>{i}</span>
+        }})()
+      }
       <br />
       <div className='imagecontainer'>
         {savedimages.map(image =>
@@ -202,7 +216,10 @@ const moveImage = (moveimage) => {
             <span  onClick={ () => removeImage(image.id) } >X</span>
           </span>       
         )}
-    </div>
+      </div>
+    <Link to="/gallery">
+      <h2>Gå till Gallery</h2>
+    </Link>
     </main>
   );
 }
