@@ -2,6 +2,7 @@ import React, { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import LargeImage from "./LargeImage";
+import SearchImages from "./SearchImages";
 
 function ImageSearch() {
   const URL = "https://pixabay.com/api";
@@ -9,6 +10,7 @@ function ImageSearch() {
   const [searchimages, setSearchimages] = useState([]);
   const [savedimages,setSavedimages] = useState([]);
   const [pic, setPic] = useState("");
+  const [search, setSearch] = useState({active:false,query:""})
 
   useEffect( () => {
     if(sessionStorage.getItem('imagearray')){setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))}
@@ -27,21 +29,21 @@ function ImageSearch() {
     )
     console.log('update')
   },[savedimages])
-  
-  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   // axios
   //   .get(`${URL}?key=${apikey}&id=1149841`)
   //   .then((res) => setPic(res.data.hits[0].previewURL))
   //   .catch((err) => console.log(err));
 
-  const handleSubmit = (e,page) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios
-      .get(`${URL}?key=${apikey}&q=${e.target.searchbox.value}&per_page=5&page=${page}`)
-      .then((res) => setSearchimages(res.data.hits))
-      .catch((err) => console.log(err));
+//console.log(e.target.searchbox.value)
+    setSearch({active:true,query: e.target.searchbox.value} )
+console.log(search.query)
+    // axios
+    //   .get(`${URL}?key=${apikey}&q=${query}&per_page=5&page=${page}`)
+    //   .then((res) => setSearchimages(res.data.hits))
+    //   .catch((err) => console.log(err));
   };
 
   const  addImage = (e,image) => {
@@ -184,15 +186,17 @@ const moveImage = (moveimage) => {
   }
 }
 
-const pages = () => {
-  for(let i=1;i<11;i++){
-    return <span onClick={(e) => handleSubmit(e,i)}>{i}</span>
-  }
-}
+
+// const pages = () => {
+// for(let i=1;i<11;i++){
+//   return <span onClick={(e) => handleSubmit(e,i)}>{i}</span>
+// }
+// }
   return (
     <main>
+      {search.active ? <SearchImages query={search.query} /> : null }
       <a href="https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841&per_page=5&page=2">a</a>
-      <form onSubmit={(e) => handleSubmit(e,1)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <input type="text" name="searchbox" />
         <button>Search</button>
       </form>
@@ -202,9 +206,14 @@ const pages = () => {
       ))}
       {
        ( () => 
-        {for(let i=1;i<11;i++){
-          return <span onClick={(e) => handleSubmit(e,i)}>{i}</span>
-        }})()
+        {
+          if(searchimages.length)
+          {
+            for(let i=1;i<11;i++){
+              return  <span onClick={(e) => handleSubmit(e,1)}>test</span>
+          }
+        }
+      })()
       }
       <br />
       <div className='imagecontainer'>
