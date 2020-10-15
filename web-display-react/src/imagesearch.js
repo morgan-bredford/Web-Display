@@ -195,7 +195,7 @@ const moveImage = (moveimage) => {
   return (
     <main>
       {console.log("e"+query)}
-      <SearchImages query={query} key={Math.floor(Math.random() * Math.floor(99999))}/>
+      <SearchImages query={query} add_image={addImage} key={Math.floor(Math.random() * Math.floor(99999))}/>
       <a href="https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841&per_page=5&page=2">a</a>
       <form onSubmit={(e) => handleSubmit(e,e.target.searchbox.value,1)}>
         <input type="text" name="searchbox" />
