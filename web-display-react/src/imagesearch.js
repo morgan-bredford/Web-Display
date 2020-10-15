@@ -10,7 +10,7 @@ function ImageSearch() {
   const [searchimages, setSearchimages] = useState([]);
   const [savedimages,setSavedimages] = useState([]);
   const [pic, setPic] = useState("");
-  const [search, setSearch] = useState({active:false,query:""})
+  const [query, setQuery] = useState("")
 
   useEffect( () => {
     if(sessionStorage.getItem('imagearray')){setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))}
@@ -35,11 +35,11 @@ function ImageSearch() {
   //   .then((res) => setPic(res.data.hits[0].previewURL))
   //   .catch((err) => console.log(err));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e,query,page) => {
     e.preventDefault();
 //console.log(e.target.searchbox.value)
-    setSearch({active:true,query: e.target.searchbox.value} )
-console.log(search.query)
+    setQuery(e.target.searchbox.value)
+console.log(query)
     // axios
     //   .get(`${URL}?key=${apikey}&q=${query}&per_page=5&page=${page}`)
     //   .then((res) => setSearchimages(res.data.hits))
@@ -194,9 +194,10 @@ const moveImage = (moveimage) => {
 // }
   return (
     <main>
-      {search.active ? <SearchImages query={search.query} /> : null }
+      {console.log("e"+query)}
+      <SearchImages query={query} key={Math.floor(Math.random() * Math.floor(99999))}/>
       <a href="https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841&per_page=5&page=2">a</a>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e,e.target.searchbox.value,1)}>
         <input type="text" name="searchbox" />
         <button>Search</button>
       </form>
