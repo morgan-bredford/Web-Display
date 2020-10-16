@@ -11,10 +11,13 @@ function ImageSearch() {
   const [savedimages,setSavedimages] = useState([]);
   const [pic, setPic] = useState("");
   const [query, setQuery] = useState("")
+  const [page, setPage] = useState(1)
 
   useEffect( () => {
-    if(sessionStorage.getItem('imagearray')){setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))}
-    console.log('render')
+    if(sessionStorage.getItem('imagearray')){
+      setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))
+    }
+   
   },[])
 
   useEffect( () => {
@@ -37,19 +40,19 @@ function ImageSearch() {
 
   const handleSubmit = (e,query,page) => {
     e.preventDefault();
-//console.log(e.target.searchbox.value)
+console.log("wrong handle")
     setQuery(e.target.searchbox.value)
-console.log(query)
     // axios
     //   .get(`${URL}?key=${apikey}&q=${query}&per_page=5&page=${page}`)
     //   .then((res) => setSearchimages(res.data.hits))
     //   .catch((err) => console.log(err));
   };
 
-  const  addImage = (e,image) => {
+  const addImage = (e,image) => {
+console.log(savedimages)
     const {id,previewURL,largeImageURL} = image
     const imageobj = {id,previewURL, largeImageURL}
-    const newimagearray = [...savedimages,imageobj]
+    const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
     sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
     setSavedimages(newimagearray)
   }
@@ -194,8 +197,7 @@ const moveImage = (moveimage) => {
 // }
   return (
     <main>
-      {console.log("e"+query)}
-      <SearchImages query={query} add_image={addImage} key={Math.floor(Math.random() * Math.floor(99999))}/>
+      <SearchImages addImage={addImage} page={page} setPage={setPage} />
       <a href="https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841&per_page=5&page=2">a</a>
       <form onSubmit={(e) => handleSubmit(e,e.target.searchbox.value,1)}>
         <input type="text" name="searchbox" />

@@ -14,51 +14,41 @@ class SearchImages extends Component {
             searchimages: [],
             URL: "https://pixabay.com/api",
             apikey: "18623126-9e0d07d5ea60888b927459e25",
-            page: 0,
+            page: 1,
             big: "",
             ta: Array.from("123456"),
             addImage: () => {}
         };
         console.log(props)
         this.state.addImage = this.props.addImage
-        //this.state.query = this.props.query
-        //this.state.page = this.props.page
+        this.state.query = this.props.query
+        this.state.page = this.props.page
         this.searchImages = this.searchImages.bind(this)
     }
 
-    handleSubmit = (e,query,page) => {
-        e.preventDefault();
-console.log(`handlesubmit ${query} ${page}`)
-        this.setState({query: query,page: page})
-        //this.searchImages()
-console.log(this.state)
-    }
-
     searchImages() {
-console.log(`search ${this.state.query} ${this.state.page}`)
         axios
           .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=9&page=${this.state.page}`)
           .then((res) => this.setState({searchimages: res.data.hits}))
           .catch((err) => console.log(err));
     };
 
-    // componentDidMount()  {
-    //     if(this.state.query) this.searchImages()
-    // }
+    componentDidMount()  {
+        if(this.state.query) this.searchImages()
+    }
 
     componentDidUpdate(prevProps,prevState){
-        if(this.state.query && this.state.page !== prevState.page) this.searchImages()
+        if(this.state.query && this.state.page !== prevState.page){
+            axios
+            .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=9&page=${this.state.page}`)
+            .then((res) => this.setState({searchimages: res.data.hits}))
+            .catch((err) => console.log(err));
+        }
     }
 
     render(){
         return(
             <div>
-                <form onSubmit={(e) => 
-                    this.handleSubmit(e,e.target.searchbox.value,1)
-                    }>
-                    <input type="text" name="searchbox" />
-                    <button>Search</button>
-                </form>
                  { this.state.big ? 
                  <div style={{width: '500px',height: '300px'}}>
                      <img src={this.state.big} style={{width: '500px',height: '300px',objectFit: 'contain'}}/>
@@ -81,7 +71,6 @@ console.log(`search ${this.state.query} ${this.state.page}`)
                     this.props.setPage(i)
                 }}>{i}</span>)
             }
-            <button onClick={() => this.setState({query: "dog",page: 5})} />
             </div>
         )
     }
