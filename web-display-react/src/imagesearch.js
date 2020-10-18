@@ -16,15 +16,14 @@ function ImageSearch() {
   useEffect( () => {
     if(sessionStorage.getItem('imagearray')){
       setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))
+    }else{
+      sessionStorage.setItem('imagearray',"[]")
     }
-   
-  },[])
+   },[])
 
   useEffect( () => {
     getCoords()
     savedimages.map(image => {
-      //document.getElementById(`item${image.id}`).addEventListener("mouseup", ()=>console.log('up'), false)
-//console.log(image.id)
       document.getElementById(image.id).addEventListener("mousedown", dragStart, false);
       document.getElementById(image.id).addEventListener("mousemove", drag, false);
       document.getElementById(image.id).addEventListener("mouseup", dragEnd, false);
@@ -33,14 +32,8 @@ function ImageSearch() {
     console.log('update')
   },[savedimages])
 
-  // axios
-  //   .get(`${URL}?key=${apikey}&id=1149841`)
-  //   .then((res) => setPic(res.data.hits[0].previewURL))
-  //   .catch((err) => console.log(err));
-
   const handleSubmit = (e,query,page) => {
     e.preventDefault();
-console.log("wrong handle")
     setQuery(e.target.searchbox.value)
     // axios
     //   .get(`${URL}?key=${apikey}&q=${query}&per_page=5&page=${page}`)
@@ -49,7 +42,6 @@ console.log("wrong handle")
   };
 
   const addImage = (e,image) => {
-console.log(savedimages)
     const {id,previewURL,largeImageURL} = image
     const imageobj = {id,previewURL, largeImageURL}
     const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
@@ -72,7 +64,6 @@ console.log(savedimages)
         image.coordsoffset = {xoff: 0, yoff: 0}
       }
     )
-    //console.log(savedimages)
   }
 
   const findPos = (obj) => {
@@ -182,42 +173,14 @@ const moveImage = (moveimage) => {
     sessionStorage.setItem('imagearray',JSON.stringify(temparray))
     setSavedimages(temparray)
     window.location.reload(false)
-  }
-  else{
-    console.log('force')
+  }else{
     window.location.reload(false)
   }
 }
 
-
-// const pages = () => {
-// for(let i=1;i<11;i++){
-//   return <span onClick={(e) => handleSubmit(e,i)}>{i}</span>
-// }
-// }
   return (
     <main>
-      <SearchImages addImage={addImage} page={page} setPage={setPage} />
-      <a href="https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841&per_page=5&page=2">a</a>
-      <form onSubmit={(e) => handleSubmit(e,e.target.searchbox.value,1)}>
-        <input type="text" name="searchbox" />
-        <button>Search</button>
-      </form>
-      {searchimages.map((image) => (
-        <img src={image.previewURL} onClick={(e) => 
-          addImage(e,image)} />
-      ))}
-      {
-       ( () => 
-        {
-          if(searchimages.length)
-          {
-            for(let i=1;i<11;i++){
-              return  <span onClick={(e) => handleSubmit(e,1)}>test</span>
-          }
-        }
-      })()
-      }
+      <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage} />
       <br />
       <div className='imagecontainer'>
         {savedimages.map(image =>
