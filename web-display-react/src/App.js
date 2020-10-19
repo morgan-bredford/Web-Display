@@ -22,9 +22,7 @@ function App() {
         />
         <Route path="/imagesearch" component={ImageSearch} />
         <Route path="/imagesearch/:id" component={Match} />
-        <Route path="/gallery" component={Gallery} />
-        <input type="checkbox" />
-        <span>check it</span>
+        <Route path="/gallery" exact component={Gallery} />
       </div>
     </Router>
   );

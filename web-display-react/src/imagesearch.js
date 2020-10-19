@@ -192,7 +192,8 @@ const moveImage = (moveimage) => {
           </span>       
         )}
       </div>
-    <Link to="/gallery">
+    <Link to={{pathname: "/gallery",
+      savedImages:{savedimages}}}>
       <h2>Gå till Gallery</h2>
     </Link>
     </main>
