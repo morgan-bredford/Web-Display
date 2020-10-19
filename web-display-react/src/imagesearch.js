@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import LargeImage from "./LargeImage";
 import SearchImages from "./SearchImages";
+import App3 from "./App3";
 
 function ImageSearch() {
   const URL = "https://pixabay.com/api";
@@ -196,6 +197,7 @@ const moveImage = (moveimage) => {
       savedImages:{savedimages}}}>
       <h2>Gå till Gallery</h2>
     </Link>
+    <App3 />
     </main>
   );
 }
