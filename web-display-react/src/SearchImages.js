@@ -16,7 +16,9 @@ class SearchImages extends Component {
             apikey: "18623126-9e0d07d5ea60888b927459e25",
             page: 0,
             large_image: "",
-            ta: Array.from("123456"),
+            page_nav_index: 1,
+            page_links: [],
+            dsf: "ertre",
         };
         this.searchImages = this.searchImages.bind(this)
     }
@@ -24,6 +26,8 @@ class SearchImages extends Component {
     handleSubmit = (e,query,page) => {
         e.preventDefault();
         this.setState({query: query,page: page})
+        this.pageNav(0)
+        console.log(`render: ${this.state.page_nav_index}`)
     }
 
     searchImages() {
@@ -54,6 +58,16 @@ class SearchImages extends Component {
             this.state.search_images[(this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image)) + move_index]
             .largeImageURL})
         }
+    }
+
+    pageNav = (move_index) => {
+        console.log(`movei: ${move_index}`)
+        const page_array = []
+        for(let i=0;i<10;i++){
+            page_array.push(this.state.page_nav_index + i)
+            console.log(this.state.page_nav_index + i)
+        }
+        this.setState({page_links: page_array,page_nav_index: this.state.page_nav_index + move_index})
     }
 
     render(){
@@ -99,11 +113,29 @@ class SearchImages extends Component {
                 }
                 <br />
                 {
-                    this.state.ta.map( i => <span className="pagelinks" onClick={(e) => {
-                        this.setState({page: i})
-                        this.props.setPage(i)
-                    }}>{i}</span>)
+                    this.state.page_links.length && this.state.page > 10 ? <span onClick={() => 
+                       { 
+                           this.setState({page_nav_index: this.state.page_nav_index - 10})
+                       this.pageNav(0)
+                        this.setState({page: this.state.page_nav_index})
+                    console.log(`page:${this.state.page} index:${this.state.page_nav_index}`)}
+                    }>next</span> :null
                 }
+                {
+                    this.state.page_links.map( index => <span className="pagelinks" onClick={(e) => {
+                        this.setState({page: index})
+                        this.props.setPage(index)
+                    }}>{index}</span>)
+                }
+                {
+                    this.state.page_links.length ? <span onClick={() => 
+                       { //this.setState({page_nav_index:  10})
+                       this.pageNav(10)
+                        this.setState({page: this.state.page_nav_index})
+                    console.log(`page:${this.state.page} index:${this.state.page_nav_index}`)}
+                    }>next</span> :null
+                }
+                <button onClick={() => console.log(`page:${this.state.page} index:${this.state.page_nav_index}`)}>retr</button>
             </div>
         )
     }

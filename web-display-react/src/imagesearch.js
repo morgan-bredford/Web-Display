@@ -20,6 +20,7 @@ function ImageSearch() {
     }else{
       sessionStorage.setItem('imagearray',"[]")
     }
+    upimg()
    },[])
 
   useEffect( () => {
@@ -179,8 +180,23 @@ const moveImage = (moveimage) => {
   }
 }
 
+const upimg = () => {
+  document.querySelector('input[type="file"]').addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+        var img = document.querySelector('img');  // $('img')[0]
+  console.log(img)
+        // img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+        // img.onload = this.imageIsLoaded;
+    }
+  });
+}
+
   return (
     <main>
+      <div >
+            <input type='file' />
+            <img id="myImg" src="#" alt="your image" /><br />
+        </div>
       <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage} />
       <br />
       <div className='imagecontainer'>
@@ -197,7 +213,6 @@ const moveImage = (moveimage) => {
       savedImages:{savedimages}}}>
       <h2>Gå till Gallery</h2>
     </Link>
-    <App3 />
     </main>
   );
 }

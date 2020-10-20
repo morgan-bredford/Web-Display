@@ -13,7 +13,7 @@ class App3 extends Component {
                     img.onload = this.imageIsLoaded;
                 }
             });
-          });
+        });
     }
 
     imageIsLoaded = () => { 

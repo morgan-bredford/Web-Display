@@ -19,4 +19,4 @@ https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841
 "userImageURL":"https://cdn.pixabay.com/user/2014/05/07/00-10-34-2_250x250.jpg"}]}
 
 $0.getBoundingClientRect()
-style={{width: '500px',height: '300px',objectFit: 'contain'}}
+{search.active ? <SearchImages query={search.query} /> : null }
