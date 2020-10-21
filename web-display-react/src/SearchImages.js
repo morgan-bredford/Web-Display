@@ -18,7 +18,6 @@ class SearchImages extends Component {
             large_image: "",
             page_nav_index: 1,
             page_links: [],
-            dsf: "ertre",
         };
         this.searchImages = this.searchImages.bind(this)
     }
@@ -26,7 +25,7 @@ class SearchImages extends Component {
     handleSubmit = (e,query,page) => {
         e.preventDefault();
         this.setState({query: query,page: page})
-        this.pageNav(0)
+        this.pageNav()
         console.log(`render: ${this.state.page_nav_index}`)
     }
 
@@ -38,7 +37,9 @@ class SearchImages extends Component {
     };
 
     componentDidUpdate(prevProps,prevState){
-        if(this.state.query && this.state.page !== prevState.page) this.searchImages()
+        console.log(`update: state: ${this.state.page_links[0]} prevstate: ${prevState.page_links[0]}`)
+        if(this.state.query && this.state.page !== prevState.page) {this.searchImages()}
+        if(this.state.page_nav_index !== prevState.page_nav_index){this.pageNav()}
     }
 
     addImage = (e,image) => {
@@ -60,14 +61,13 @@ class SearchImages extends Component {
         }
     }
 
-    pageNav = (move_index) => {
-        console.log(`movei: ${move_index}`)
+    pageNav = () => {
         const page_array = []
         for(let i=0;i<10;i++){
             page_array.push(this.state.page_nav_index + i)
             console.log(this.state.page_nav_index + i)
         }
-        this.setState({page_links: page_array,page_nav_index: this.state.page_nav_index + move_index})
+        this.setState({page_links: page_array})
     }
 
     render(){
@@ -115,10 +115,8 @@ class SearchImages extends Component {
                 {
                     this.state.page_links.length && this.state.page > 10 ? <span onClick={() => 
                        { 
-                           this.setState({page_nav_index: this.state.page_nav_index - 10})
-                       this.pageNav(0)
-                        this.setState({page: this.state.page_nav_index})
-                    console.log(`page:${this.state.page} index:${this.state.page_nav_index}`)}
+                           this.setState({page: this.state.page_nav_index - 10,page_nav_index: this.state.page_nav_index - 10})
+                    }
                     }>next</span> :null
                 }
                 {
@@ -129,13 +127,9 @@ class SearchImages extends Component {
                 }
                 {
                     this.state.page_links.length ? <span onClick={() => 
-                       { //this.setState({page_nav_index:  10})
-                       this.pageNav(10)
-                        this.setState({page: this.state.page_nav_index})
-                    console.log(`page:${this.state.page} index:${this.state.page_nav_index}`)}
+                        this.setState({page: this.state.page_nav_index + 10,page_nav_index: this.state.page_nav_index + 10})
                     }>next</span> :null
                 }
-                <button onClick={() => console.log(`page:${this.state.page} index:${this.state.page_nav_index}`)}>retr</button>
             </div>
         )
     }
