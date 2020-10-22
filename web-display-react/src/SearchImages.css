@@ -33,16 +33,15 @@
   display: flex;
   width: 80vw;
   height: 80vh;
-  z-index: 2;
 }
 
 .lbnav {
   background-color: #eee;
+  cursor: pointer;
 }
 
 .lbimg {
   object-fit: contain;
-  z-index: 999;
 }
 
 #lbclose {
@@ -56,4 +55,14 @@
   background-color: #eee;
   cursor: pointer;
   transform: translate(-75px, -50px);
+}
+
+#lbload {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  text-align: center;
+  font-size: 36px;
+  transform: translate(-100%, -50%);
 }

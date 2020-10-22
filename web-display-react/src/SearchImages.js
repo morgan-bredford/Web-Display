@@ -18,6 +18,7 @@ class SearchImages extends Component {
             large_image: "",
             page_nav_index: 1,
             page_links: [],
+            loading: false,
         };
         this.searchImages = this.searchImages.bind(this)
     }
@@ -26,7 +27,6 @@ class SearchImages extends Component {
         e.preventDefault();
         this.setState({query: query,page: page})
         this.pageNav()
-        console.log(`render: ${this.state.page_nav_index}`)
     }
 
     searchImages() {
@@ -40,6 +40,7 @@ class SearchImages extends Component {
         console.log(`update: state: ${this.state.page_links[0]} prevstate: ${prevState.page_links[0]}`)
         if(this.state.query && this.state.page !== prevState.page) {this.searchImages()}
         if(this.state.page_nav_index !== prevState.page_nav_index){this.pageNav()}
+        if(this.state.large_image !== prevState.large_image){this.setState({loading: true})}
     }
 
     addImage = (e,image) => {
@@ -85,20 +86,24 @@ class SearchImages extends Component {
                     }}>
                         {
                             this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) !== 0 ?  
-                                <span className="lbnav" onClick={(e) => this.imageNav(e,-1)} >back</span>
+                                <span className="lbnav" onClick={(e) => {
+                                    this.imageNav(e,-1)}} >back</span>
                             : null
                         }
                         <div id="lbimgcontainer">
-                            <img src={this.state.large_image} className="lbimg" onClick={(e) => {
+                            <img src={this.state.large_image} className="lbimg" onLoad={() => this.setState({loading: false})} onClick={(e) => {
                                 e.stopPropagation()
                                 }}/>
+                           { this.state.loading ? <span id="lbload" >loading...</span> : null}
                             <span id="lbclose" onClick={() => {this.setState({large_image: ""})
                         }} >
                                 X</span>
                         </div>
                         {
                             this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) + 1 < this.state.search_images.length ?  
-                                <span className="lbnav" onClick={(e) => this.imageNav(e,1)}>forward</span>
+                                <span className="lbnav" onClick={(e) => {
+                                    this.imageNav(e,1)
+                                }}>forward</span>
                             : null
                         }
                     </div>

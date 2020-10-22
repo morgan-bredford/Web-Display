@@ -7,6 +7,7 @@ function Gallery(props){
     const [gallery_images,setGalleryImages] = useState([])
     const [large_image,setLargeImage] = useState("")
     const [image_index,setImageIndex] = useState(-1)
+    const [loading,setLoading] = useState(false)
 
     useEffect( () => {
         if(sessionStorage.getItem('imagearray')){
@@ -33,19 +34,25 @@ function Gallery(props){
                 <div id="lightbox" onClick={(e) => setLargeImage("") }>
                     {
                         gallery_images.findIndex(img => img.largeImageURL === large_image) !== 0 ?  
-                            <span className="lbnav" onClick={(e) => imageNav(e,-1)} >back</span>
+                            <span className="lbnav" onClick={(e) => {
+                                setLoading(true)
+                                imageNav(e,-1)}}
+                                 >back</span>
                         : null
                     }
                     <div id="lbimgcontainer">
-                        <img src={large_image} className="lbimg" onClick={(e) => {
+                        <img src={large_image} className="lbimg" onLoad={() => setLoading(false)} onClick={(e) => {
                             e.stopPropagation() }}/>
+                        {loading ? <span id="lbload" >loading...</span> : null}
                         <span id="lbclose" onClick={(e) => setLargeImage("")
                     } >
                             X</span>
                     </div>
                     {
                         gallery_images.findIndex(img => img.largeImageURL === large_image) + 1 < gallery_images.length ?  
-                            <span className="lbnav" onClick={(e) => imageNav(e,1)}>forward</span>
+                            <span className="lbnav" onClick={(e) => {
+                                setLoading(true)
+                                imageNav(e,1)}}>forward</span>
                         : null
                     }
                 </div>
@@ -55,6 +62,7 @@ function Gallery(props){
                 return (
                     <span>
                     <img src={image.previewURL} id={image.id} onClick={() => {
+                        setLoading(true)
                         setLargeImage(image.largeImageURL)
                         }} />
                     </span >
