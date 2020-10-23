@@ -7,9 +7,11 @@ class UserFormClass extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "",
+      username: "",
+      password: "",
+      firstname: "",
+      lastname: "",
       gender: "",
-      height: "",
     };
     this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,15 +26,10 @@ class UserFormClass extends React.Component {
     axios
       .post("http://127.0.0.1:5000/users/add", this.state)
       .then((res) => console.log(res));
-
-    // console.log(e.target.elements["gender"].value)
-    // console.log(e.target.elements.length)
-    // for(let i = 0; i<e.target.elements.length ; i++){
-    //     console.log(e.target.elements[i].value)
-    // }
   }
 
   handleChange(e) {
+    console.log(`namn: ${e.target.name} value: ${e.target.value}`)
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -41,28 +38,51 @@ class UserFormClass extends React.Component {
   render() {
     return (
       <form name="createUserForm" onSubmit={this.handleSubmit}>
+        <label htmlFor="username">Användarnamn:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          onChange={this.handleChange}
+          placeholder="användarnamn"
+        /><br />
+        <label htmlFor="password">Lösenord:</label>
+        <input
+          type="text"
+          name="password"
+          id="password"
+          onChange={this.handleChange}
+          placeholder="lösenord"
+        /><br />
+        <label htmlFor="firstname">Förnamn:</label>
         <input
           type="text"
           name="name"
+          id="firstname"
           onChange={this.handleChange}
-          placeholder="name"
-        />
+          placeholder="förnamn"
+        /><br />
+        <label htmlFor="lastname">Efternamn:</label>
         <input
           type="text"
           name="gender"
+          id="lastname"
           onChange={this.handleChange}
           onFocus={this.testfunc}
-          placeholder="gender"
-        />
-        <input
-          type="text"
-          name="height"
-          onChange={this.handleChange}
-          placeholder="height"
-        />
-        <textarea />
+          placeholder="efternamn"
+        /><br />
+        <label htmlFor="gender">Kön:</label>
+        <select id="gender" name="gender" value={this.state.gender} onChange={this.handleChange}>
+            <option value="">-Välj-</option>
+            <option value="Man">Man</option>
+            <option value="Kvinna">Kvinna</option>
+            <option value="Annat">Annat</option>
+        </select>
+        <br />
         <button>Submit</button>
+        <br /><br />
         {this.state.name}
+        {this.state.gender}
       </form>
     );
   }
