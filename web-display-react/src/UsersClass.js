@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import User from "./User";
 import axios from "axios";
 import { render } from "@testing-library/react";
 import fakeusers2 from "./fakeusers2";
@@ -56,11 +55,7 @@ class UsersClass extends Component {
   }
 
   nodetest() {
-    axios
-      .get("http://127.0.0.1:5000/?test=test")
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-    // .then(console.log(this.state.users));
+    console.log(JSON.parse(localStorage.getItem('user')))
   }
 
   // componentDidMount() {
@@ -101,14 +96,7 @@ class UsersClass extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.users.map((user) => (
-          <User
-            key={user.id}
-            name={user.name}
-            gender={user.gender}
-            height={user.height}
-          />
-        ))}
+       
         <button onClick={() => this.findPos(document.getElementById('xydiv'))}>test</button>
         <button onClick={() => this.removeUser(3)}>test</button>
         <button onClick={this.nodetest}>test</button>

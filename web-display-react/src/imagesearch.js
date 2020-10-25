@@ -194,8 +194,7 @@ const upimg = () => {
   return (
     <main>
       <div >
-            <input type='file' />
-            <img id="myImg" src="#" alt="your image" /><br />
+            
         </div>
       <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage} />
       <br />

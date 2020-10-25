@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import uuid from 'react-uuid'
+import Im from './Im'
 // import UserForm from 'react-hook-form'
 // const {register,handleSubmit,errors} = useForm()
 
@@ -12,9 +14,10 @@ class UserFormClass extends React.Component {
       firstname: "",
       lastname: "",
       gender: "",
+      key: uuid(),
+      errormsg: "",
     };
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = (e) => {
@@ -25,18 +28,52 @@ class UserFormClass extends React.Component {
 
     axios
       .post("http://127.0.0.1:5000/users/add", this.state)
-      .then((res) => console.log(res));
+      .then((res) => console.log(res))
+      .catch(err => {
+        this.setState({errormsg: 'ERROR!!!!'}) 
+        console.log(err.response)})
   }
 
   handleChange(e) {
-    console.log(`namn: ${e.target.name} value: ${e.target.value}`)
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  testfunc = () => console.log('testfunc')
+  findUser = async (e) => {
+    e.preventDefault()
+
+    const ret = await axios
+      .get("http://127.0.0.1:5000/users/find?search="+e.target[0].value)
+      //.then((res) => this.setState({login: res.data[0].username}))
+      .catch(err => {
+        //this.setState({errormsg: 'ERROR!!!!'}) 
+        console.log(err.response)})
+
+        return ret
+
+  }
+
+  login = (e) => {
+    e.preventDefault()
+    const user = {username: e.target[0].value, password: e.target[1].value}
+    axios
+      .get("http://127.0.0.1:5000/users/find?search="+e.target[0].value)
+      .then((res) => {
+        if(user.password === res.data[0].password){
+          localStorage.setItem('user', JSON.stringify(res.data))
+          //this.props.setUser(res.data)
+          this.props.setLoggedIn(true)
+          this.props.setUser(res.data)
+        }
+      })
+      .catch(err => {
+        //this.setState({errormsg: 'ERROR!!!!'}) 
+        console.log(err.response)})
+  }
 
   render() {
     return (
+      <div>
+      <Im />
       <form name="createUserForm" onSubmit={this.handleSubmit}>
         <label htmlFor="username">Användarnamn:</label>
         <input
@@ -57,7 +94,7 @@ class UserFormClass extends React.Component {
         <label htmlFor="firstname">Förnamn:</label>
         <input
           type="text"
-          name="name"
+          name="firstname"
           id="firstname"
           onChange={this.handleChange}
           placeholder="förnamn"
@@ -65,7 +102,7 @@ class UserFormClass extends React.Component {
         <label htmlFor="lastname">Efternamn:</label>
         <input
           type="text"
-          name="gender"
+          name="lastname"
           id="lastname"
           onChange={this.handleChange}
           onFocus={this.testfunc}
@@ -80,10 +117,21 @@ class UserFormClass extends React.Component {
         </select>
         <br />
         <button>Submit</button>
+        {this.state.errormsg}
         <br /><br />
         {this.state.name}
         {this.state.gender}
       </form>
+      <form onSubmit={(e) => this.findUser(e)}>
+        <input type="text" name="search" />
+        <button />
+      </form>
+      <form onSubmit={(e) => this.login(e)}>
+        <input type="text" name="username" placeholder="name" />
+        <input type="text" name="password" placeholder="pass" />
+        <button>log in</button>
+      </form>
+      </div>
     );
   }
 }

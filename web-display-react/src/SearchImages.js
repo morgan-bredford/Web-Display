@@ -71,9 +71,31 @@ class SearchImages extends Component {
         this.setState({page_links: page_array})
     }
 
+    componentDidMount(){this.upimg()}
+    upimg = () => {
+        document.querySelector('input[type="file"]').addEventListener('change', function() {
+          if (this.files && this.files[0]) {
+              var img = document.querySelector('img');  // $('img')[0]
+        console.log(img)
+              img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+              img.onload = this.imageIsLoaded;
+
+              axios
+                .post("http://127.0.0.1:5000/image", this.files[0])
+                .then((res) => console.log(res))
+                .catch(err => {
+                    console.log(err.response)})
+            }
+        });
+    }
+
     render(){
         return(
             <div>
+                <div >
+                    <input type='file' />
+                    <img id="myImg" src="#" alt="your image" /><br />
+                </div>
                 <form onSubmit={(e) => 
                     this.handleSubmit(e,e.target.searchbox.value,1)
                     }>
