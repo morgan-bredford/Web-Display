@@ -7,7 +7,7 @@ function Navbar(props) {
 
   return (
     <nav>
-      {console.log(`nav: ${props.loggedIn}`)}
+      {console.log(`nav: ${props.loggedIn} `)}
       <ul>
         <Link to="/">
           <li>hem</li>
@@ -15,8 +15,8 @@ function Navbar(props) {
         <Link to="/imagesearch">
           <li>bygg galleri</li>
         </Link>
-  { props.loggedIn ? <Link to="/userpage"><li>placeholder</li></Link> : <Link to="/login"><li>logga in</li></Link>
-        
+        { 
+          props.loggedIn ? <Link to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}</li></Link> : <Link to="/login"><li>logga in</li></Link>
         }
       </ul>
     </nav>

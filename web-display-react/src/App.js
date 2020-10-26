@@ -26,7 +26,7 @@ function App() {
   return (
     <Router>
       <div className="App"  >
-        <Navbar loggedIn={loggedIn} />
+        <Navbar loggedIn={loggedIn} user={user} />
         
         <Route path="/" exact
         render={() => (
@@ -39,9 +39,12 @@ function App() {
         />
         <Route path="/userpage" exact
           render={() => (
-          <UserPage user={user} />)}
+          <UserPage user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />)}
         />
-        <Route path="/login" component={Login} />
+        <Route path="/login" 
+        render={() => (
+          <Login setLoggedIn={setLoggedIn} setUser={setUser} loggedIn={loggedIn} />)}
+        />
         <Route path="/imagesearch" component={ImageSearch} />
         <Route path="/imagesearch/:id" component={Match} />
         <Route path="/gallery" exact component={Gallery} />

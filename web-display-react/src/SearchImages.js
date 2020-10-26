@@ -92,10 +92,10 @@ class SearchImages extends Component {
     render(){
         return(
             <div>
-                <form onSubmit={(e) => 
+                <form style={{display: 'flex',flexDirection: 'row',justifyContent: 'center'}} onSubmit={(e) => 
                     this.handleSubmit(e,e.target.searchbox.value,1)
                     }>
-                    <input type="text" name="searchbox" />
+                    <input type="text" name="searchbox" style={{width: '40vw'}}/>
                     <button>Sök bild</button>
                 </form>
                 <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>klicka på + för att lägga till bilden till ditt galleri</h4>
