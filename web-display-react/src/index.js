@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import axios from "axios";
+import './css/index.css'
 
 // async function getUsers() {
 //   try {

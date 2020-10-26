@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.imagecontainer {
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.page-links {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100%;
+}

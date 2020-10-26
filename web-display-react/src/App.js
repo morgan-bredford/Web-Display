@@ -9,6 +9,7 @@ import Navbar from "./Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Match from "./match";
 import Gallery from "./Gallery";
+import Login from './Login'
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
           <UserFormClass setLoggedIn={setLoggedIn} setUser={setUser} />)}
         />
         <Route
-          path="/"
+          path="/####"
           exact
           component={() => <UsersClass users={fakeusers} />}
         />
@@ -40,6 +41,7 @@ function App() {
           render={() => (
           <UserPage user={user} />)}
         />
+        <Route path="/login" component={Login} />
         <Route path="/imagesearch" component={ImageSearch} />
         <Route path="/imagesearch/:id" component={Match} />
         <Route path="/gallery" exact component={Gallery} />

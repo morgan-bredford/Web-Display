@@ -20,7 +20,6 @@ function ImageSearch() {
     }else{
       sessionStorage.setItem('imagearray',"[]")
     }
-    upimg()
    },[])
 
   useEffect( () => {
@@ -180,24 +179,14 @@ const moveImage = (moveimage) => {
   }
 }
 
-const upimg = () => {
-  document.querySelector('input[type="file"]').addEventListener('change', function() {
-    if (this.files && this.files[0]) {
-        var img = document.querySelector('img');  // $('img')[0]
-  console.log(img)
-        // img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-        // img.onload = this.imageIsLoaded;
-    }
-  });
-}
-
   return (
     <main>
-      <div >
-            
-        </div>
       <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage} />
       <br />
+      <Link to={{pathname: "/gallery",
+      savedImages:{savedimages}}}>
+      <h2 style={{color: 'black',textAlign: 'center'}}>Se bilderna i ditt Gallery -></h2>
+    </Link>
       <div className='imagecontainer'>
         {savedimages.map(image =>
           <span>
@@ -208,10 +197,7 @@ const upimg = () => {
           </span>       
         )}
       </div>
-    <Link to={{pathname: "/gallery",
-      savedImages:{savedimages}}}>
-      <h2>Gå till Gallery</h2>
-    </Link>
+      <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
     </main>
   );
 }

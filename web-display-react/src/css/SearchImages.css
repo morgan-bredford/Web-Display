@@ -1,3 +1,8 @@
+#linkcontainer {
+  display: flex;
+  justify-content: center;
+}
+
 .pagelinks {
   display: inline-block;
   width: 30px;

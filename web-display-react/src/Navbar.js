@@ -1,6 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import './css/navbar.css'
 
 function Navbar(props) {
 
@@ -9,12 +10,12 @@ function Navbar(props) {
       {console.log(`nav: ${props.loggedIn}`)}
       <ul>
         <Link to="/">
-          <li>home</li>
+          <li>hem</li>
         </Link>
         <Link to="/imagesearch">
-          <li>images</li>
+          <li>bygg galleri</li>
         </Link>
-  { props.loggedIn ? <Link to="/userpage"><li>placeholder</li></Link> : null
+  { props.loggedIn ? <Link to="/userpage"><li>placeholder</li></Link> : <Link to="/login"><li>logga in</li></Link>
         
         }
       </ul>

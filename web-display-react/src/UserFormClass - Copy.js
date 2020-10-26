@@ -125,6 +125,15 @@ class UserFormClass extends React.Component {
         {this.state.gender}
       </form>
       </div>
+      <form onSubmit={(e) => this.findUser(e)}>
+        <input type="text" name="search" />
+        <button />
+      </form>
+      <form onSubmit={(e) => this.login(e)}>
+        <input type="text" name="username" placeholder="name" />
+        <input type="text" name="password" placeholder="pass" />
+        <button>log in</button>
+      </form>
       </div>
     );
   }

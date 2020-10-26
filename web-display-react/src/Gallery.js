@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import imagesearch from './imagesearch'
-import './SearchImages.css'
+import './css/SearchImages.css'
 
 function Gallery(props){
     const [gallery_images,setGalleryImages] = useState([])
@@ -37,7 +37,7 @@ function Gallery(props){
                             <span className="lbnav" onClick={(e) => {
                                 setLoading(true)
                                 imageNav(e,-1)}}
-                                 >back</span>
+                                 >bakåt</span>
                         : null
                     }
                     <div id="lbimgcontainer">
@@ -52,7 +52,7 @@ function Gallery(props){
                         gallery_images.findIndex(img => img.largeImageURL === large_image) + 1 < gallery_images.length ?  
                             <span className="lbnav" onClick={(e) => {
                                 setLoading(true)
-                                imageNav(e,1)}}>forward</span>
+                                imageNav(e,1)}}>nästa</span>
                         : null
                     }
                 </div>

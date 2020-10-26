@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //import {Link} from 'react-router-dom'
 import { render } from "@testing-library/react";
-import './SearchImages.css'
+import './css/SearchImages.css'
 
 
 class SearchImages extends Component {
@@ -31,7 +31,7 @@ class SearchImages extends Component {
 
     searchImages() {
         axios
-          .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=9&page=${this.state.page}`)
+          .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=10&page=${this.state.page}`)
           .then((res) => this.setState({search_images: res.data.hits}))
           .catch((err) => console.log(err));
     };
@@ -71,37 +71,34 @@ class SearchImages extends Component {
         this.setState({page_links: page_array})
     }
 
-    componentDidMount(){this.upimg()}
-    upimg = () => {
-        document.querySelector('input[type="file"]').addEventListener('change', function() {
-          if (this.files && this.files[0]) {
-              var img = document.querySelector('img');  // $('img')[0]
-        console.log(img)
-              img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-              img.onload = this.imageIsLoaded;
+    // componentDidMount(){this.upimg()}
+    // upimg = () => {
+    //     document.querySelector('input[type="file"]').addEventListener('change', function() {
+    //       if (this.files && this.files[0]) {
+    //           var img = document.querySelector('img');  // $('img')[0]
+    //     console.log(img)
+    //           img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+    //           img.onload = this.imageIsLoaded;
 
-              axios
-                .post("http://127.0.0.1:5000/image", this.files[0])
-                .then((res) => console.log(res))
-                .catch(err => {
-                    console.log(err.response)})
-            }
-        });
-    }
+    //           axios
+    //             .post("http://127.0.0.1:5000/image", this.files[0])
+    //             .then((res) => console.log(res))
+    //             .catch(err => {
+    //                 console.log(err.response)})
+    //         }
+    //     });
+    // }
 
     render(){
         return(
             <div>
-                <div >
-                    <input type='file' />
-                    <img id="myImg" src="#" alt="your image" /><br />
-                </div>
                 <form onSubmit={(e) => 
                     this.handleSubmit(e,e.target.searchbox.value,1)
                     }>
                     <input type="text" name="searchbox" />
-                    <button>Search</button>
+                    <button>Sök bild</button>
                 </form>
+                <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>klicka på + för att lägga till bilden till ditt galleri</h4>
                 { 
                     this.state.large_image ? 
                     <div id="lightbox" onClick={() => {this.setState({large_image: ""})
@@ -109,7 +106,7 @@ class SearchImages extends Component {
                         {
                             this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) !== 0 ?  
                                 <span className="lbnav" onClick={(e) => {
-                                    this.imageNav(e,-1)}} >back</span>
+                                    this.imageNav(e,-1)}} >bakåt</span>
                             : null
                         }
                         <div id="lbimgcontainer">
@@ -125,12 +122,13 @@ class SearchImages extends Component {
                             this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) + 1 < this.state.search_images.length ?  
                                 <span className="lbnav" onClick={(e) => {
                                     this.imageNav(e,1)
-                                }}>forward</span>
+                                }}>nästa</span>
                             : null
                         }
                     </div>
                     : null
                 }
+                <div className="imagecontainer">
                 {
                     this.state.search_images.map((image) => (
                     <span>
@@ -138,7 +136,9 @@ class SearchImages extends Component {
                         <span style={{fontSize: '24px'}} onClick={(e) => this.addImage(e,image)} >+</span>
                     </span> ))
                 }
+                </div>
                 <br />
+                <div id="linkcontainer">
                 {
                     this.state.page_links.length && this.state.page > 10 ? <span onClick={() => 
                        { 
@@ -153,10 +153,11 @@ class SearchImages extends Component {
                     }}>{index}</span>)
                 }
                 {
-                    this.state.page_links.length ? <span onClick={() => 
+                    this.state.page_links.length ? <span className="pagelinks" onClick={() => 
                         this.setState({page: this.state.page_nav_index + 10,page_nav_index: this.state.page_nav_index + 10})
-                    }>next</span> :null
+                    }>-></span> :null
                 }
+                </div>
             </div>
         )
     }
