@@ -24,6 +24,9 @@ const userSchema = new Schema({
     },
     key: {
         type: String,
+    },
+    galleryimages: {
+        type: Array,
     }
 },
 {

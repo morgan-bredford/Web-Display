@@ -3,8 +3,8 @@ import React from 'react'
 function Welcome(props){
     const logout = () => {
         localStorage.clear();
-        this.props.setUser({});
-        this.props.setLoggedIn(false)
+        props.setUser({});
+        props.setLoggedIn(false)
       };
 
     return(

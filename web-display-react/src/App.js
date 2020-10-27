@@ -34,7 +34,7 @@ function App() {
           :
             <Route path="/" exact
             render={() => (
-              <UserFormClass setLoggedIn={setLoggedIn} setUser={setUser} />)}
+              <UserFormClass setLoggedIn={setLoggedIn} setUser={setUser} loggedIn={loggedIn} />)}
             />
         }
         <Route

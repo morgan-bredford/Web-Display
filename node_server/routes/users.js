@@ -60,6 +60,16 @@ router.route("/find").get((req, res) => {
   .catch(err => res.send(err))
 })
 
+router.route("/update").post((req, res) => {
+  User.findByIdAndUpdate({_id: '5f9300070e8d8a1d284a3d9d'}, {galleryimages: req.body[0].galleryimages}, {new: true})
+  .then(res.send('updated'))
+  .catch(err => console.log(err))
+  //const test = JSON.parse(req.body)
+  // console.log(req.body[0].username)
+  //console.log(req.body)
+  res.send('updated')
+})
+
 router.route("/image").post((req, res) => {
     console.log(req.body)
     res.send('success')

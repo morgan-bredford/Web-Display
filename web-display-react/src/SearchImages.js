@@ -50,6 +50,11 @@ class SearchImages extends Component {
         const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
         sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
         this.props.setSavedimages(newimagearray)
+        axios
+        .post("http://127.0.0.1:5000/users/update", [{username: 'testnamn', galleryimages: newimagearray}])
+        .then((res) => console.log(res))
+        .catch(err => {
+            console.log(err.response)})
     }
 
     imageNav = (e,move_index) => {
@@ -93,6 +98,7 @@ class SearchImages extends Component {
     render(){
         return(
             <div>
+                <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Sök på bilder from Pixabay</h1>
                 <form style={{display: 'flex',flexDirection: 'row',justifyContent: 'center'}} onSubmit={(e) => 
                     this.handleSubmit(e,e.target.searchbox.value,1)
                     }>
@@ -156,7 +162,7 @@ class SearchImages extends Component {
                 {
                     this.state.page_links.length ? <span className="pagelinks" onClick={() => 
                         this.setState({page: this.state.page_nav_index + 10,page_nav_index: this.state.page_nav_index + 10})
-                    }>-></span> :null
+                    }>{"->"}</span> :null
                 }
                 </div>
             </div>

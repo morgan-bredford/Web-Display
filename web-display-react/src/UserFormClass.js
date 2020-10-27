@@ -3,6 +3,9 @@ import axios from "axios";
 import uuid from 'react-uuid'
 import './css/userformclass.css'
 import Im from './Im'
+import Login from './Login'
+import { Link } from 'react-router-dom'
+
 // import UserForm from 'react-hook-form'
 // const {register,handleSubmit,errors} = useForm()
 
@@ -74,6 +77,13 @@ class UserFormClass extends React.Component {
   render() {
     return (
       <div>
+      <br />
+      <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Välkommen att logga in</h1>
+      <br />
+      <Login setLoggedIn={this.props.setLoggedIn} setUser={this.props.setUser} loggedIn={this.props.loggedIn} />
+      <br /><br />
+      <h2 style={{textAlign: 'center',fontStyle: 'italic'}}>eller om du inte redan har ett användarkonto kan du skapa ett här</h2>
+      <br />
       <div id="formcontainer">
       <form name="createUserForm" onSubmit={this.handleSubmit}>
         <h1>Skapa användare</h1>
@@ -117,13 +127,11 @@ class UserFormClass extends React.Component {
             <option value="Kvinna">Kvinna</option>
             <option value="Annat">Annat</option>
         </select>
-        <br />
         <button>Submit</button>
-        {this.state.errormsg}
-        <br /><br />
-        {this.state.name}
-        {this.state.gender}
       </form>
+      <br />
+      <h2 style={{textAlign: 'center',fontStyle: 'italic'}}>det går även bra att testa galleriet utan att ha ett användarkonto
+<Link to='/imagesearch' ><span className="pagelinks" style={{color: '#000', lineHeight: '100%'}}>{"->"}</span></Link></h2>
       </div>
       </div>
     );

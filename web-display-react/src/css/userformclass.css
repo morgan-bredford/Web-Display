@@ -1,8 +1,7 @@
 #formcontainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
+  display: block;
+  margin: auto;
+  width: 50vw;
 }
 
 form {
