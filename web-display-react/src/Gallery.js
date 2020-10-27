@@ -37,7 +37,7 @@ function Gallery(props){
                             <span className="lbnav" onClick={(e) => {
                                 setLoading(true)
                                 imageNav(e,-1)}}
-                                 >bakåt</span>
+                                 >{"<-"}</span>
                         : null
                     }
                     <div id="lbimgcontainer">
@@ -52,13 +52,13 @@ function Gallery(props){
                         gallery_images.findIndex(img => img.largeImageURL === large_image) + 1 < gallery_images.length ?  
                             <span className="lbnav" onClick={(e) => {
                                 setLoading(true)
-                                imageNav(e,1)}}>nästa</span>
+                                imageNav(e,1)}}>{"->"}</span>
                         : null
                     }
                 </div>
                 : null
                 }
-            {gallery_images.map(image => {
+            { gallery_images.length ? gallery_images.map(image => {
                 return (
                     <span>
                     <img src={image.previewURL} id={image.id} onClick={() => {
@@ -66,9 +66,10 @@ function Gallery(props){
                         setLargeImage(image.largeImageURL)
                         }} />
                     </span >
-                )
-            }    
-            )}
+                    )
+                })
+                : <div>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
+            }
         </div>
     )
 }

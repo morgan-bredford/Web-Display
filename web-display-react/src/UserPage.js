@@ -15,10 +15,7 @@ class UserPage extends Component {
     return (
       <div>
   
-        <Link to="/">
-          <button onClick={this.logout}>Logga ut</button>
-        </Link>
-  { this.props.user[0] ? <div id="formcontainer">
+  { this.props.user[0] ? <div style={{width: '50vw', margin: 'auto'}}>
         <form name="createUserForm">
           <h1>Dina uppgifter</h1>
           <label htmlFor="username">Användarnamn:</label>
@@ -60,15 +57,15 @@ class UserPage extends Component {
           /><br />
           <label htmlFor="gender">Kön:</label>
           <select id="gender" name="gender" value={this.props.user[0].gender} >
-              <option value="">-Välj-</option>
-              <option value="Man">Man</option>
-              <option value="Kvinna">Kvinna</option>
-              <option value="Annat">Annat</option>
+              <option value="">{this.props.user[0].gender}</option>
           </select>
           <br />
           
         </form>
-        
+        <br />
+        <Link to="/" >
+          <button  onClick={this.logout}>Logga ut</button>
+        </Link>
      </div>
     : <div></div>}</div>
     );

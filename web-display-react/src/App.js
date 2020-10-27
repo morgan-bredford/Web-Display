@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Match from "./match";
 import Gallery from "./Gallery";
 import Login from './Login'
+import Welcome from './Welcome'
 
 function App() {
 
@@ -28,10 +29,14 @@ function App() {
       <div className="App"  >
         <Navbar loggedIn={loggedIn} user={user} />
         
-        <Route path="/" exact
-        render={() => (
-          <UserFormClass setLoggedIn={setLoggedIn} setUser={setUser} />)}
-        />
+        { loggedIn ?
+            <Route path="/" exact component={() => <Welcome user={user} setLoggedIn={setLoggedIn} setUser={setUser} />} />
+          :
+            <Route path="/" exact
+            render={() => (
+              <UserFormClass setLoggedIn={setLoggedIn} setUser={setUser} />)}
+            />
+        }
         <Route
           path="/####"
           exact

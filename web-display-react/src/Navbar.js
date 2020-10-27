@@ -16,9 +16,13 @@ function Navbar(props) {
           <li>bygg galleri</li>
         </Link>
         { 
+          props.loggedIn ? <Link to="/gallery"><li>Ditt galleri</li></Link> : null
+        }
+        { 
           props.loggedIn ? <Link to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}</li></Link> : <Link to="/login"><li>logga in</li></Link>
         }
       </ul>
+      
     </nav>
   );
 }

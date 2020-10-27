@@ -20,3 +20,5 @@ https://pixabay.com/api?key=18623126-9e0d07d5ea60888b927459e25&id=1149841
 
 $0.getBoundingClientRect()
 {search.active ? <SearchImages query={search.query} /> : null }
+
+[{"username": "hemsk","password": "passw","firstname": "testf","lastname": "lastn","gender": "Man"}]

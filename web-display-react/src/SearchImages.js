@@ -38,6 +38,7 @@ class SearchImages extends Component {
 
     componentDidUpdate(prevProps,prevState){
         console.log(`update: state: ${this.state.page_links[0]} prevstate: ${prevState.page_links[0]}`)
+        if(this.state.query && this.state.query !== prevState.query) {this.searchImages()}
         if(this.state.query && this.state.page !== prevState.page) {this.searchImages()}
         if(this.state.page_nav_index !== prevState.page_nav_index){this.pageNav()}
         if(this.state.large_image !== prevState.large_image){this.setState({loading: true})}
@@ -106,7 +107,7 @@ class SearchImages extends Component {
                         {
                             this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) !== 0 ?  
                                 <span className="lbnav" onClick={(e) => {
-                                    this.imageNav(e,-1)}} >bakåt</span>
+                                    this.imageNav(e,-1)}} >{"<-"}</span>
                             : null
                         }
                         <div id="lbimgcontainer">
@@ -122,7 +123,7 @@ class SearchImages extends Component {
                             this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) + 1 < this.state.search_images.length ?  
                                 <span className="lbnav" onClick={(e) => {
                                     this.imageNav(e,1)
-                                }}>nästa</span>
+                                }}>{"->"}</span>
                             : null
                         }
                     </div>
@@ -140,11 +141,11 @@ class SearchImages extends Component {
                 <br />
                 <div id="linkcontainer">
                 {
-                    this.state.page_links.length && this.state.page > 10 ? <span onClick={() => 
+                    this.state.page_links.length && this.state.page > 10 ? <span className="pagelinks" onClick={() => 
                        { 
                            this.setState({page: this.state.page_nav_index - 10,page_nav_index: this.state.page_nav_index - 10})
                     }
-                    }>next</span> :null
+                }>{"<-"}</span> :null
                 }
                 {
                     this.state.page_links.map( index => <span className="pagelinks" onClick={(e) => {

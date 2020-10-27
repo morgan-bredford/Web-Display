@@ -41,6 +41,12 @@
 }
 
 .lbnav {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 3em;
+  text-align: center;
+  line-height: 150%;
   background-color: #eee;
   cursor: pointer;
 }

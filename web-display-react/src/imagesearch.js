@@ -54,6 +54,7 @@ function ImageSearch() {
     const newimagearray = savedimages.filter(
       (image) => image.id !== image_id
     )
+    document.getElementById(image_id).removeEventListener("mousedown",dragStart)
     sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
     setSavedimages(newimagearray)
   }
@@ -156,7 +157,9 @@ const moveImage = (moveimage) => {
   const temparray = []
   savedimages.map(
     image => {
+  console.log(image.id)
       if(image.id !== moveimage.id){
+
         if(image.coords.x < moveimage.coords.x){
           temparray.push(image)
         } else if (moveimage.coords.y <= (image.coords.y + 50) && (moveimage.coords.y >= image.coords.y - 50)){
@@ -169,9 +172,11 @@ const moveImage = (moveimage) => {
       }
     }
   )
+console.log(`ta: ${temparray} sav:${savedimages}`)
   if(temparray.length === savedimages.length){
     console.log('true')
     sessionStorage.setItem('imagearray',JSON.stringify(temparray))
+console.log(`inside: ${temparray[0].id}`)
     setSavedimages(temparray)
     window.location.reload(false)
   }else{
@@ -185,19 +190,20 @@ const moveImage = (moveimage) => {
       <br />
       <Link to={{pathname: "/gallery",
       savedImages:{savedimages}}}>
-      <h2 style={{color: 'black',textAlign: 'center'}}>Se bilderna i ditt Gallery -></h2>
+      <h2 style={{color: 'black',textAlign: 'center'}}>Se bilderna i ditt Gallery {"->"}</h2>
     </Link>
       <div className='imagecontainer'>
         {savedimages.map(image =>
-          <span>
+          <span >
             <Link to={`/imagesearch/`}>
             <img src={image.previewURL} id={image.id}/>
             </Link>
-            <span  onClick={ () => removeImage(image.id) } >X</span>
+            <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={ () => removeImage(image.id) } >ta bort</div>
           </span>       
         )}
       </div>
       <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
+    <button onClick={() => console.log(savedimages)} >hhh</button>
     </main>
   );
 }
