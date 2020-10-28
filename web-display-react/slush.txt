@@ -22,3 +22,7 @@ $0.getBoundingClientRect()
 {search.active ? <SearchImages query={search.query} /> : null }
 
 [{"username": "hemsk","password": "passw","firstname": "testf","lastname": "lastn","gender": "Man"}]
+<Route path="/" exact
+          render={() => (
+            <UserFormClass setLoggedIn={setLoggedIn} setUser={setUser} />)}
+          />

@@ -13,6 +13,7 @@ function Gallery(props){
         if(sessionStorage.getItem('imagearray')){
         setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
         console.log(props.location.savedImages)}
+        document.querySelector('nav').style.backgroundImage = 'url(/images/framebwclip.png)'
         },[])
 
     const imageNav = (e,nav_index) => {

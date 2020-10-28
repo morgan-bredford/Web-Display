@@ -24,6 +24,10 @@ class UserFormClass extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount(){
+    document.querySelector('nav').style.backgroundImage = 'url(/images/housebwclip.png)'
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
 

@@ -1,6 +1,24 @@
 nav {
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background: url(../images/housebw.png) center no-repeat; */
+  /* background: url(../images/framebw.png) center no-repeat; */
+  /* background: url(../images/editbwclip.png) center no-repeat; */
+  background-size: 100vw;
+  /* background-color: rgba(0, 0, 0, 0.7); */
   height: 10vh;
+  font-size: 1.5em;
+  animation: zoom 300s infinite linear;
+}
+
+@keyframes zoom {
+  from {
+    background-size: 100vw;
+  }
+  50% {
+    background-size: 150vw;
+  }
+  to {
+    background-size: 100vw;
+  }
 }
 
 ul {
@@ -11,6 +29,7 @@ ul {
 
 li {
   text-transform: uppercase;
+  text-shadow: 0px 0px 4px #000, 0px 0px 4px #000;
 }
 
 li:last-child {

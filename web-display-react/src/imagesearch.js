@@ -20,6 +20,8 @@ function ImageSearch() {
     }else{
       sessionStorage.setItem('imagearray',"[]")
     }
+    // document.querySelector('nav').style.backgroundImage = 'url(../images/editbwclip.png)'
+    document.querySelector('nav').style.backgroundImage = "url(/images/editbwclip.png)"
    },[])
 
   useEffect( () => {
