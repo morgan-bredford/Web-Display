@@ -7,7 +7,7 @@ function Login(props) {
         e.preventDefault()
         const user = {username: e.target[0].value, password: e.target[1].value}
         axios
-          .get("http://127.0.0.1:5000/users/find?search="+e.target[0].value)
+          .get("http://13.48.204.0:80/users/find?search="+e.target[0].value)
           .then((res) => {
             if(user.password === res.data[0].password){
               localStorage.setItem('user', JSON.stringify(res.data))

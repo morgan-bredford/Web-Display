@@ -36,7 +36,7 @@ class UserFormClass extends React.Component {
     // console.log(formdata.get("gender"));
 
     axios
-      .post("http://127.0.0.1:5000/users/add", this.state)
+      .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:80/users/add", this.state)
       .then((res) => console.log(res))
       .catch(err => {
         this.setState({errormsg: 'ERROR!!!!'}) 
@@ -51,7 +51,7 @@ class UserFormClass extends React.Component {
     e.preventDefault()
 
     const ret = await axios
-      .get("http://127.0.0.1:5000/users/find?search="+e.target[0].value)
+      .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:80/users/find?search="+e.target[0].value)
       //.then((res) => this.setState({login: res.data[0].username}))
       .catch(err => {
         //this.setState({errormsg: 'ERROR!!!!'}) 
