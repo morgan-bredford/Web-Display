@@ -10,11 +10,13 @@ function Gallery(props){
     const [loading,setLoading] = useState(false)
 
     useEffect( () => {
-        setGalleryImages(props.user[0].galleryimages)
-        // if(sessionStorage.getItem('imagearray')){
-        // setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
-        // console.log(props.location.savedImages)}
-        //document.querySelector('nav').style.backgroundImage = 'url(/images/framebwclip.png)'
+        if(props.user && props.user[0]){
+            setGalleryImages(props.user[0].galleryimages)
+        }else if(sessionStorage.getItem('imagearray')){
+            setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
+            console.log(props.location.savedImages)
+        }
+            document.querySelector('nav').style.backgroundImage = 'url(/images/framebwclip.png)'
         },[])
 
     const imageNav = (e,nav_index) => {
