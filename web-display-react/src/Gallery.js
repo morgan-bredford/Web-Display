@@ -10,14 +10,14 @@ function Gallery(props){
     const [loading,setLoading] = useState(false)
 
     useEffect( () => {
-        if(props.user && props.user[0]){
+        if(props.loggedIn){
             setGalleryImages(props.user[0].galleryimages)
-        }else if(sessionStorage.getItem('imagearray')){
-            setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
-            console.log(props.location.savedImages)
+        }else{
+            if(sessionStorage.getItem('imagearray')){
+                setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
+            }
         }
-            document.querySelector('nav').style.backgroundImage = 'url(/images/framebwclip.png)'
-        },[])
+    },[])
 
     const imageNav = (e,nav_index) => {
         e.stopPropagation()  

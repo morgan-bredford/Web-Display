@@ -135,8 +135,10 @@ class UserFormClass extends React.Component {
         <button>Submit</button>
       </form>
       <br />
+      <Link to='/imagesearch' style={{color: '#000'}} >
       <h2 style={{textAlign: 'center',fontStyle: 'italic'}}>det går även bra att testa galleriet utan att ha ett användarkonto
-<Link to='/imagesearch' ><span className="pagelinks" style={{color: '#000', lineHeight: '100%'}}>{"->"}</span></Link></h2>
+      <span className="pagelinks" style={{color: '#000', lineHeight: '100%'}}>{"->"}</span></h2>
+      </Link>
       </div>
       </div>
     );

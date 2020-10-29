@@ -15,14 +15,15 @@ function ImageSearch(props) {
   const [page, setPage] = useState(1)
 
   useEffect( () => {
-    setSavedimages(props.user[0].galleryimages)
-    // if(sessionStorage.getItem('imagearray')){
-    //   setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))
-    // }else{
-    //   sessionStorage.setItem('imagearray',"[]")
-    // }
-    // document.querySelector('nav').style.backgroundImage = 'url(../images/editbwclip.png)'
-    //document.querySelector('nav').style.backgroundImage = "url(/images/editbwclip.png)"
+    if(props.loggedIn){
+      setSavedimages(props.user[0].galleryimages)
+    }else{
+      if(sessionStorage.getItem('imagearray')){
+        setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))
+      }else{
+        sessionStorage.setItem('imagearray',"[]")
+      }
+    }
    },[])
 
   useEffect( () => {
@@ -189,7 +190,7 @@ console.log(`inside: ${temparray[0].id}`)
 
   return (
     <main>
-      <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage} />
+      <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage}  loggedIn={props.loggedIn} user={props.user} setUser={props.setUser} />
       <br />
      { savedimages.length ?
        <React.Fragment>

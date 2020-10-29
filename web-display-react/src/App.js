@@ -43,9 +43,9 @@ function App() {
           render={() => (
             <Login setLoggedIn={setLoggedIn} setUser={setUser} loggedIn={loggedIn} />)}
           />
-          <Route path="/imagesearch" component={() => <ImageSearch user={user} /> } />
+          <Route path="/imagesearch" component={() => <ImageSearch user={user} setUser={setUser} loggedIn={loggedIn} /> } />
           {/* <Route path="/imagesearch/:id" component={Match} /> */}
-          <Route path="/gallery" component={() => <Gallery user={user} /> } />
+          <Route path="/gallery" component={() => <Gallery user={user} loggedIn={loggedIn} /> } />
           <Redirect to="/" />
         </Switch>
       </div>

@@ -46,20 +46,29 @@ class SearchImages extends Component {
 
     addImage = (e,image) => {
         const {id,previewURL,largeImageURL} = image
+        //if(this.props.user[0].galleryimages.includes())
         const imageobj = {id,previewURL, largeImageURL,query: this.state.query}
-        const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-        sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-        this.props.setSavedimages(newimagearray)
+        if(this.props.loggedIn)
+        {
+            let user = this.props.user
+            console.log(user)
+            user[0].galleryimages.push(imageobj)
+            console.log(user)
+            this.props.setUser(user)
+            localStorage.setItem('user',JSON.stringify(user))
+            this.props.setSavedimages(user[0].galleryimages)
+        }
+        else{
+            const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
+            sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
+            this.props.setSavedimages(newimagearray)
+        }
+      
         // axios
-        // .post("http://127.0.0.1:5000/users/update", [{_id: 'testnamn', galleryimages: newimagearray}])
+        // .post("http://127.0.0.1:5000/users/update",[{username: 'testnamn', galleryimages: newimagearray}])
         // .then((res) => console.log(res))
         // .catch(err => {
         //     console.log(err.response)})
-        axios
-        .post("http://127.0.0.1:5000/users/update",[{username: 'testnamn', galleryimages: newimagearray}])
-        .then((res) => console.log(res))
-        .catch(err => {
-            console.log(err.response)})
     }
 
     imageNav = (e,move_index) => {

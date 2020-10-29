@@ -22,6 +22,7 @@ $0.getBoundingClientRect()
 {search.active ? <SearchImages query={search.query} /> : null }
 
 [{"username": "hemsk","password": "passw","firstname": "testf","lastname": "lastn","gender": "Man"}]
+[{"username":"hemsk","password":"passw","firstname":"testf","lastname":"lastn","gender":"Man","galleryimages":[{"id":690566,"previewURL":"https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_150.jpg","largeImageURL":"https://pixabay.com/get/50e9d5464c54b108f5d0846096293f78173cdfe7554c704f752c72d29f48c25c_1280.jpg","query":"dog","coords":{"x":133,"y":789},"coordsoffset":{"xoff":0,"yoff":0}},{"id":323262,"previewURL":"https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_150.jpg","largeImageURL":"https://pixabay.com/get/55e2d6414c50b108f5d0846096293f78173cdfe7554c704f752c72d3924dcd5f_1280.jpg","query":"cat","coords":{"x":356,"y":789},"coordsoffset":{"xoff":0,"yoff":0}},{"id":1045782,"previewURL":"https://cdn.pixabay.com/photo/2015/11/16/14/43/cat-1045782_150.jpg","largeImageURL":"https://pixabay.com/get/57e0d1464d5aae14f6da8c7dda793676133ddde451576c48732f78dd9048c550bf_1280.jpg","query":"cat"},{"id":2536662,"previewURL":"https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_150.jpg","largeImageURL":"https://pixabay.com/get/54e5d6454c54ae14f6da8c7dda793676133ddde451576c48732f78dd9048c550bf_1280.jpg","query":"cat"}]}]
 <Route path="/" exact
           render={() => (
             <UserFormClass setLoggedIn={setLoggedIn} setUser={setUser} />)}
