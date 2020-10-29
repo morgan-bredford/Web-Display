@@ -13,6 +13,7 @@ class UserFormClass extends React.Component {
   constructor() {
     super();
     this.state = {
+      _id: "",
       username: "",
       password: "",
       firstname: "",
@@ -24,9 +25,9 @@ class UserFormClass extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount(){
-    document.querySelector('nav').style.backgroundImage = 'url(/images/housebwclip.png)'
-  }
+  // componentDidMount(){
+  //   document.querySelector('nav').style.backgroundImage = 'url(/images/housebwclip.png)'
+  // }
 
   handleSubmit = (e) => {
     e.preventDefault();

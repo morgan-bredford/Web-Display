@@ -23,6 +23,14 @@ class SearchImages extends Component {
         this.searchImages = this.searchImages.bind(this)
     }
 
+    componentDidUpdate(prevProps,prevState){
+        console.log(`update: state: ${this.state.page_links[0]} prevstate: ${prevState.page_links[0]}`)
+        if(this.state.query && this.state.query !== prevState.query) {this.searchImages()}
+        if(this.state.query && this.state.page !== prevState.page) {this.searchImages()}
+        if(this.state.page_nav_index !== prevState.page_nav_index){this.pageNav()}
+        if(this.state.large_image !== prevState.large_image){this.setState({loading: true})}
+    }
+
     handleSubmit = (e,query,page) => {
         e.preventDefault();
         this.setState({query: query,page: page})
@@ -36,22 +44,19 @@ class SearchImages extends Component {
           .catch((err) => console.log(err));
     };
 
-    componentDidUpdate(prevProps,prevState){
-        console.log(`update: state: ${this.state.page_links[0]} prevstate: ${prevState.page_links[0]}`)
-        if(this.state.query && this.state.query !== prevState.query) {this.searchImages()}
-        if(this.state.query && this.state.page !== prevState.page) {this.searchImages()}
-        if(this.state.page_nav_index !== prevState.page_nav_index){this.pageNav()}
-        if(this.state.large_image !== prevState.large_image){this.setState({loading: true})}
-    }
-
     addImage = (e,image) => {
         const {id,previewURL,largeImageURL} = image
         const imageobj = {id,previewURL, largeImageURL,query: this.state.query}
         const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
         sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
         this.props.setSavedimages(newimagearray)
+        // axios
+        // .post("http://127.0.0.1:5000/users/update", [{_id: 'testnamn', galleryimages: newimagearray}])
+        // .then((res) => console.log(res))
+        // .catch(err => {
+        //     console.log(err.response)})
         axios
-        .post("http://127.0.0.1:5000/users/update", [{username: 'testnamn', galleryimages: newimagearray}])
+        .post("http://127.0.0.1:5000/users/update",[{username: 'testnamn', galleryimages: newimagearray}])
         .then((res) => console.log(res))
         .catch(err => {
             console.log(err.response)})
@@ -105,7 +110,7 @@ class SearchImages extends Component {
                     <input type="text" name="searchbox" style={{width: '40vw'}}/>
                     <button>Sök bild</button>
                 </form>
-                <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>klicka på + för att lägga till bilden till ditt galleri</h4>
+                
                 { 
                     this.state.large_image ? 
                     <div id="lightbox" onClick={() => {this.setState({large_image: ""})
@@ -135,7 +140,11 @@ class SearchImages extends Component {
                     </div>
                     : null
                 }
-                <div className="imagecontainer">
+               { 
+                  this.state.search_images.length ?  
+                <React.Fragment>
+                    <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>klicka på + för att lägga till bilden till ditt galleri</h4>
+               <div className="imagecontainer">
                 {
                     this.state.search_images.map((image) => (
                     <span>
@@ -165,6 +174,9 @@ class SearchImages extends Component {
                     }>{"->"}</span> :null
                 }
                 </div>
+                </React.Fragment>
+            : null    
+        }
             </div>
         )
     }

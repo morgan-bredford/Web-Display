@@ -5,7 +5,7 @@ import LargeImage from "./LargeImage";
 import SearchImages from "./SearchImages";
 import App3 from "./App3";
 
-function ImageSearch() {
+function ImageSearch(props) {
   const URL = "https://pixabay.com/api";
   const apikey = "18623126-9e0d07d5ea60888b927459e25";
   const [searchimages, setSearchimages] = useState([]);
@@ -15,13 +15,14 @@ function ImageSearch() {
   const [page, setPage] = useState(1)
 
   useEffect( () => {
-    if(sessionStorage.getItem('imagearray')){
-      setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))
-    }else{
-      sessionStorage.setItem('imagearray',"[]")
-    }
+    setSavedimages(props.user[0].galleryimages)
+    // if(sessionStorage.getItem('imagearray')){
+    //   setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))
+    // }else{
+    //   sessionStorage.setItem('imagearray',"[]")
+    // }
     // document.querySelector('nav').style.backgroundImage = 'url(../images/editbwclip.png)'
-    document.querySelector('nav').style.backgroundImage = "url(/images/editbwclip.png)"
+    //document.querySelector('nav').style.backgroundImage = "url(/images/editbwclip.png)"
    },[])
 
   useEffect( () => {
@@ -190,9 +191,11 @@ console.log(`inside: ${temparray[0].id}`)
     <main>
       <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage} />
       <br />
-      <Link to={{pathname: "/gallery",
+     { savedimages.length ?
+       <React.Fragment>
+     <Link to={{pathname: "/gallery",
       savedImages:{savedimages}}}>
-      <h2 style={{color: 'black',textAlign: 'center'}}>Se bilderna i ditt Gallery {"->"}</h2>
+      <h3 style={{color: 'black',textAlign: 'center'}}>Se bilderna i ditt Gallery {"->"}</h3>
     </Link>
       <div className='imagecontainer'>
         {savedimages.map(image =>
@@ -205,7 +208,11 @@ console.log(`inside: ${temparray[0].id}`)
         )}
       </div>
       <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
-    <button onClick={() => console.log(savedimages)} >hhh</button>
+      </React.Fragment>
+      :null
+      }
+      
+    <button onClick={() => console.log(savedimages)} >dont</button>
     </main>
   );
 }

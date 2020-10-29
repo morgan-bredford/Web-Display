@@ -10,10 +10,11 @@ function Gallery(props){
     const [loading,setLoading] = useState(false)
 
     useEffect( () => {
-        if(sessionStorage.getItem('imagearray')){
-        setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
-        console.log(props.location.savedImages)}
-        document.querySelector('nav').style.backgroundImage = 'url(/images/framebwclip.png)'
+        setGalleryImages(props.user[0].galleryimages)
+        // if(sessionStorage.getItem('imagearray')){
+        // setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
+        // console.log(props.location.savedImages)}
+        //document.querySelector('nav').style.backgroundImage = 'url(/images/framebwclip.png)'
         },[])
 
     const imageNav = (e,nav_index) => {
@@ -28,6 +29,8 @@ function Gallery(props){
     }
 
     return(
+        <React.Fragment>
+        <br /><br /><br />
         <div className='imagecontainer'>
             {
                 
@@ -72,6 +75,7 @@ function Gallery(props){
                 : <div>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
             }
         </div>
+        </React.Fragment>
     )
 }
 export default Gallery;

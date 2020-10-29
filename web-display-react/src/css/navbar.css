@@ -2,11 +2,13 @@ nav {
   /* background: url(../images/housebw.png) center no-repeat; */
   /* background: url(../images/framebw.png) center no-repeat; */
   /* background: url(../images/editbwclip.png) center no-repeat; */
-  background-size: 100vw;
-  /* background-color: rgba(0, 0, 0, 0.7); */
+  /* background-size: 100vw;
+  background-position: center;
+  animation: zoom 200s infinite linear; */
+  background-color: rgba(27, 11, 87, 0.7);
   height: 10vh;
   font-size: 1.5em;
-  animation: zoom 300s infinite linear;
+ 
 }
 
 @keyframes zoom {
@@ -47,5 +49,5 @@ a:last-child {
 }
 
 a:hover {
-  color: #bbb;
+  color: rgba(207, 195, 248, 0.7);
 }

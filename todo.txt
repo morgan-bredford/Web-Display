@@ -1,0 +1,4 @@
+bara en av samma bild
+centrera galleritext
+göra gallerikort
+kolla lightbox
