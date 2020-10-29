@@ -1,6 +1,0 @@
-morgan.b@gmx.com 
-morgan/hampa
-mongodb+srv://morgan:<password>@cluster0.dsgtd.mongodb.net/<dbname>?retryWrites=true&w=majority
-Open Ports 27015 to 27017 to Access Atlas Databases
-https://docs.atlas.mongodb.com/connect-to-cluster/
-
