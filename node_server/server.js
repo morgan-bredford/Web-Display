@@ -24,6 +24,11 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
+app.post("/test", (req,res) => {
+  res.header("Access-Control-Allow-Origin","*")
+  res.send('send success')
+})
+
 // app.get("/", (req, res) => {
 //   res.json({ response: "success", anotherres: "suc2" });
 //   //res.send();
