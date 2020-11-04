@@ -1,23 +1,24 @@
 <template>
   <div>
     <Navbar />
-    <SearchImages msg="Welcome to Your Vue.js Appappapp"/>
+    <BuildGallery />
     <Login />
+    
   </div>
 </template>
 
 <script>
 
 import Navbar from './components/Navbar.vue'
-import SearchImages from './components/SearchImages.vue'
 import Login from './components/Login.vue'
+import BuildGallery from './components/BuildGallery.vue'
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    SearchImages,
-    Login
+    Login,
+    BuildGallery
   }
 }
 </script>
