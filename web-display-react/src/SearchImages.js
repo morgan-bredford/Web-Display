@@ -33,7 +33,7 @@ class SearchImages extends Component {
 
     handleSubmit = (e,query,page) => {
         e.preventDefault();
-        this.setState({query: query,page: page})
+        this.setState({query, page})
         this.pageNav()
     }
 

@@ -96,7 +96,9 @@ class UserFormClass extends React.Component {
       <br />
       <div id="formcontainer">
       <form name="createUserForm" onSubmit={this.handleSubmit}>
-        <h1>Skapa användare</h1>
+        <h1 style={{textAlign: 'center'}}>Skapa användare</h1>
+        <br />
+        <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------obligatoriskt------------------</h5>
         <label htmlFor="username">Användarnamn:</label>
         <input
           type="text"
@@ -104,7 +106,7 @@ class UserFormClass extends React.Component {
           id="username"
           onChange={this.handleChange}
           placeholder="användarnamn"
-        /><br />
+        />
         <label htmlFor="password">Lösenord:</label>
         <input
           type="text"
@@ -112,7 +114,9 @@ class UserFormClass extends React.Component {
           id="password"
           onChange={this.handleChange}
           placeholder="lösenord"
-        /><br />
+        />
+        <br />
+        <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------frivilligt------------------</h5>
         <label htmlFor="firstname">Förnamn:</label>
         <input
           type="text"
@@ -120,7 +124,7 @@ class UserFormClass extends React.Component {
           id="firstname"
           onChange={this.handleChange}
           placeholder="förnamn"
-        /><br />
+        />
         <label htmlFor="lastname">Efternamn:</label>
         <input
           type="text"
@@ -129,7 +133,7 @@ class UserFormClass extends React.Component {
           onChange={this.handleChange}
           onFocus={this.testfunc}
           placeholder="efternamn"
-        /><br />
+        />
         <label htmlFor="gender">Kön:</label>
         <select id="gender" name="gender" value={this.state.gender} onChange={this.handleChange}>
             <option value="">-Välj-</option>
