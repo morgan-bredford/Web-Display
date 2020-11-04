@@ -5,24 +5,24 @@ import { Link, Redirect } from "react-router-dom";
 function Login(props) {
     const login = (e) => {
         e.preventDefault()
-        // const user = {username: e.target[0].value, password: e.target[1].value}
-        // axios
-        //   .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:80/users/find?search="+e.target[0].value)
-        //   .then((res) => {
-        //     if(user.password === res.data[0].password){
-        //       localStorage.setItem('user', JSON.stringify(res.data))
-        //       props.setUser(res.data)
-        //       props.setLoggedIn(true)
-        //     }
-        //   })
-        //   .catch(err => console.log(err.response))
-
+        const user = {username: e.target[0].value, password: e.target[1].value}
         axios
-      .post("http://http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:5000/test")
-      .then((res) => console.log(res))
-      .catch(err => {
-        //this.setState({errormsg: 'ERROR!!!!'}) 
-        console.log(err.response)})
+          .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:5000/users/find?search="+e.target[0].value)
+          .then((res) => {
+            console.log(res.data)
+            if(user.password === res.data[0].password){
+              localStorage.setItem('user', JSON.stringify(res.data))
+              props.setUser(res.data)
+              props.setLoggedIn(true)
+            }
+          })
+          .catch(err => console.log(err.response))
+
+      //   axios
+      // .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:5000/test")
+      // .then((res) => console.log(res))
+      // .catch(err => {
+      //   console.log(err.response)}) 
       }
 
     return(

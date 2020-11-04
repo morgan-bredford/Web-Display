@@ -7,6 +7,7 @@ function Navbar(props) {
 
   return (
     <nav>
+      {console.log(props)}
       {console.log(`nav: ${props.loggedIn} `)}
       <ul>
         <Link to="/">
