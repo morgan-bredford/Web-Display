@@ -2,21 +2,23 @@
   <nav>
       <ul>
        
-          <a href="#"><li>hem</li></a>
+          <router-link to="/"><a href="#"><li>hem</li></a></router-link>
         
         
-          <a href="#"><li>bygg galleri</li></a>
+          <router-link to="/about"><a href="#"><li>bygg galleri</li></a></router-link>
           <a href="#"><li>ditt galleri</li></a>
-          <a href="#"><li>logga in</li></a>
+          <router-link to="/login"><a href="#"><li>logga in</li></a></router-link>
        
       </ul>
-      
+      {{isloggedin}}
     </nav>
+  <router-view/>
 </template>
 
 <script>
 export default {
   name: "Navbar",
+  props: ['isloggedin'],
 }
 </script>
 
