@@ -2,12 +2,10 @@
   <nav>
       <ul>
        
-          <router-link to="/"><a href="#"><li>hem</li></a></router-link>
-        
-        
-          <router-link to="/about"><a href="#"><li>bygg galleri</li></a></router-link>
-          <a href="#"><li>ditt galleri</li></a>
-          <router-link to="/login"><a href="#"><li>logga in</li></a></router-link>
+          <router-link to="/"><li>hem</li></router-link>
+          <router-link to="/about"><li>bygg galleri</li></router-link>
+           <router-link to="/gallery"><li>ditt galleri</li></router-link>
+          <router-link to="/login"><li>logga in</li></router-link>
        
       </ul>
       {{isloggedin}}

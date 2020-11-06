@@ -1,6 +1,6 @@
 <template>
   <div class="formcontainer">
-        <form >
+        <form @submit="slogIn">
             <label htmlFor="username">Användarnamn:</label>
             <input type="text" name="username" placeholder="name" />
             <label htmlFor="password">Lösenord:</label>
@@ -12,7 +12,13 @@
 
 <script>
 export default {
-    name: "Login"
+    name: "Login",
+    methods: {
+        slogIn(e){
+            e.preventDefault()
+             this.$emit('login')
+        }
+    },
 }
 </script>
 

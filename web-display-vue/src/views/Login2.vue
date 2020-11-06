@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Login />
+    <Login @login="logIn" />
   </div>
 </template>
 

@@ -21,7 +21,7 @@
         <div v-if="search">
             <div class="imagecontainer">
                 <span v-bind:key="img.id" v-for="img in search_images">
-                    <img :src="img.previewURL" @click="large_image = img.largeImageURL" /><span @click="$emit('addimg',img)">+</span>
+                    <img :src="img.previewURL" @click="large_image = img.largeImageURL" /><span @click="addImage(img)">+</span>
                 </span>
             </div>
             <div id="linkcontainer" v-if="search_images.length">
@@ -55,6 +55,7 @@ export default {
             loading: false,
         }
     },
+    props: ['savedimages'],
     created(){
         
     },
@@ -111,6 +112,13 @@ export default {
             const index = this.search_images.findIndex(img => img.largeImageURL === this.large_image)
             this.large_image = this.search_images[index + move_index].largeImageURL
             console.log(index)
+        },
+        addImage(img){
+            const {id,previewURL,largeImageURL} = img
+            const imageobj = {id,previewURL, largeImageURL, query: this.query }
+            const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
+            sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
+            this.saved_images.push(img)
         },
         si(){
             console.log(this.page)
