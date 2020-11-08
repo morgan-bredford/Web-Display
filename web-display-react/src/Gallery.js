@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import imagesearch from './imagesearch'
-import './css/SearchImages.css'
+import './css/searchimages.css'
 
 function Gallery(props){
     const [gallery_images,setGalleryImages] = useState([])

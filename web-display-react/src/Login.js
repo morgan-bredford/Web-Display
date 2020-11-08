@@ -7,7 +7,7 @@ function Login(props) {
         e.preventDefault()
         const user = {username: e.target[0].value, password: e.target[1].value}
         axios
-          .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:5000/users/find?search="+e.target[0].value)
+          .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+e.target[0].value)
           .then((res) => {
             console.log(res.data)
             if(user.password === res.data[0].password){

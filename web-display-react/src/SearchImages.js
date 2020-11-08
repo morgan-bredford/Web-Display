@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //import {Link} from 'react-router-dom'
 import { render } from "@testing-library/react";
-import './css/SearchImages.css'
+import './css/searchimages.css'
 
 
 class SearchImages extends Component {
@@ -46,29 +46,30 @@ class SearchImages extends Component {
 
     addImage = (e,image) => {
         const {id,previewURL,largeImageURL} = image
-        //if(this.props.user[0].galleryimages.includes())
         const imageobj = {id,previewURL, largeImageURL,query: this.state.query}
+   
         if(this.props.loggedIn)
         {
             let user = this.props.user
-            console.log(user)
             user[0].galleryimages.push(imageobj)
-            console.log(user)
-            this.props.setUser(user)
-            localStorage.setItem('user',JSON.stringify(user))
-            this.props.setSavedimages(user[0].galleryimages)
-        }
-        else{
+            
+            axios
+            .post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
+            .then((res) => {
+                console.log(res)
+                this.props.setUser(user)
+                localStorage.setItem('user',JSON.stringify(user))
+                this.props.setSavedimages(user[0].galleryimages)
+            })
+            .catch(err => {
+                console.log(err.response)})
+        }else{
             const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
             sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
             this.props.setSavedimages(newimagearray)
         }
       
-        // axios
-        // .post("http://127.0.0.1:5000/users/update",[{username: 'testnamn', galleryimages: newimagearray}])
-        // .then((res) => console.log(res))
-        // .catch(err => {
-        //     console.log(err.response)})
+        
     }
 
     imageNav = (e,move_index) => {

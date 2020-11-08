@@ -46,13 +46,13 @@ function ImageSearch(props) {
     //   .catch((err) => console.log(err));
   };
 
-  const addImage = (e,image) => {
-    const {id,previewURL,largeImageURL} = image
-    const imageobj = {id,previewURL, largeImageURL}
-    const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-    sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-    setSavedimages(newimagearray)
-  }
+  // const addImage = (e,image) => {
+  //   const {id,previewURL,largeImageURL} = image
+  //   const imageobj = {id,previewURL, largeImageURL}
+  //   const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
+  //   sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
+  //   setSavedimages(newimagearray)
+  // }
 
   const removeImage = (image_id) => {
     const newimagearray = savedimages.filter(

@@ -35,17 +35,16 @@ class UserFormClass extends React.Component {
     // console.log(formdata.get("gender"));
 
     axios
-      .post("http://127.0.0.1:5000/users/add", this.state)
+      .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/add", this.state)
       .then((res) => { 
-        const user = [{username: this.state.username},{password: this.state.password},{firstname: this.state.firstname},{lastname: this.state.lastname},{gender: this.state.gender}]
+        const user = [{username: this.state.username,password: this.state.password,firstname: this.state.firstname,lastname: this.state.lastname,gender: this.state.gender,galleryimages: []}]
         localStorage.setItem('user', JSON.stringify(user))
-        this.props.setLoggedIn(true)
         this.props.setUser(user)
-
+        this.props.setLoggedIn(true)
       })
       .catch(err => {
-        this.setState({errormsg: 'ERROR!!!!'}) 
-        console.log(err.response)})
+        this.setState({errormsg: err.response.data.message}) 
+        console.log(err.response.data.message)})
   }
 
   handleChange(e) {
@@ -56,7 +55,7 @@ class UserFormClass extends React.Component {
     e.preventDefault()
 
     const ret = await axios
-      .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:5000/users/find?search="+e.target[0].value)
+      .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+e.target[0].value)
       //.then((res) => this.setState({login: res.data[0].username}))
       .catch(err => {
         //this.setState({errormsg: 'ERROR!!!!'}) 
@@ -107,6 +106,7 @@ class UserFormClass extends React.Component {
           onChange={this.handleChange}
           placeholder="användarnamn"
         />
+        <div className="errormsg">{this.state.errormsg}</div>
         <label htmlFor="password">Lösenord:</label>
         <input
           type="text"
@@ -115,7 +115,7 @@ class UserFormClass extends React.Component {
           onChange={this.handleChange}
           placeholder="lösenord"
         />
-        <br />
+
         <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------frivilligt------------------</h5>
         <label htmlFor="firstname">Förnamn:</label>
         <input

@@ -11,7 +11,7 @@ console.log(req.body)
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
         // Duplicate username
-        return res.status(422).send({ succes: false, message: 'User already exist!' });
+        return res.status(422).send({ succes: false, message: 'Tyvärr, det användarnamnet är redan upptaget. Vänligen välj ett nytt.' });
       }
       // Some other error
       return res.status(422).send(err);

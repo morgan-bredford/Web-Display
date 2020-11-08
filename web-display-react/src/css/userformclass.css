@@ -20,3 +20,7 @@ label {
 input:focus {
   background-color: rgba(207, 195, 248, 0.2);
 }
+
+.errormsg{
+  color: red;
+}
