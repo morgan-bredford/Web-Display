@@ -1,6 +1,6 @@
 <template>
   <br /><br /><br />
-    <div class='imagecontainer'>
+
         <div id="lightbox" v-if="large_image">
             <span class="lbnav" @click="imgNav($event, -1)">-></span>
             <div id="lbimgcontainer">
@@ -10,7 +10,7 @@
                 <span class="lbnav" @click="imgNav($event, 1)">-></span>
             </div>
         </div>
-    </div>
+
     <div class="imagecontainer">
         <span class="prev_card" v-bind:key="img.id" v-for="img in gallery_images">
             <img class="prev_card_img" :src="img.previewURL" @click="large_image = img.largeImageURL" />
@@ -32,6 +32,9 @@ export default {
         }
     },
     mounted() {
+        if(this.$store.getters.isLoggedIn){
+            this.gallery_images = this.$store.getters.getUser.galleryimages
+        }else
         if(sessionStorage.getItem('imagearray')){
         this.gallery_images = JSON.parse(sessionStorage.getItem('imagearray'))
         }

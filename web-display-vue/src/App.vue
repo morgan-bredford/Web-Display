@@ -62,6 +62,7 @@ input:focus {
   width: 80vw;
   margin: 0 auto;
   padding: 10px;
+  border: 3px solid rgba(27, 11, 87, 0.7);
   border-radius: 4px;
 }
 

@@ -5,10 +5,11 @@
           <router-link to="/"><li>hem</li></router-link>
           <router-link to="/about"><li>bygg galleri</li></router-link>
            <router-link to="/gallery"><li>ditt galleri</li></router-link>
-          <router-link to="/login"><li>logga in</li></router-link>
+          <router-link to="/login" v-if="!$store.getters.isLoggedIn"><li >logga in</li></router-link>
+          <router-link to="/userpage" v-if="$store.getters.isLoggedIn"><li>inloggad som: {{$store.getters.getUser.username}}</li></router-link>
        
       </ul>
-      {{isLoggedIn}}
+      {{$store.getters.isLoggedIn}}
     </nav>
   <router-view/>
 </template>

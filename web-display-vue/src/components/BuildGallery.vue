@@ -19,6 +19,9 @@ export default {
         }
     },
     mounted() {
+        if(this.$store.getters.isLoggedIn){
+            this.saved_images = this.$store.getters.getUser.galleryimages
+        }else
         if(sessionStorage.getItem('imagearray')){
         this.saved_images = JSON.parse(sessionStorage.getItem('imagearray'))
         }else{

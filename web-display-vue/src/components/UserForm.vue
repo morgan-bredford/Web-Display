@@ -7,7 +7,7 @@
       <br /><br />
       <h2 >eller om du inte redan har ett användarkonto kan du skapa ett här</h2>
       <br />
-      <div id="formcontainer">
+      <div class="formcontainer">
       <form name="createUserForm" @submit="submitUser">
         <h1 >Skapa användare</h1>
         <br />

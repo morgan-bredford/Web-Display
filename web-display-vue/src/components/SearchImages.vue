@@ -15,8 +15,6 @@
             <input type="text" name="searchbox" v-model="query" />
             <button>Sök bild</button>
         </form>
-        <button @click="searchImages">search</button>
-        <button @click="si">show</button>
         <h4 >klicka på + för att lägga till bilden till ditt galleri</h4>
         <div v-if="search">
             <div class="imagecontainer">
@@ -120,9 +118,6 @@ export default {
             sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
             this.saved_images.push(img)
         },
-        si(){
-            console.log(this.page)
-        }
     },
 
 }
