@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Login from './Login'
 export default {
     name: 'UserForm',
@@ -83,7 +84,18 @@ export default {
     methods: {
         submitUser(e){
             e.preventDefault()
-            console.log(this)
+            axios
+              .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/add", {username: this.username,password: this.password,firstname: this.firstname,lastname: this.lastname,gender: this.gender,galleryimages: []} ) 
+              .then((res) => { 
+                console.log(res)
+                // const user = [{username: this.state.username,password: this.state.password,firstname: this.state.firstname,lastname: this.state.lastname,gender: this.state.gender,galleryimages: []}]
+                // localStorage.setItem('user', JSON.stringify(user))
+                // this.props.setUser(user)
+                // this.props.setLoggedIn(true)
+              })
+              .catch(err => {
+                this.errormsg = err.response.data.message
+                console.log(err.response.data.message)})
         }
     },
 

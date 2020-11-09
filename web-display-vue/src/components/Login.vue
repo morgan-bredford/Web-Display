@@ -1,6 +1,6 @@
 <template>
   <div class="formcontainer">
-        <form @submit="slogIn">
+        <form @submit="logIn">
             <label htmlFor="username">Användarnamn:</label>
             <input type="text" name="username" placeholder="name" />
             <label htmlFor="password">Lösenord:</label>
@@ -11,12 +11,28 @@
 </template>
 
 <script>
+//import axios from 'axios'
+
 export default {
     name: "Login",
+    data() {
+        return {
+            isLoggedIn: ""
+        }
+    },
+    mounted() {
+        this.isLoggedIn = this.$store.getters.isLoggedIn
+    },
     methods: {
-        slogIn(e){
+        logIn(e){
             e.preventDefault()
-             this.$emit('login')
+            console.log('what')
+            this.$store.commit('logIn')
+            // axios
+            // .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+e.target[0].value)
+            // .then((res) => {
+            //     console.log(res.data)})
+            // .catch(err => console.log(err.response))
         }
     },
 }

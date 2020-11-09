@@ -8,7 +8,7 @@
           <router-link to="/login"><li>logga in</li></router-link>
        
       </ul>
-      {{isloggedin}}
+      {{isLoggedIn}}
     </nav>
   <router-view/>
 </template>
@@ -16,7 +16,14 @@
 <script>
 export default {
   name: "Navbar",
-  props: ['isloggedin'],
+  data() {
+    return {
+      isLoggedIn: ""
+    }
+  },
+  mounted() {
+    this.isLoggedIn = this.$store.getters.isLoggedIn
+  },
 }
 </script>
 
