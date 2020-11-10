@@ -38,6 +38,8 @@
 
 <script>
 import axios from "axios";
+import { mapState, mapMutations } from 'vuex'
+
 export default {
     name: "SearchImages",
     data(){
@@ -58,6 +60,8 @@ export default {
         
     },
     methods: {
+        ...mapState({loggedin: 'loggedIn'}),
+        ...mapMutations({addimg: 'addImg'}),
         searchImages(e){
             e.preventDefault();
             if(e.target.id === 'prev_ten'){
@@ -114,9 +118,16 @@ export default {
         addImage(img){
             const {id,previewURL,largeImageURL} = img
             const imageobj = {id,previewURL, largeImageURL, query: this.query }
-            const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-            sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-            this.saved_images.push(img)
+            if(this.loggedin){
+                this.addimg(imageobj)
+                const user = (JSON.parse(localStorage.getItem('user')))
+                user.galleryimages.push(imageobj)
+                localStorage.setItem('user',JSON.stringify(user))
+            }else{
+                const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
+                sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
+                this.saved_images.push(img)
+            }
         },
     },
 

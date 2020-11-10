@@ -1,7 +1,8 @@
 <template>
   <nav>
     <ul>
-        <router-link to="/"><li>hem</li></router-link>
+        <router-link to="/" v-if="!loggedin"><li>hem</li></router-link>
+        <router-link to="/welcome" v-if="loggedin"><li>hem</li></router-link>
         <router-link to="/about"><li>bygg galleri</li></router-link>
         <router-link to="/gallery"><li>ditt galleri</li></router-link>
         <router-link to="/login" v-if="!loggedin"><li >logga in</li></router-link>

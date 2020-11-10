@@ -19,7 +19,8 @@
           id="username"
           v-model="username"
           placeholder="användarnamn"
-        />{{username}}
+        />
+        <span class="errormsg">{{errormsg}}</span>
         <label htmlFor="password">Lösenord:</label>
         <input
           type="text"
@@ -65,6 +66,7 @@
 <script>
 import axios from 'axios'
 import Login from './Login'
+import { mapMutations } from 'vuex'
 export default {
     name: 'UserForm',
     components: {
@@ -82,16 +84,17 @@ export default {
         }
     },
     methods: {
+        ...mapMutations({setuser: 'setUser', login: 'logIn'}),
         submitUser(e){
             e.preventDefault()
+            const user = {username: this.username,password: this.password,firstname: this.firstname,lastname: this.lastname,gender: this.gender,galleryimages: []}
             axios
-              .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/add", {username: this.username,password: this.password,firstname: this.firstname,lastname: this.lastname,gender: this.gender,galleryimages: []} ) 
+              .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/add", user)
               .then((res) => { 
                 console.log(res)
-                // const user = [{username: this.state.username,password: this.state.password,firstname: this.state.firstname,lastname: this.state.lastname,gender: this.state.gender,galleryimages: []}]
-                // localStorage.setItem('user', JSON.stringify(user))
-                // this.props.setUser(user)
-                // this.props.setLoggedIn(true)
+                 localStorage.setItem('user', JSON.stringify(user))
+                 this.setuser(user)
+                 this.login()
               })
               .catch(err => {
                 this.errormsg = err.response.data.message
@@ -103,5 +106,7 @@ export default {
 </script>
 
 <style>
-
+.errormsg{
+  color: red;
+}
 </style>

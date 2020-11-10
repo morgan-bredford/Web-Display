@@ -10,8 +10,18 @@ export default createStore({
     logOut: state => {
       state.loggedIn = false
       state.user = {}
+      localStorage.setItem('user', '[]')
     },
     setUser: (state, user) =>   state.user = user,
+    addImg: (state, img) => state.user.galleryimages.push(img),
+    removeImg: (state, id) => {
+      console.log(id)
+      const gi = state.user.galleryimages.filter(
+        (image) => image.id !== id
+      )
+      state.user.galleryimages = gi
+    },
+    getGallery: state => state.user.galleryimages
   },
   actions: {
   },
