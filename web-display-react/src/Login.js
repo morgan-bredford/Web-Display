@@ -9,7 +9,6 @@ function Login(props) {
         axios
           .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+e.target[0].value)
           .then((res) => {
-            console.log(res.data)
             if(user.password === res.data[0].password){
               localStorage.setItem('user', JSON.stringify(res.data))
               props.setUser(res.data)

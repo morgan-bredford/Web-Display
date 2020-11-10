@@ -7,7 +7,7 @@
             type="text"
             name="username"
             id="username"
-            :value="$store.getters.getUser.username"
+            :value="user.username"
            
             placeholder="användarnamn"
           /><br />
@@ -16,7 +16,7 @@
             type="text"
             name="password"
             id="password"
-            :value="$store.getters.getUser.password"
+            :value="user.password"
             
             placeholder="lösenord"
           /><br />
@@ -25,7 +25,7 @@
             type="text"
             name="firstname"
             id="firstname"
-            :value="$store.getters.getUser.firstname"
+            :value="user.firstname"
             
             placeholder="förnamn"
           /><br />
@@ -34,13 +34,13 @@
             type="text"
             name="lastname"
             id="lastname"
-            :value="$store.getters.getUser.lastname"
+            :value="user.lastname"
             
             placeholder="efternamn"
           /><br />
           <label for="gender">Kön:</label>
-          <select id="gender" name="gender" :value="$store.getters.getUser.gender" >
-              <option >{{$store.getters.getUser.gender}}</option>
+          <select id="gender" name="gender" :value="user.gender" >
+              <option >{{user.gender}}</option>
           </select>
           <br />
           
@@ -53,8 +53,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-
+  computed: {
+    ...mapGetters({user: 'getUser'})
+  },
 }
 </script>
 

@@ -1,29 +1,29 @@
 <template>
   <nav>
-      <ul>
-       
-          <router-link to="/"><li>hem</li></router-link>
-          <router-link to="/about"><li>bygg galleri</li></router-link>
-           <router-link to="/gallery"><li>ditt galleri</li></router-link>
-          <router-link to="/login" v-if="!$store.getters.isLoggedIn"><li >logga in</li></router-link>
-          <router-link to="/userpage" v-if="$store.getters.isLoggedIn"><li>inloggad som: {{$store.getters.getUser.username}}</li></router-link>
-       
-      </ul>
-      {{$store.getters.isLoggedIn}}
-    </nav>
+    <ul>
+        <router-link to="/"><li>hem</li></router-link>
+        <router-link to="/about"><li>bygg galleri</li></router-link>
+        <router-link to="/gallery"><li>ditt galleri</li></router-link>
+        <router-link to="/login" v-if="!loggedin"><li >logga in</li></router-link>
+        <router-link to="/userpage" v-if="loggedin"><li>inloggad som: {{user.username}}</li></router-link>
+    </ul>
+  </nav>
   <router-view/>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 export default {
   name: "Navbar",
   data() {
     return {
-      isLoggedIn: ""
+
     }
   },
-  mounted() {
-    this.isLoggedIn = this.$store.getters.isLoggedIn
+  computed: {
+    ...mapState({loggedin: 'loggedIn'}),
+    ...mapGetters({user: 'getUser'})
   },
 }
 </script>

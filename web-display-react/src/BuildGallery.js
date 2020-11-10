@@ -5,7 +5,7 @@ import LargeImage from "./LargeImage";
 import SearchImages from "./SearchImages";
 import App3 from "./App3";
 
-function ImageSearch(props) {
+function BuildGallery(props) {
   const URL = "https://pixabay.com/api";
   const apikey = "18623126-9e0d07d5ea60888b927459e25";
   const [searchimages, setSearchimages] = useState([]);
@@ -218,4 +218,4 @@ console.log(`inside: ${temparray[0].id}`)
   );
 }
 
-export default ImageSearch;
+export default BuildGallery;

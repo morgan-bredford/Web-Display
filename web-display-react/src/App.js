@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import UserPage from './UserPage'
 import UserFormClass from "./UserFormClass";
-import ImageSearch from "./imagesearch";
+import BuildGallery from "./BuildGallery";
 import Navbar from "./Navbar";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import Match from "./match";
 import Gallery from "./Gallery";
 import Login from './Login'
 import Welcome from './Welcome'
@@ -24,7 +23,6 @@ function App() {
   return (
     <Router>
       <div className="App"  >
-        
         <Navbar loggedIn={loggedIn} user={user} />
         <Switch>
           { loggedIn ?
@@ -43,8 +41,7 @@ function App() {
           render={() => (
             <Login setLoggedIn={setLoggedIn} setUser={setUser} loggedIn={loggedIn} />)}
           />
-          <Route path="/imagesearch" component={() => <ImageSearch user={user} setUser={setUser} loggedIn={loggedIn} /> } />
-          {/* <Route path="/imagesearch/:id" component={Match} /> */}
+          <Route path="/buildgallery" component={() => <BuildGallery user={user} setUser={setUser} loggedIn={loggedIn} /> } />
           <Route path="/gallery" component={() => <Gallery user={user} loggedIn={loggedIn} /> } />
           <Redirect to="/" />
         </Switch>

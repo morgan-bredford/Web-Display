@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import './css/navbar.css'
@@ -7,13 +6,11 @@ function Navbar(props) {
 
   return (
     <nav>
-      {console.log(props)}
-      {console.log(`nav: ${props.loggedIn} `)}
       <ul>
         <Link to="/">
           <li>hem</li>
         </Link>
-        <Link to="/imagesearch">
+        <Link to="/buildgallery">
           <li>bygg galleri</li>
         </Link>
         <Link to="/gallery"><li>Ditt galleri</li></Link>
