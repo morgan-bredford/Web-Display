@@ -1,6 +1,6 @@
 <template>
   <div class="formcontainer">
-        <form @submit="logIn">
+        <form @submit.prevent="logIn">
             <label htmlFor="username">Användarnamn:</label>
             <input type="text" name="username" placeholder="name" />
             <label htmlFor="password">Lösenord:</label>
@@ -27,7 +27,7 @@ export default {
     methods: {
         ...mapMutations({setuser: 'setUser', login: 'logIn'}),
         logIn(e){
-            e.preventDefault()
+            //e.preventDefault()
             // console.log('what')
             // this.$store.commit('setUser', {username: 'Tre'})
             // this.$store.commit('logIn')

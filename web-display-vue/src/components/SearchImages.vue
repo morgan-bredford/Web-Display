@@ -11,7 +11,7 @@
     </div>
     <div class="formcontainer">
         <h1 >Sök på bilder from Pixabay</h1>
-        <form v-on:submit="searchImages">
+        <form @submit.prevent="searchImages">
             <input type="text" name="searchbox" v-model="query" />
             <button>Sök bild</button>
         </form>
@@ -63,7 +63,6 @@ export default {
         ...mapState({loggedin: 'loggedIn'}),
         ...mapMutations({addimg: 'addImg'}),
         searchImages(e){
-            e.preventDefault();
             if(e.target.id === 'prev_ten'){
                this.page_nav_index -= 10
                this.page = this.page_nav_index
