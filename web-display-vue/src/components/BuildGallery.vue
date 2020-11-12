@@ -10,7 +10,7 @@
 
 <script>
 import SearchImages from './SearchImages.vue'
-import { mapState, mapMutations, mapGetters } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
     name: "BuildGallery",
@@ -21,8 +21,8 @@ export default {
         }
     },
     mounted() {
-        if(this.$store.getters.isLoggedIn){
-            this.saved_images = this.$store.getters.getUser.galleryimages
+        if(this.loggedin){
+            this.saved_images = this.user.galleryimages
         }else
         if(sessionStorage.getItem('imagearray')){
         this.saved_images = JSON.parse(sessionStorage.getItem('imagearray'))
@@ -32,7 +32,6 @@ export default {
     },
     methods: {
         ...mapMutations({removeimg: 'removeImg'}),
-        ...mapGetters({galleryimages: 'getGallery'}),
         // addImage(img){
         //     const {id,previewURL,largeImageURL} = img
         //     const imageobj = {id,previewURL, largeImageURL}
@@ -42,8 +41,7 @@ export default {
         // }
     },
     computed: {
-        ...mapState({user: 'user'}),
-        //setGallery(){this.saved_images = this.galleryimages},
+        ...mapState({user: 'user',loggedin: 'loggedIn'}),
     }
 
 }

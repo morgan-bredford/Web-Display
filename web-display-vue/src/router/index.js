@@ -3,40 +3,40 @@ import Home from '../views/Home.vue'
 import WelcomeVue from '../views/WelcomeVue.vue'
 import GalleryVue from '../views/GalleryVue.vue'
 import UserPageVue from '../views/UserPageVue.vue'
-import Login2 from '../views/Login2.vue'
+import LoginVue from '../views/LoginVue.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
     path: '/welcome',
-    name: 'WelcomeVue',
+    name: 'welcomevue',
     component: WelcomeVue
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/buildgallery',
+    name: 'buildgalleryvue',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/BuildGalleryVue.vue')
   },
   {
     path: '/gallery',
-    name: 'GalleryVue',
+    name: 'galleryvue',
     component: GalleryVue
   },
   {
     path: '/login',
-    name: 'Login2',
-    component: Login2
+    name: 'login',
+    component: LoginVue
   },
   {
     path: '/userpage',
-    name: 'UserPageVue',
+    name: 'userpagevue',
     component: UserPageVue
   }
 ]

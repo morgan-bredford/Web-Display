@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Navbar :isloggedin="isLoggedIn" />
-    
+    <Navbar />
   </div>
 </template>
 
@@ -16,7 +15,7 @@ export default {
   },
   data() {
     return {
-      isLoggedIn: false,
+     
     }
   },
 }

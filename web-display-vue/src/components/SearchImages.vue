@@ -38,7 +38,7 @@
 
 <script>
 import axios from "axios";
-import { mapState, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
     name: "SearchImages",
@@ -56,11 +56,8 @@ export default {
         }
     },
     props: ['savedimages'],
-    created(){
-        
-    },
+   
     methods: {
-        ...mapState({loggedin: 'loggedIn'}),
         ...mapMutations({addimg: 'addImg'}),
         searchImages(e){
             if(e.target.id === 'prev_ten'){

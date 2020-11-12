@@ -1,5 +1,8 @@
 <template>
-  <div class="formcontainer">
+    <br />
+    <h1 >Välkommen att logga in</h1>
+    <br />
+    <div class="formcontainer">
         <form @submit.prevent="logIn">
             <label htmlFor="username">Användarnamn:</label>
             <input type="text" name="username" placeholder="name" />
@@ -18,11 +21,8 @@ export default {
     name: "Login",
     data() {
         return {
-            isLoggedIn: ""
+            
         }
-    },
-    mounted() {
-        this.isLoggedIn = this.$store.getters.isLoggedIn
     },
     methods: {
         ...mapMutations({setuser: 'setUser', login: 'logIn'}),

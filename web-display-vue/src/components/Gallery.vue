@@ -23,7 +23,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+
     name: 'Gallery',
     data() {
         return {
@@ -32,12 +35,15 @@ export default {
         }
     },
     mounted() {
-        if(this.$store.getters.isLoggedIn){
+        if(this.loggedin){
             this.gallery_images = this.$store.getters.getUser.galleryimages
         }else
         if(sessionStorage.getItem('imagearray')){
         this.gallery_images = JSON.parse(sessionStorage.getItem('imagearray'))
         }
+    },
+    computed: {
+        ...mapState({loggedin: 'loggedIn'}),
     }
 
 }

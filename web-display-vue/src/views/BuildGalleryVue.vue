@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
+  <main class="about">
     <BuildGallery />
-  </div>
+  </main>
 </template>
 
 <script>
@@ -9,7 +9,7 @@
 import BuildGallery from '@/components/BuildGallery.vue'
 
 export default {
-  name: 'About',
+  name: 'BuildGalleryVue',
   components: {
     BuildGallery
   }

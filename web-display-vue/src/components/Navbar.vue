@@ -3,7 +3,7 @@
     <ul>
         <router-link to="/" v-if="!loggedin"><li>hem</li></router-link>
         <router-link to="/welcome" v-else><li>hem</li></router-link>
-        <router-link to="/about"><li>bygg galleri</li></router-link>
+        <router-link to="/buildgallery"><li>bygg galleri</li></router-link>
         <router-link to="/gallery"><li>ditt galleri</li></router-link>
         <router-link to="/login" v-if="!loggedin"><li >logga in</li></router-link>
         <router-link to="/userpage" v-else><li>inloggad som: {{user.username}}</li></router-link>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: "Navbar",
@@ -24,7 +24,6 @@ export default {
   },
   computed: {
     ...mapState({loggedin: 'loggedIn'}),
-    ...mapGetters({user: 'getUser'})
   },
 }
 </script>

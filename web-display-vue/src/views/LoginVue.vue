@@ -9,7 +9,7 @@
 import Login from '@/components/Login.vue'
 
 export default {
-  name: 'Login2',
+  name: 'LoginVue',
   components: {
     Login
   }
