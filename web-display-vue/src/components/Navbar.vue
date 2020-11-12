@@ -23,7 +23,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({loggedin: 'loggedIn'}),
+    ...mapState({user: 'user', loggedin: 'loggedIn'}),
   },
 }
 </script>

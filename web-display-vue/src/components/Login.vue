@@ -5,9 +5,9 @@
     <div class="formcontainer">
         <form @submit.prevent="logIn">
             <label htmlFor="username">Användarnamn:</label>
-            <input type="text" name="username" placeholder="name" />
+            <input type="text" name="username" v-model="formData.username" placeholder="name" />
             <label htmlFor="password">Lösenord:</label>
-            <input type="text" name="password" placeholder="pass" />
+            <input type="text" name="password" v-model="formData.password" placeholder="pass" />
             <button>Logga in</button>
         </form>
     </div>
@@ -21,26 +21,28 @@ export default {
     name: "Login",
     data() {
         return {
-            
+            formData: {
+                username: "",
+                password: "",
+            }
         }
     },
     methods: {
         ...mapMutations({setuser: 'setUser', login: 'logIn'}),
-        logIn(e){
-            //e.preventDefault()
-            // console.log('what')
-            // this.$store.commit('setUser', {username: 'Tre'})
-            // this.$store.commit('logIn')
-           
+        logIn(){
+ console.log(this.formData.username)          
             axios
-            .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+e.target[0].value)
+            .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+this.formData.username)
             .then((res) => {
-                console.log(res.data)
-                //this.$store.commit('setUser', res.data[0])
-                 //this.$store.commit('logIn')
-                 localStorage.setItem('user', JSON.stringify(res.data))
-                 this.setuser(res.data[0])
-                 this.login()
+                if(res.data.length){
+        console.log(res.data[0].password+" "+this.formData.password)
+                    if(res.data[0].password === this.formData.password){
+         console.log(res.data[0].password+" "+this.formData.password)
+                        localStorage.setItem('user', JSON.stringify(res.data))
+                        this.setuser(res.data[0])
+                        this.login()
+                    }
+                 }
                 })
             .catch(err => console.log(err.response))
         }

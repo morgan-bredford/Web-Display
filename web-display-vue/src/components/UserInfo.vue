@@ -47,15 +47,24 @@
         </form>
         <br />
         <router-link to="/" >
-          <button @click="$store.commit('logOut')">Logga ut</button>
+          <button @click="logOut">Logga ut</button>
         </router-link>
     </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
+   computed: {
+    ...mapState({user: 'user', loggedin: 'loggedIn'}),
+  },
+  methods: {
+    ...mapMutations(['logOut'])
+  }
  
 }
+
 </script>
 
 <style>

@@ -1,12 +1,12 @@
 <template>
 <div class="">
     <div id="lightbox" v-if="large_image">
-        <span class="lbnav" @click="imgNav($event, -1)">-></span>
+        <span class="lbnav" @click.stop="imgNav(-1)">-></span>
         <div id="lbimgcontainer">
             <img :src="large_image" />
             <span id="lbload" >loading...</span>
             <span id="lbclose" @click="large_image = ''">X</span>
-            <span class="lbnav" @click="imgNav($event, 1)">-></span>
+            <span class="lbnav" @click.stop="imgNav(1)">-></span>
         </div>
     </div>
     <div class="formcontainer">
@@ -18,7 +18,7 @@
         <h4 >klicka på + för att lägga till bilden till ditt galleri</h4>
         <div v-if="search">
             <div class="imagecontainer">
-                <span v-bind:key="img.id" v-for="img in search_images">
+                <span :key="img.id" v-for="img in search_images">
                     <img :src="img.previewURL" @click="large_image = img.largeImageURL" /><span @click="addImage(img)">+</span>
                 </span>
             </div>
@@ -38,7 +38,7 @@
 
 <script>
 import axios from "axios";
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
     name: "SearchImages",
@@ -55,8 +55,9 @@ export default {
             loading: false,
         }
     },
-    props: ['savedimages'],
-   
+    computed: {
+        ...mapState(['user','loggedIn'])
+    },
     methods: {
         ...mapMutations({addimg: 'addImg'}),
         searchImages(e){
@@ -105,8 +106,7 @@ export default {
             }
             
         },
-        imgNav(e,move_index){
-            e.stopPropagation()
+        imgNav(move_index){
             const index = this.search_images.findIndex(img => img.largeImageURL === this.large_image)
             this.large_image = this.search_images[index + move_index].largeImageURL
             console.log(index)
@@ -120,9 +120,11 @@ export default {
                 user.galleryimages.push(imageobj)
                 localStorage.setItem('user',JSON.stringify(user))
             }else{
-                const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-                sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-                this.saved_images.push(img)
+                const newimagearray = [...this.user.galleryimages,imageobj]
+                sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
+                // this.saved_images.push(img)
+                console.log(this.user)
+                this.addimg(imageobj)
             }
         },
     },

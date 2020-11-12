@@ -11,8 +11,8 @@
             </div>
         </div>
 
-    <div class="imagecontainer">
-        <span class="prev_card" v-bind:key="img.id" v-for="img in gallery_images">
+    <div class="imagecontainer" v-if="user.galleryimages.length">
+        <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages">
             <img class="prev_card_img" :src="img.previewURL" @click="large_image = img.largeImageURL" />
              <div class="prev_card_info">
                 Sparad: datum <br />
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
 
@@ -35,15 +35,18 @@ export default {
         }
     },
     mounted() {
-        if(this.loggedin){
-            this.gallery_images = this.$store.getters.getUser.galleryimages
+        if(this.loggedIn){
+            this.saved_images = this.user.galleryimages
         }else
-        if(sessionStorage.getItem('imagearray')){
-        this.gallery_images = JSON.parse(sessionStorage.getItem('imagearray'))
+        if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
+            this.setGallery(JSON.parse(sessionStorage.getItem('galleryimages')))
         }
     },
     computed: {
-        ...mapState({loggedin: 'loggedIn'}),
+        ...mapState(['user','loggedIn']),
+    },
+    methods: {
+        ...mapMutations(['setGallery'])
     }
 
 }

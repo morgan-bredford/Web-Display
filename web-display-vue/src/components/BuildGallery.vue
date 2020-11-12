@@ -1,7 +1,7 @@
 <template>
-  <SearchImages :savedimages="saved_images" />
-  <div className='imagecontainer' v-if="saved_images.length">
-      <span v-for="img in saved_images" :key="img.id">
+  <SearchImages />
+  <div className='imagecontainer' v-if="user.galleryimages.length">
+      <span v-for="img in user.galleryimages" :key="img.id">
           <img :src=img.previewURL /><span @click="removeimg(img.id)">X</span>
       </span>
   </div>
@@ -21,24 +21,18 @@ export default {
         }
     },
     mounted() {
+         console.log(JSON.parse(sessionStorage.getItem('galleryimages')))
         if(this.loggedin){
             this.saved_images = this.user.galleryimages
         }else
-        if(sessionStorage.getItem('imagearray')){
-        this.saved_images = JSON.parse(sessionStorage.getItem('imagearray'))
-        }else{
-        sessionStorage.setItem('imagearray',"[]")
+        if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
+            this.setGallery(JSON.parse(sessionStorage.getItem('galleryimages')))
+         }else{
+        sessionStorage.setItem('galleryimages',"[]")
         }
     },
     methods: {
-        ...mapMutations({removeimg: 'removeImg'}),
-        // addImage(img){
-        //     const {id,previewURL,largeImageURL} = img
-        //     const imageobj = {id,previewURL, largeImageURL}
-        //     const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-        //     sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-        //     this.saved_images.push(img)
-        // }
+        ...mapMutations({removeimg: 'removeImg',setGallery: 'setGallery'}),
     },
     computed: {
         ...mapState({user: 'user',loggedin: 'loggedIn'}),
