@@ -2,7 +2,7 @@
   <SearchImages />
   <div className='imagecontainer' v-if="user.galleryimages.length">
       <span v-for="img in user.galleryimages" :key="img.id">
-          <img :src=img.previewURL /><span @click="removeimg(img.id)">X</span>
+          <img :src=img.previewURL /><span @click="removeImg(img.id)">X</span>
       </span>
   </div>
   <button @click="test">test</button>
@@ -22,7 +22,7 @@ export default {
     },
     mounted() {
          console.log(JSON.parse(sessionStorage.getItem('galleryimages')))
-        if(this.loggedin){
+        if(this.loggedIn){
             this.saved_images = this.user.galleryimages
         }else
         if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
@@ -32,10 +32,10 @@ export default {
         }
     },
     methods: {
-        ...mapMutations({removeimg: 'removeImg',setGallery: 'setGallery'}),
+        ...mapMutations(['removeImg','setGallery']),
     },
     computed: {
-        ...mapState({user: 'user',loggedin: 'loggedIn'}),
+        ...mapState(['user','loggedIn']),
     }
 
 }

@@ -15,11 +15,10 @@ export default createStore({
     setUser: (state, user) =>   state.user = user,
     addImg: (state, img) => state.user.galleryimages.push(img),
     removeImg: (state, id) => {
-      console.log(id)
-      const gi = state.user.galleryimages.filter(
+      const newimagearray = state.user.galleryimages.filter(
         (image) => image.id !== id
       )
-      state.user.galleryimages = gi
+      state.user.galleryimages = newimagearray
     },
     setGallery: (state, imagearray) => state.user.galleryimages = imagearray
   },
