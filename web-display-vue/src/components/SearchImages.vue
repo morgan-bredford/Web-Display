@@ -114,13 +114,20 @@ export default {
         addImage(img){
             const {id,previewURL,largeImageURL} = img
             const imageobj = {id,previewURL, largeImageURL, query: this.query }
-            if(this.loggedin){
-                this.addimg(imageobj)
-                const user = (JSON.parse(localStorage.getItem('user')))
-                user.galleryimages.push(imageobj)
-                localStorage.setItem('user',JSON.stringify(user))
+            const newimagearray = [...this.user.galleryimages,imageobj]
+            if(this.loggedIn){
+
+                axios
+                    .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: this.user.username, galleryimages: newimagearray}])
+                    .then((res) => {
+                        console.log(res)
+                        this.addimg(imageobj)
+                        localStorage.setItem('user',JSON.stringify(this.user))
+                    })
+            .catch(err => {
+                console.log(err.response)})
+               
             }else{
-                const newimagearray = [...this.user.galleryimages,imageobj]
                 sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
                 // this.saved_images.push(img)
                 console.log(this.user)

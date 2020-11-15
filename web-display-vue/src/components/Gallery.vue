@@ -34,19 +34,20 @@ export default {
             large_image: "",
         }
     },
-    mounted() {
-        if(this.loggedIn){
-            this.saved_images = this.user.galleryimages
-        }else
-        if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
-            this.setGallery(JSON.parse(sessionStorage.getItem('galleryimages')))
-        }
-    },
+    // mounted() {
+    //   if( !this.loggedIn && localStorage.getItem('user')){
+    //       this.setUser(JSON.parse(localStorage.getItem('user'))[0])
+    //       this.logIn()
+    //   }else
+    //   if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
+    //       this.setGallery(JSON.parse(sessionStorage.getItem('galleryimages')))
+    //   }
+    // },
     computed: {
         ...mapState(['user','loggedIn']),
     },
     methods: {
-        ...mapMutations(['setGallery'])
+        ...mapMutations(['setGallery','setUser','logIn'])
     }
 
 }

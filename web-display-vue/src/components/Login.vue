@@ -30,14 +30,12 @@ export default {
     methods: {
         ...mapMutations({setuser: 'setUser', login: 'logIn'}),
         logIn(){
- console.log(this.formData.username)          
+       
             axios
             .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+this.formData.username)
             .then((res) => {
                 if(res.data.length){
-        console.log(res.data[0].password+" "+this.formData.password)
                     if(res.data[0].password === this.formData.password){
-         console.log(res.data[0].password+" "+this.formData.password)
                         localStorage.setItem('user', JSON.stringify(res.data))
                         this.setuser(res.data[0])
                         this.login()

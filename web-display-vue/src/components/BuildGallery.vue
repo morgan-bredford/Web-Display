@@ -1,6 +1,6 @@
 <template>
   <SearchImages />
-  <div className='imagecontainer' v-if="user.galleryimages.length">
+  <div class='imagecontainer' v-if="user.galleryimages.length">
       <span v-for="img in user.galleryimages" :key="img.id">
           <img :src=img.previewURL /><span @click="removeImg(img.id)">X</span>
       </span>
@@ -10,29 +10,28 @@
 
 <script>
 import SearchImages from './SearchImages.vue'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
     name: "BuildGallery",
     components: {SearchImages},
     data(){
         return{
-            saved_images: [],
+
         }
     },
-    mounted() {
-         console.log(JSON.parse(sessionStorage.getItem('galleryimages')))
-        if(this.loggedIn){
-            this.saved_images = this.user.galleryimages
-        }else
-        if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
-            this.setGallery(JSON.parse(sessionStorage.getItem('galleryimages')))
-         }else{
-        sessionStorage.setItem('galleryimages',"[]")
-        }
-    },
+    // mounted() {
+    //   if( !this.loggedIn && localStorage.getItem('user')){
+    //       this.setUser(JSON.parse(localStorage.getItem('user'))[0])
+    //       this.logIn()
+    //   }else
+    //   if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
+    //       this.setGallery(JSON.parse(sessionStorage.getItem('galleryimages')))
+    //   }
+    // },
     methods: {
-        ...mapMutations(['removeImg','setGallery']),
+        ...mapMutations(['setGallery','setUser','logIn','test']),
+        ...mapActions(['removeImg']),
     },
     computed: {
         ...mapState(['user','loggedIn']),

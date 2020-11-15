@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 export default createStore({
   state: {
@@ -9,34 +10,41 @@ export default createStore({
     logIn: (state) =>  state.loggedIn = true,
     logOut: state => {
       state.loggedIn = false
-      state.user = {}
-      localStorage.setItem('user', '[]')
+      state.user = {galleryimages: []}
+      localStorage.removeItem('user')
     },
-    setUser: (state, user) =>   state.user = user,
-    addImg: (state, img) => state.user.galleryimages.push(img),
-    removeImg: (state, id) => {
-      const newimagearray = state.user.galleryimages.filter(
-        (image) => image.id !== id
-      )
-      state.user.galleryimages = newimagearray
+    setUser: (state, user) =>   {     
+      state.user = user
+      console.log(state.user)
     },
-    setGallery: (state, imagearray) => state.user.galleryimages = imagearray
+    addImg: (state, img) => state.user.galleryimages.push(img),  
+    setGallery: (state, imagearray) => state.user.galleryimages = imagearray,
+    test: state => console.log(state.user),
   },
   actions: {
-    // addImage(img){
-    //   const {id,previewURL,largeImageURL} = img
-    //   const imageobj = {id,previewURL, largeImageURL, query: this.query }
-    //   if(this.loggedin){
-    //     user.galleryimages.push(imageobj)
-    //       const user = (JSON.parse(localStorage.getItem('user')))
-    //       user.galleryimages.push(imageobj)
-    //       localStorage.setItem('user',JSON.stringify(user))
-    //   }else{
-    //       const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-    //       sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-    //       this.saved_images.push(img)
-    //   }
-    // },
+    removeImg(context, id){
+      console.log(context.state.loggedIn)     
+      if(!context.state.loggedIn){
+        const newimagearray = context.state.user.galleryimages.filter(
+          (image) => image.id !== id
+        )
+        context.commit('setGallery', newimagearray)
+        sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
+      }else{
+        const newimagearray = context.state.user.galleryimages.filter(
+          (image) => image.id !== id
+        )
+        axios
+          .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: context.state.user.username, galleryimages: newimagearray}])
+          .then((res) => {
+            console.log(res)
+            context.commit('setGallery', newimagearray)
+            localStorage.setItem('user',JSON.stringify(context.state.user))
+          })
+          .catch(err => {
+            console.log(err.response)})
+      }
+    },
   },
   modules: {
   },
