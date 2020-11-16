@@ -36,12 +36,12 @@ export default {
             .then((res) => {
                 if(res.data.length){
                     if(res.data[0].password === this.formData.password){
-                        localStorage.setItem('user', JSON.stringify(res.data))
+                        localStorage.setItem('user', JSON.stringify(res.data[0]))
                         this.setuser(res.data[0])
                         this.login()
                     }
-                 }
-                })
+                }
+            })
             .catch(err => console.log(err.response))
         }
     },

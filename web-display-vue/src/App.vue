@@ -20,15 +20,11 @@ export default {
     }
   },
    mounted() {
-console.log('mounted')
       if( !this.loggedIn && localStorage.getItem('user')){
-console.log('mounted2')
-          this.setUser(JSON.parse(localStorage.getItem('user'))[0])
+          this.setUser(JSON.parse(localStorage.getItem('user')))
           this.logIn()
-console.log(this.user)
       }else
       if( !this.loggedIn && sessionStorage.getItem('galleryimages') ){
-console.log('mounted3')
           this.setGallery(JSON.parse(sessionStorage.getItem('galleryimages')))
       }
     },

@@ -19,11 +19,9 @@ export default createStore({
     },
     addImg: (state, img) => state.user.galleryimages.push(img),  
     setGallery: (state, imagearray) => state.user.galleryimages = imagearray,
-    test: state => console.log(state.user),
   },
   actions: {
-    removeImg(context, id){
-      console.log(context.state.loggedIn)     
+    removeImg(context, id){    
       if(!context.state.loggedIn){
         const newimagearray = context.state.user.galleryimages.filter(
           (image) => image.id !== id
