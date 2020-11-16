@@ -8,6 +8,7 @@
         <router-link to="/login" v-if="!loggedin"><li >logga in</li></router-link>
         <router-link to="/userpage" v-else><li>inloggad som: {{user.username}}</li></router-link>
     </ul>
+    <a href="http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com/">React</a>
   </nav>
   <router-view/>
 </template>

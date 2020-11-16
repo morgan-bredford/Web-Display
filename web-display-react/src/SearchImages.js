@@ -43,8 +43,9 @@ class SearchImages extends Component {
     };
 
     addImage = (e,image) => {
+        const date = new Date()
         const {id,previewURL,largeImageURL} = image
-        const imageobj = {id,previewURL, largeImageURL,query: this.state.query}
+        const imageobj = {id,previewURL, largeImageURL,query: this.state.query, time: date.getTime()}
    
         if(this.props.loggedIn)
         {

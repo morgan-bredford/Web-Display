@@ -26,6 +26,14 @@ function Gallery(props){
             .largeImageURL)
         }
     }
+    const getSaveDate = img => {
+        const date = new Date(img.time)
+        const options = {  
+            year: "numeric", month: "short",  
+            day: "numeric", hour12: false, hour: "2-digit", minute: "2-digit"  
+        };
+        return date.toLocaleTimeString("en-us", options)
+    }
 
     return(
         <React.Fragment>
@@ -71,8 +79,9 @@ function Gallery(props){
                                 setLargeImage(image.largeImageURL)
                                 }} />
                             <div className="prev_card_info">
-                                Sparad: datum <br />
-                                Sökord: {image.query}
+                                Sökord: {image.query}<br />
+                                Sparad: {getSaveDate(image)} 
+                                
                             </div>
                         </span >
                     )

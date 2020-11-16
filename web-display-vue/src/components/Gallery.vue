@@ -15,8 +15,8 @@
         <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages">
             <img class="prev_card_img" :src="img.previewURL" @click="large_image = img.largeImageURL" />
              <div class="prev_card_info">
-                Sparad: datum <br />
-                Sökord: {{img.query}}
+                Sökord: {{img.query}}<br />
+                Sparad: {{getSaveDate(img)}}
             </div>
         </span>
     </div>
@@ -45,9 +45,18 @@ export default {
     // },
     computed: {
         ...mapState(['user','loggedIn']),
+       
     },
     methods: {
-        ...mapMutations(['setGallery','setUser','logIn'])
+        ...mapMutations(['setGallery','setUser','logIn']),
+        getSaveDate: img => {
+            const date = new Date(img.time)
+            const options = {  
+                year: "numeric", month: "short",  
+                day: "numeric", hour12: false, hour: "2-digit", minute: "2-digit"  
+            };
+            return date.toLocaleTimeString("en-us", options)
+        }
     }
 
 }

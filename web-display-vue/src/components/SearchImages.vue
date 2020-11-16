@@ -113,7 +113,8 @@ export default {
         },
         addImage(img){
             const {id,previewURL,largeImageURL} = img
-            const imageobj = {id,previewURL, largeImageURL, query: this.query }
+            const date = new Date()
+            const imageobj = {id,previewURL, largeImageURL, query: this.query, time: date.getTime() }
             const newimagearray = [...this.user.galleryimages,imageobj]
             if(this.loggedIn){
 
@@ -131,7 +132,7 @@ export default {
                 sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
                 // this.saved_images.push(img)
                 console.log(this.user)
-                this.addimg(imageobj)
+                this.addimg(imageobj) 
             }
         },
     },

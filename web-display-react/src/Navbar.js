@@ -18,7 +18,7 @@ function Navbar(props) {
           props.loggedIn ? <Link to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}</li></Link> : <Link to="/login"><li>logga in</li></Link>
         }
       </ul>
-      
+      <a href="http://vueapp161120.s3-website.eu-north-1.amazonaws.com">Vue</a>
     </nav>
   );
 }
