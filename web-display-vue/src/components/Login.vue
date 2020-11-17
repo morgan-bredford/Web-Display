@@ -1,16 +1,18 @@
 <template>
-    <br />
-    <h1 >Välkommen att logga in</h1>
-    <br />
-    <div class="formcontainer">
-        <form @submit.prevent="logIn">
-            <label htmlFor="username">Användarnamn:</label>
-            <input type="text" name="username" v-model="formData.username" placeholder="name" />
-            <label htmlFor="password">Lösenord:</label>
-            <input type="text" name="password" v-model="formData.password" placeholder="pass" />
-            <button>Logga in</button>
-        </form>
-    </div>
+    <main>
+        <br />
+        <h1 >Välkommen att logga in</h1>
+        <br />
+        <div class="formcontainer">
+            <form @submit.prevent="logIn">
+                <label htmlFor="username">Användarnamn:</label>
+                <input type="text" name="username" v-model="formData.username" placeholder="name" />
+                <label htmlFor="password">Lösenord:</label>
+                <input type="text" name="password" v-model="formData.password" placeholder="pass" />
+                <button>Logga in</button>
+            </form>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -24,7 +26,7 @@ export default {
             formData: {
                 username: "",
                 password: "",
-            }
+            },
         }
     },
     methods: {
@@ -50,6 +52,6 @@ export default {
 
 <style scoped>
     .formcontainer {
-        width: 30vw;
+        width: clamp(200px, 80vw, 350px);
     }
 </style>

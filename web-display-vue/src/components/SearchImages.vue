@@ -1,26 +1,28 @@
 <template>
 <div class="">
     <div id="lightbox" v-if="large_image">
-        <span class="lbnav" @click.stop="imgNav(-1)">-></span>
+        <span class="lbnav" @click.stop="() => {loading = true;imgNav(-1)}">-></span>
         <div id="lbimgcontainer">
-            <img :src="large_image" />
-            <span id="lbload" >loading...</span>
+            <img :src="large_image" @load="loading = false" />
+            <span id="lbload" v-if="loading" >loading...</span>
             <span id="lbclose" @click="large_image = ''">X</span>
-            <span class="lbnav" @click.stop="imgNav(1)">-></span>
+            <span class="lbnav" @click.stop="() => {loading = true;imgNav(1)}">-></span>
         </div>
     </div>
-    <div class="formcontainer">
+    <div>
         <h1 >Sök på bilder from Pixabay</h1>
-        <form @submit.prevent="searchImages">
-            <input type="text" name="searchbox" v-model="query" />
-            <button>Sök bild</button>
-        </form>
-        <h4 >klicka på + för att lägga till bilden till ditt galleri</h4>
+        <div class="formcontainer">
+            <form id="searchbox" @submit.prevent="searchImages">
+                <input type="text" name="searchbox" v-model="query" />
+                <button>Sök bild</button>
+            </form>
+        </div>
+    </div>
         <div v-if="search">
             <div class="imagecontainer">
-                <span :key="img.id" v-for="img in search_images">
-                    <img :src="img.previewURL" @click="large_image = img.largeImageURL" /><span @click="addImage(img)">+</span>
-                </span>
+                <div :key="img.id" v-for="img in search_images">
+                    <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true}" /><div @click="addImage(img)">lägg till +</div>
+                </div>
             </div>
             <div id="linkcontainer" v-if="search_images.length">
                 <span class="pagelinks" id="prev_ten" v-if="page > 10" @click="searchImages">
@@ -30,9 +32,8 @@
                       -> </span>
             </div>
         </div>
-        
         <br />
-    </div>
+    
 </div>
 </template>
 
@@ -65,7 +66,7 @@ export default {
                this.page_nav_index -= 10
                this.page = this.page_nav_index
                axios
-                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=10&page=${this.page}`)
+                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=18&page=${this.page}`)
                     .then((res) => {
                         this.search_images = res.data.hits
                         this.search = true
@@ -140,7 +141,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    .formcontainer {
+        border: none;
+    }
+    form {
+        display: flex;
+        flex-direction: row;
+    }
+    form input {
+        /* width: 20vw; */
+       
+    }
     .imagecontainer{
         display: flex;
 

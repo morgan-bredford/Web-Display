@@ -1,7 +1,7 @@
 <template>
   <div>
       <br /><br />
-      <h2 >eller om du inte redan har ett användarkonto kan du skapa ett här</h2>
+      <h3 >eller om du inte redan har ett användarkonto kan du skapa ett här</h3>
       <br />
       <div class="formcontainer">
         <form name="createUserForm" @submit.prevent="submitUser">
@@ -52,10 +52,13 @@
           </select>
           <button>Submit</button>
         </form>
-        <br />
-        <h2 >det går även bra att testa galleriet utan att ha ett användarkonto
-        <span class="pagelinks" >{"->"}</span></h2>
       </div>
+        <br />
+        <router-link to="/buildgallery">
+          <h2 >det går även bra att testa galleriet utan att ha ett användarkonto
+          <span>-></span></h2>
+        </router-link>
+      
     </div>
 </template>
 
@@ -103,7 +106,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+a {
+  color: #000;
+}
+a:hover {
+  color:  rgb(27, 11, 87, 0.7);
+}
 .errormsg{
   color: red;
 }

@@ -5,7 +5,6 @@
           <img :src=img.previewURL /><span @click="removeImg(img.id)">X</span>
       </span>
   </div>
-  <button @click="test">test</button>
 </template>
 
 <script>

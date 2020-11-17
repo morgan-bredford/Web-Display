@@ -37,7 +37,7 @@ class SearchImages extends Component {
 
     searchImages = () => {
         axios
-          .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=10&page=${this.state.page}`)
+          .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=18&page=${this.state.page}`)
           .then((res) => this.setState({search_images: res.data.hits}))
           .catch((err) => console.log(err));
     };
@@ -93,7 +93,7 @@ class SearchImages extends Component {
     render(){
         return(
             <div>
-                <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Sök på bilder from Pixabay</h1>
+                <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Sök på bilder från Pixabay</h1>
                 <form style={{display: 'flex',flexDirection: 'row',justifyContent: 'center'}} onSubmit={(e) => 
                     this.handleSubmit(e,e.target.searchbox.value,1)
                     }>
@@ -130,10 +130,10 @@ class SearchImages extends Component {
                         <div className="imagecontainer">
                         {
                             this.state.search_images.map((image) => (
-                                <span>
+                                <div>
                                     <img src={image.previewURL} onClick={() => this.setState({large_image: image.largeImageURL})} />
-                                    <span style={{fontSize: '24px'}} onClick={(e) => this.addImage(e,image)} >+</span>
-                                </span> 
+                                    <div style={{textAlign: 'center'}} onClick={(e) => this.addImage(e,image)} >lägg till +</div>
+                                </div> 
                             ))
                         }
                         </div>
