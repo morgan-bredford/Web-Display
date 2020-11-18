@@ -1,16 +1,16 @@
 <template>
 <div class="">
-    <div id="lightbox" v-if="large_image">
-        <span class="lbnav" @click.stop="() => {loading = true;imgNav(-1)}">-></span>
+    <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
+        <span class="lbnav" v-if="getImgIndex() > 0" @click.stop="() => {loading = true;imgNav(-1)}">-></span>
         <div id="lbimgcontainer">
-            <img :src="large_image" @load="loading = false" />
+            <img class="lbimg" :src="large_image" @load="loading = false" />
             <span id="lbload" v-if="loading" >loading...</span>
             <span id="lbclose" @click="large_image = ''">X</span>
-            <span class="lbnav" @click.stop="() => {loading = true;imgNav(1)}">-></span>
+            <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}">-></span>
         </div>
     </div>
     <div>
-        <h1 >Sök på bilder from Pixabay</h1>
+        <h1 >Sök på bilder från Pixabay</h1>
         <div class="formcontainer">
             <form id="searchbox" @submit.prevent="searchImages">
                 <input type="text" name="searchbox" v-model="query" />
@@ -61,6 +61,10 @@ export default {
     },
     methods: {
         ...mapMutations({addimg: 'addImg'}),
+        getImgIndex() {
+            const index = this.search_images.findIndex(img => img.largeImageURL === this.large_image)
+            return index
+        },
         searchImages(e){
             if(e.target.id === 'prev_ten'){
                this.page_nav_index -= 10
@@ -150,12 +154,10 @@ export default {
         flex-direction: row;
     }
     form input {
-        /* width: 20vw; */
-       
+        width: 80%;      
     }
     .imagecontainer{
         display: flex;
-
     }
     #linkcontainer {
         display: flex;

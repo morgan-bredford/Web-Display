@@ -1,16 +1,15 @@
 <template>
   <br /><br /><br />
-
-        <div id="lightbox" v-if="large_image">
-            <span class="lbnav" @click="imgNav($event, -1)">-></span>
-            <div id="lbimgcontainer">
-                <img :src="large_image" />
-                <span id="lbload" >loading...</span>
-                <span id="lbclose" @click="large_image = ''">X</span>
-                <span class="lbnav" @click="imgNav($event, 1)">-></span>
-            </div>
+    <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
+        <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}">-></span>
+        <div id="lbimgcontainer">
+            <img class="lbimg" :src="large_image" @load="loading = false" />
+            <span id="lbload" v-if="loading" >loading...</span>
+            <span id="lbclose" @click="large_image = ''">X</span>
         </div>
-
+        <span class="lbnav" v-if="getImgIndex() < user.galleryimages.length - 1" @click.stop="() => {loading = true;imgNav(1)}">-></span>
+         
+    </div>
     <div class="imagecontainer" v-if="user.galleryimages.length">
         <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages">
             <img class="prev_card_img" :src="img.previewURL" @click="large_image = img.largeImageURL" />
@@ -20,6 +19,7 @@
             </div>
         </span>
     </div>
+    
 </template>
 
 <script>
@@ -32,6 +32,7 @@ export default {
         return {
             gallery_images: [],
             large_image: "",
+            loading: false,
         }
     },
     // mounted() {
@@ -48,7 +49,17 @@ export default {
        
     },
     methods: {
+        test: () => console.log(this.loggedIn),
         ...mapMutations(['setGallery','setUser','logIn']),
+        imgNav(move_index){
+            const index = this.getImgIndex()
+            this.large_image = this.user.galleryimages[index + move_index].largeImageURL
+        },
+        getImgIndex() {
+            const index = this.user.galleryimages.findIndex(img => img.largeImageURL === this.large_image)
+            console.log(index)
+            return index
+        },
         getSaveDate: img => {
             const date = new Date(img.time)
             const options = {  

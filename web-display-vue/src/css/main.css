@@ -47,6 +47,64 @@ input:focus {
   border-radius: 4px;
 }
 
+#lightbox {
+  /* width: 100vw;
+      height: 100vh; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#lbimgcontainer {
+  display: flex;
+  width: 80vw;
+  height: 80vh;
+}
+
+.lbnav {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 3em;
+  text-align: center;
+  line-height: 150%;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.lbimg {
+  object-fit: contain;
+}
+
+#lbclose {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 200%;
+  background-color: #eee;
+  cursor: pointer;
+  /* transform: translate(-75px, -50px); */
+}
+
+#lbload {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  text-align: center;
+  font-size: 36px;
+  transform: translate(-100%, -50%);
+}
+
 .page-links {
   width: 30px;
   height: 30px;
