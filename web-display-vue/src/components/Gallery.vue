@@ -8,7 +8,6 @@
             <span id="lbclose" @click="large_image = ''">X</span>
         </div>
         <span class="lbnav" v-if="getImgIndex() < user.galleryimages.length - 1" @click.stop="() => {loading = true;imgNav(1)}">-></span>
-         
     </div>
     <div class="imagecontainer" v-if="user.galleryimages.length">
         <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages">
@@ -79,7 +78,6 @@ export default {
   height: 180px;
   border-radius: 5px;
   background-color: rgba(207, 195, 248, 0.75);
-  margin: 10px;
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }

@@ -6,9 +6,9 @@
         <div class="formcontainer">
             <form @submit.prevent="logIn">
                 <label htmlFor="username">Användarnamn:</label>
-                <input type="text" name="username" v-model="formData.username" placeholder="name" />
+                <input type="text" name="username" v-model="formData.username" placeholder="användarnamn" />
                 <label htmlFor="password">Lösenord:</label>
-                <input type="text" name="password" v-model="formData.password" placeholder="pass" />
+                <input type="text" name="password" v-model="formData.password" placeholder="lösenord" />
                 <button>Logga in</button>
             </form>
         </div>
