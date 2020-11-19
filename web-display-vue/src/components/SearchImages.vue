@@ -148,13 +148,15 @@ export default {
 <style scoped>
     .formcontainer {
         border: none;
+        border-radius: 5px;
     }
     form {
         display: flex;
         flex-direction: row;
     }
     form input {
-        width: 80%;      
+        width: 80%;
+        font-style: normal;      
     }
     .imagecontainer{
         display: flex;

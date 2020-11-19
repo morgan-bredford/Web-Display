@@ -14,9 +14,9 @@ main {
 .formcontainer {
   display: block;
   margin: auto;
-  background: rgba(207, 195, 248, 0.3);
-  border-radius: 5px;
-  border: 1px solid rgba(207, 195, 248, 0.9);
+  background: rgba(207, 195, 248, 0.7);
+  border-radius: 50%;
+  border: 1px solid rgba(27, 11, 87, 0.9);
   width: clamp(200px, 80vw, 400px);
 }
 
@@ -29,18 +29,38 @@ form {
   /* box-shadow: 0px 0px 20px 2px rgba(27, 11, 87, 0.7); */
 }
 
+#login_form {
+  transform: translateX(-60vw) rotateZ(-360deg);
+  animation: login_roll 2.4s ease-in-out forwards;
+}
+
+@keyframes login_roll {
+  from {
+    transform: translateX(-60vw) rotateZ(-360deg) scale(0.4);
+  }
+  70% {
+    transform: translateX(5vw) rotateZ(75deg) scale(1.4);
+  }
+  80% {
+    transform: translateX(5vw) rotateZ(75deg) scale(1.4);
+  }
+  to {
+    transform: translateX(0vw) rotateZ(0deg) scale(1);
+  }
+}
+
 label {
   font-weight: 700;
-  text-align: left;
+  text-align: center;
 }
 
 input {
   background-color: rgb(250, 247, 255);
   border: none;
   border-radius: 250px;
-  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.7),inset -3px -3px 6px white;
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.7), inset -3px -3px 6px white;
   text-align: left;
-  font-size: .8em;
+  font-size: 0.8em;
   font-style: italic;
   line-height: 30px;
   padding-left: 1.2em;
@@ -136,4 +156,3 @@ button {
   text-align: center;
   line-height: 100%;
 }
-

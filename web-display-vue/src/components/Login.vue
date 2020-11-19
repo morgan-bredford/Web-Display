@@ -3,7 +3,7 @@
         <br />
         <h1 >Välkommen att logga in</h1>
         <br />
-        <div class="formcontainer">
+        <div class="formcontainer" id="login_form">
             <form @submit.prevent="logIn">
                 <label htmlFor="username">Användarnamn:</label>
                 <input type="text" name="username" v-model="formData.username" placeholder="användarnamn" />

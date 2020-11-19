@@ -3,7 +3,7 @@
       <br /><br />
       <h3 >eller om du inte redan har ett användarkonto kan du skapa ett här</h3>
       <br />
-      <div class="formcontainer">
+      <div class="formcontainer" id="create_user_form">
         <form name="createUserForm" @submit.prevent="submitUser">
           <h1 >Skapa användare</h1>
           <br />
@@ -50,7 +50,7 @@
               <option value="Kvinna">Kvinna</option>
               <option value="Annat">Annat</option>
           </select>
-          <button>Submit</button>
+          <button>Skapa användare</button>
         </form>
       </div>
         <br />
@@ -115,5 +115,24 @@ a:hover {
 }
 .errormsg{
   color: red;
+}
+#create_user_form {
+  transform: scale(0);
+  animation: user_form 2.4s ease-in-out forwards;
+}
+@keyframes user_form {
+  from {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.4);
+  }
+  80% {
+    transform: scale(1.4);
+    background: rgba(207, 195, 248, 1);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 </style>

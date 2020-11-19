@@ -29,12 +29,27 @@ export default {
 }
 </script>
 
-<style >
+<style scoped >
 nav {
   background-color: rgba(27, 11, 87, 0.7);
   height: 10vh;
   font-size: 1.5em;
+  position: relative;
  
+}
+
+nav::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  background-color: aqua;
+  width: 100%;
+  height: 10%;
+  bottom: 3%;
+  left: 0;
+  transform: translate(0%,55%);
+  z-index: -1;
+  transition: transform .4s linear;
 }
 
 ul {
@@ -46,10 +61,32 @@ ul {
 li {
   text-transform: uppercase;
   text-shadow: 0px 0px 4px #000;
+  display: block;
+  position: relative;
+  
 }
 
 li:last-child {
   margin-left: auto;
+}
+
+li::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  background-color: aqua;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  transform: translate(25%,-28%);
+  z-index: -1;
+  transition: transform .4s linear;
+}
+
+li:hover::before {
+  transform: translate(-5%,5%);
 }
 
 a {
