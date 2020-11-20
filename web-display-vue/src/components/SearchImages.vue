@@ -3,9 +3,15 @@
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
         <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}">-></span>
         <div id="lbimgcontainer">
-            <img class="lbimg" :src="large_image" @load="loading = false" />
-            <span id="lbload" v-if="loading" >loading...</span>
-            <span id="lbclose" @click="large_image = ''">X</span>
+            <span id="test">
+                <img class="lbimg" :src="large_image" @load="loading = false" />
+                <span class="add_img_hover">
+                    <h1>+</h1>
+                    lägg till
+                </span>
+                <span id="lbload" v-if="loading" >loading...</span>
+                <span id="lbclose" @click="large_image = ''">X</span>
+            </span>
         </div>
         <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}">-></span>
     </div>
@@ -117,27 +123,28 @@ export default {
             console.log(index)
         },
         addImage(img){
-            const {id,previewURL,largeImageURL} = img
-            const date = new Date()
-            const imageobj = {id,previewURL, largeImageURL, query: this.query, time: date.getTime() }
-            const newimagearray = [...this.user.galleryimages,imageobj]
-            if(this.loggedIn){
+            const ids = this.user.galleryimages.map( img => img.id)
+                if(!ids.includes(img.id)){
+                const {id,previewURL,largeImageURL} = img
+                const date = new Date()
+                const imageobj = {id,previewURL, largeImageURL, query: this.query, time: date.getTime() }
+                const newimagearray = [...this.user.galleryimages,imageobj]
+                if(this.loggedIn){
 
-                axios
-                    .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: this.user.username, galleryimages: newimagearray}])
-                    .then((res) => {
-                        console.log(res)
-                        this.addimg(imageobj)
-                        localStorage.setItem('user',JSON.stringify(this.user))
-                    })
-            .catch(err => {
-                console.log(err.response)})
-               
-            }else{
-                sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
-                // this.saved_images.push(img)
-                console.log(this.user)
-                this.addimg(imageobj) 
+                    axios
+                        .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: this.user.username, galleryimages: newimagearray}])
+                        .then((res) => {
+                            console.log(res)
+                            this.addimg(imageobj)
+                            localStorage.setItem('user',JSON.stringify(this.user))
+                        })
+                .catch(err => {
+                    console.log(err.response)})
+                
+                }else{
+                    sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
+                    this.addimg(imageobj) 
+                }
             }
         },
     },
@@ -165,7 +172,6 @@ export default {
         display: flex;
         justify-content: center;
     }
-
     .pagelinks {
         display: inline-block;
         width: 30px;
@@ -177,10 +183,20 @@ export default {
         cursor: pointer;
         transition: background 0.3s linear;
     }
-
     .pagelinks:hover {
         color: #eee;
         background-color: #222;
     }
-
+    .add_img_hover {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 10%;
+        height: 10%;
+        background-color: rgba(255, 255, 255, 0.5);
+        display: none;
+    }
+    #test {
+        position: relative;
+    }
 </style>
