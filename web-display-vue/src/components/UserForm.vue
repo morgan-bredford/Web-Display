@@ -116,23 +116,28 @@ a:hover {
 .errormsg{
   color: red;
 }
+select {
+  transform: translateX(40px)
+}
 #create_user_form {
   transform: scale(0);
-  animation: user_form 2.4s ease-in-out forwards;
+  animation: user_form 1s ease-in-out forwards;
 }
 @keyframes user_form {
   from {
-    transform: scale(0);
+    transform: scale(0.7);
+    outline: none;
   }
-  70% {
-    transform: scale(1.4);
+  50% {
+    transform: scale(1.2);
   }
-  80% {
-    transform: scale(1.4);
+  60% {
+    transform: scale(1.2);
     background: rgba(207, 195, 248, 1);
   }
   to {
     transform: scale(1);
+    outline: 100px solid rgba(73, 226, 253,.2);
   }
 }
 </style>

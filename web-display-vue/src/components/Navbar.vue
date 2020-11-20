@@ -80,7 +80,7 @@ li::before {
   top: 0;
   left: 0;
   border: 1px solid black;
-  transform: translate(25%,-28%);
+  transform: translate(25%,-30%);
   z-index: -1;
   transition: transform .4s linear;
 }
@@ -93,6 +93,7 @@ a {
   margin: 4vh;
   text-decoration: none;
   color: #eee;
+  transition: color 1.4s;
 }
 
 a:last-child {

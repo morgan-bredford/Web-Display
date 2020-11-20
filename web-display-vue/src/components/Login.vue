@@ -7,9 +7,11 @@
             <form @submit.prevent="logIn">
                 <label htmlFor="username">Användarnamn:</label>
                 <input type="text" name="username" v-model="formData.username" placeholder="användarnamn" />
+                
                 <label htmlFor="password">Lösenord:</label>
+                
                 <input type="text" name="password" v-model="formData.password" placeholder="lösenord" />
-                <button>Logga in</button>
+                <button>Logga in</button>               
             </form>
         </div>
     </main>
@@ -53,5 +55,9 @@ export default {
 <style scoped>
     .formcontainer {
         width: clamp(200px, 80vw, 350px);
+    }
+    button {
+        width: 70%;
+        transform: translateX(-1em);
     }
 </style>

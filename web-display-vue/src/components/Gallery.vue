@@ -18,7 +18,7 @@
             </div>
         </span>
     </div>
-    
+    <div v-else>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
 </template>
 
 <script>
