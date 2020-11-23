@@ -37,7 +37,7 @@ class SearchImages extends Component {
 
     searchImages = () => {
         axios
-          .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=18&page=${this.state.page}`)
+          .get(`${this.state.URL}?key=${this.state.apikey}&q=${this.state.query}&per_page=9&page=${this.state.page}`)
           .then((res) => this.setState({search_images: res.data.hits}))
           .catch((err) => console.log(err));
     };
@@ -52,14 +52,15 @@ class SearchImages extends Component {
             const ids = this.props.user[0].galleryimages.map( img => img.id)
             if(!ids.includes(image.id)){
                 let user = this.props.user
-                user[0].galleryimages.push(imageobj)
-                
+                const newimagearray = [...this.props.user[0].galleryimages,imageobj]
+                user[0].galleryimages.push(imageobj)      
                 axios
-                .post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
+                //.post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
+                .post("http://127.0.0.1:8080/users/update",[this.props.user[0]])
                 .then((res) => {
                     this.props.setUser(user)
                     localStorage.setItem('user',JSON.stringify(user))
-                    this.props.setSavedimages(user[0].galleryimages)
+                    this.props.setSavedimages(newimagearray) 
                 })
                 .catch(err => {
                     console.log(err.response)})

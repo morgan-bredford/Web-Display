@@ -1,8 +1,14 @@
 import { render } from "@testing-library/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Redirect } from 'react-router-dom'
 
 function UserPage(props) {
+  const [form, setForm] = useState({})
+
+  useEffect( () => {
+    setForm(props.user[0])
+  },[])
+  
 
   const logout = () => {
     localStorage.clear();
@@ -22,7 +28,7 @@ function UserPage(props) {
                 type="text"
                 name="username"
                 id="username"
-                value={props.user[0].username}
+                defaultValue={props.user[0].password}
                 placeholder="användarnamn"
               /><br />
               <label htmlFor="password">Lösenord:</label>
@@ -30,7 +36,7 @@ function UserPage(props) {
                 type="text"
                 name="password"
                 id="password"
-                value={props.user[0].password}
+                defaultValue={props.user[0].password}
                 placeholder="lösenord"
               /><br />
               <label htmlFor="firstname">Förnamn:</label>
@@ -38,7 +44,7 @@ function UserPage(props) {
                 type="text"
                 name="firstname"
                 id="firstname"
-                value={props.user[0].firstname}
+                defaultValue={props.user[0].firstname}
                 placeholder="förnamn"
               /><br />
               <label htmlFor="lastname">Efternamn:</label>
@@ -46,12 +52,14 @@ function UserPage(props) {
                 type="text"
                 name="lastname"
                 id="lastname"
-                value={props.user[0].lastname}
+                defaultValue={props.user[0].lastname}
                 placeholder="efternamn"
               /><br />
               <label htmlFor="gender">Kön:</label>
-              <select id="gender" name="gender" value={props.user[0].gender} >
-                  <option value="">{props.user[0].gender}</option>
+              <select id="gender" name="gender" defaultValue={props.user[0].gender} >
+                <option value="Man">Man</option>
+                <option value="Kvinna">Kvinna</option>
+                <option value="Annat">Annat</option>
               </select>
               <br />
             </form>

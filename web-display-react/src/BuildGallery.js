@@ -16,6 +16,7 @@ function BuildGallery(props) {
 
   useEffect( () => {
     if(props.loggedIn){
+console.log('reset')
       setSavedimages(props.user[0].galleryimages)
     }else{
       if(sessionStorage.getItem('imagearray')){
@@ -26,16 +27,16 @@ function BuildGallery(props) {
     }
    },[])
 
-  useEffect( () => {
-    getCoords()
-    savedimages.map(image => {
-      document.getElementById(image.id).addEventListener("mousedown", dragStart, false);
-      document.getElementById(image.id).addEventListener("mousemove", drag, false);
-      document.getElementById(image.id).addEventListener("mouseup", dragEnd, false);
-      }
-    )
-    console.log('update')
-  },[savedimages])
+  // useEffect( () => {
+  //   getCoords()
+  //   savedimages.map(image => {
+  //     document.getElementById(image.id).addEventListener("mousedown", dragStart, false);
+  //     document.getElementById(image.id).addEventListener("mousemove", drag, false);
+  //     document.getElementById(image.id).addEventListener("mouseup", dragEnd, false);
+  //     }
+  //   )
+  //   console.log('update')
+  // },[savedimages])
 
   const handleSubmit = (e,query,page) => {
     e.preventDefault();
@@ -58,9 +59,26 @@ function BuildGallery(props) {
     const newimagearray = savedimages.filter(
       (image) => image.id !== image_id
     )
-    document.getElementById(image_id).removeEventListener("mousedown",dragStart)
-    sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-    setSavedimages(newimagearray)
+
+    if(props.loggedIn){
+      let user = props.user
+      user[0].galleryimages = newimagearray 
+      
+      axios
+      //.post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
+      .post("http://127.0.0.1:8080/users/update",[user[0]])
+      .then((res) => {
+          props.setUser(user)
+          localStorage.setItem('user',JSON.stringify(user))
+          setSavedimages(newimagearray) 
+      })
+      .catch(err => {
+          console.log(err.response)})
+    }else{
+      document.getElementById(image_id).removeEventListener("mousedown",dragStart)
+      sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
+      setSavedimages(newimagearray)
+    }
   }
 
   const getCoords =  () => {
@@ -199,7 +217,7 @@ console.log(`inside: ${temparray[0].id}`)
       <h3 style={{color: 'black',textAlign: 'center'}}>Se bilderna i ditt Gallery {"->"}</h3>
     </Link>
       <div className='imagecontainer'>
-        {savedimages.map(image =>
+        { savedimages.map(image =>
           <span >
             <Link to={`/imagesearch/`}>
             <img src={image.previewURL} id={image.id}/>

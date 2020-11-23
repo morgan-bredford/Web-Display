@@ -27,7 +27,7 @@ class UserFormClass extends React.Component {
     e.preventDefault();
 
     axios
-      .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/add", this.state)
+      .post("http://127.0.0.1:8080/users/add", this.state)
       .then((res) => { 
         const user = [{username: this.state.username,password: this.state.password,firstname: this.state.firstname,lastname: this.state.lastname,gender: this.state.gender,galleryimages: []}]
         localStorage.setItem('user', JSON.stringify(user))
@@ -47,7 +47,8 @@ class UserFormClass extends React.Component {
     return (
       <div className="home_main">
         <Login setLoggedIn={this.props.setLoggedIn} setUser={this.props.setUser} loggedIn={this.props.loggedIn} />
-        <div className="skip_login">testa utan att logga in</div>
+        <Link to="/buildgallery">
+        <div className="skip_login">testa utan att logga in</div></Link>
         <div className="formcontainer">
           <form name="createUserForm" onSubmit={this.handleSubmit}>
             <h1 style={{textAlign: 'center'}}>Skapa användare</h1>

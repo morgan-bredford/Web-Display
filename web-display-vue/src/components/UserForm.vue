@@ -107,6 +107,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
 a {
   color: #000;
 }
@@ -117,7 +120,19 @@ a:hover {
   color: red;
 }
 select {
-  transform: translateX(40px)
+  display: flex;
+  width: 40%;
+  margin: auto;
+}
+select option {
+  font-family: Arial;
+  width: 333px;
+  background-color: rgba(207, 195, 248, 1);
+  border-radius: 50%;
+}
+button {
+  width: 70%;
+  transform: translateX(37%);
 }
 #create_user_form {
   transform: scale(0);
