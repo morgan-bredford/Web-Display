@@ -45,15 +45,10 @@ class UserFormClass extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <br />
-        <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Välkommen att logga in</h1>
-        <br />
+      <div className="home_main">
         <Login setLoggedIn={this.props.setLoggedIn} setUser={this.props.setUser} loggedIn={this.props.loggedIn} />
-        <br /><br />
-        <h2 style={{textAlign: 'center',fontStyle: 'italic'}}>eller om du inte redan har ett användarkonto kan du skapa ett här</h2>
-        <br />
-        <div id="formcontainer">
+        <div className="skip_login">testa utan att logga in</div>
+        <div className="formcontainer">
           <form name="createUserForm" onSubmit={this.handleSubmit}>
             <h1 style={{textAlign: 'center'}}>Skapa användare</h1>
             <br />
@@ -102,13 +97,8 @@ class UserFormClass extends React.Component {
             </select>
             <button>Submit</button>
           </form>
-          <br />
-          <Link to='/buildgallery' style={{color: '#000'}} >
-            <h2 style={{textAlign: 'center',fontStyle: 'italic'}}>det går även bra att testa galleriet utan att ha ett användarkonto
-            <span className="pagelinks" style={{color: '#000', lineHeight: '100%'}}>{"->"}</span></h2>
-          </Link>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

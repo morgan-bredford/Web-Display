@@ -1,12 +1,27 @@
-#formcontainer {
+.home_main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+  padding: 1%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.formcontainer {
   display: block;
   margin: auto;
-  width: 50vw;
+  width: clamp(200px, 80vw, 400px);
 }
 
 form {
   display: flex;
   flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 1.5em;
   border-radius: 5px;
   border: 1px solid rgba(207, 195, 248, 0.9);
@@ -17,10 +32,33 @@ label {
   font-weight: 700;
 }
 
+input {
+  color: #eee;
+  background-color: rgba(0, 0, 0, 1);
+}
+
 input:focus {
   background-color: rgba(207, 195, 248, 0.2);
 }
 
-.errormsg{
+.errormsg {
   color: red;
+}
+
+.skip_login {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  text-align: center;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 800px) {
+  .home_main {
+    flex-direction: column;
+  }
 }

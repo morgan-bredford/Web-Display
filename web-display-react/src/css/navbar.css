@@ -47,6 +47,10 @@ a:last-child {
   margin-left: auto;
 }
 
+.active {
+  color: cyan;
+}
+
 a:hover {
   color: rgba(207, 195, 248, 0.7);
 }

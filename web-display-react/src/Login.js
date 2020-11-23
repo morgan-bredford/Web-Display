@@ -25,10 +25,11 @@ function Login(props) {
       }
 
     return(
-      <div>
+      <React.Fragment>
         { props.loggedIn ? <Redirect to='/' /> : null }
-        <div id="formcontainer">
+        <div className="formcontainer">
           <form onSubmit={(e) => login(e)}>
+          <h1 style={{textAlign: 'center'}}>Logga in</h1>
               <label htmlFor="username">Användarnamn:</label>
               <input type="text" name="username" placeholder="name" />
               <label htmlFor="password">Lösenord:</label>
@@ -36,7 +37,7 @@ function Login(props) {
               <button>Logga in</button>
           </form>
         </div>
-      </div>
+      </React.Fragment>
     )
 }
 

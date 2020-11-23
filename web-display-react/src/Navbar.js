@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './css/navbar.css'
 
 function Navbar(props) {
@@ -7,15 +7,15 @@ function Navbar(props) {
   return (
     <nav>
       <ul>
-        <Link to="/">
+        <NavLink to="/" exact={true}>
           <li>hem</li>
-        </Link>
-        <Link to="/buildgallery">
+        </NavLink>
+        <NavLink to="/buildgallery">
           <li>bygg galleri</li>
-        </Link>
-        <Link to="/gallery"><li>Ditt galleri</li></Link>
+        </NavLink>
+        <NavLink to="/gallery"><li>Ditt galleri</li></NavLink>
         { 
-          props.loggedIn ? <Link to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}</li></Link> : <Link to="/login"><li>logga in</li></Link>
+          props.loggedIn ? <NavLink to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}</li></NavLink> : <NavLink to="/login"><li>logga in</li></NavLink>
         }
       </ul>
       <a href="http://vueapp161120.s3-website.eu-north-1.amazonaws.com">Vue</a>

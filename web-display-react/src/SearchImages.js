@@ -49,18 +49,21 @@ class SearchImages extends Component {
    
         if(this.props.loggedIn)
         {
-            let user = this.props.user
-            user[0].galleryimages.push(imageobj)
-            
-            axios
-            .post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
-            .then((res) => {
-                this.props.setUser(user)
-                localStorage.setItem('user',JSON.stringify(user))
-                this.props.setSavedimages(user[0].galleryimages)
-            })
-            .catch(err => {
-                console.log(err.response)})
+            const ids = this.props.user[0].galleryimages.map( img => img.id)
+            if(!ids.includes(image.id)){
+                let user = this.props.user
+                user[0].galleryimages.push(imageobj)
+                
+                axios
+                .post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
+                .then((res) => {
+                    this.props.setUser(user)
+                    localStorage.setItem('user',JSON.stringify(user))
+                    this.props.setSavedimages(user[0].galleryimages)
+                })
+                .catch(err => {
+                    console.log(err.response)})
+            }
         }else{
             const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
             sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
