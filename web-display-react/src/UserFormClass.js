@@ -43,61 +43,73 @@ class UserFormClass extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  removeAnimation = () => {
+    
+    const skip = document.getElementById('skip_login_left')
+    skip.style.color = 'red'
+    console.log(skip)
+  }
+
   render() {
     return (
       <div className="home_main">
-        <Login setLoggedIn={this.props.setLoggedIn} setUser={this.props.setUser} loggedIn={this.props.loggedIn} />
-        <Link to="/buildgallery">
-        <div className="skip_login">testa utan att logga in</div></Link>
-        <div className="formcontainer">
-          <form name="createUserForm" onSubmit={this.handleSubmit}>
-            <h1 style={{textAlign: 'center'}}>Skapa användare</h1>
-            <br />
-            <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------obligatoriskt------------------</h5>
-            <label htmlFor="username">Användarnamn:</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              onChange={this.handleChange}
-              placeholder="användarnamn"
-            />
-            <div className="errormsg">{this.state.errormsg}</div>
-            <label htmlFor="password">Lösenord:</label>
-            <input
-              type="text"
-              name="password"
-              id="password"
-              onChange={this.handleChange}
-              placeholder="lösenord"
-            />
+        <div className="main_half" id="main_half_left">
+          <Login setLoggedIn={this.props.setLoggedIn} setUser={this.props.setUser} loggedIn={this.props.loggedIn} />
+          <Link to="/buildgallery">
+          <div id="skip_login_left" onClick={this.removeAnimation}>testa utan att logga in</div></Link>
+        </div>
+        <div className="main_half" id="main_half_right">
+          <div className="formcontainer">
+            <form id="create_user_form" onSubmit={this.handleSubmit}>
+              <h1 style={{textAlign: 'center'}}>Skapa användare</h1>
+              <br />
+              <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------obligatoriskt------------------</h5>
+              <label htmlFor="username">Användarnamn:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                onChange={this.handleChange}
+                placeholder="användarnamn"
+              />
+              <div className="errormsg">{this.state.errormsg}</div>
+              <label htmlFor="password">Lösenord:</label>
+              <input
+                type="text"
+                name="password"
+                id="password"
+                onChange={this.handleChange}
+                placeholder="lösenord"
+              />
 
-            <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------frivilligt------------------</h5>
-            <label htmlFor="firstname">Förnamn:</label>
-            <input
-              type="text"
-              name="firstname"
-              id="firstname"
-              onChange={this.handleChange}
-              placeholder="förnamn"
-            />
-            <label htmlFor="lastname">Efternamn:</label>
-            <input
-              type="text"
-              name="lastname"
-              id="lastname"
-              onChange={this.handleChange}
-              placeholder="efternamn"
-            />
-            <label htmlFor="gender">Kön:</label>
-            <select id="gender" name="gender" value={this.state.gender} onChange={this.handleChange}>
-                <option value="">-Välj-</option>
-                <option value="Man">Man</option>
-                <option value="Kvinna">Kvinna</option>
-                <option value="Annat">Annat</option>
-            </select>
-            <button>Submit</button>
-          </form>
+              <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------frivilligt------------------</h5>
+              <label htmlFor="firstname">Förnamn:</label>
+              <input
+                type="text"
+                name="firstname"
+                id="firstname"
+                onChange={this.handleChange}
+                placeholder="förnamn"
+              />
+              <label htmlFor="lastname">Efternamn:</label>
+              <input
+                type="text"
+                name="lastname"
+                id="lastname"
+                onChange={this.handleChange}
+                placeholder="efternamn"
+              />
+              <label htmlFor="gender">Kön:</label>
+              <select id="gender" name="gender" value={this.state.gender} onChange={this.handleChange}>
+                  <option value="">-Välj-</option>
+                  <option value="Man">Man</option>
+                  <option value="Kvinna">Kvinna</option>
+                  <option value="Annat">Annat</option>
+              </select>
+              <button>Skapa användare</button>
+            </form>
+          </div>
+          <div id="skip_login_right"></div>
         </div>
       </div>
     );

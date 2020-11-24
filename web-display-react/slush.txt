@@ -44,3 +44,13 @@ document.addEventListener("DOMContentLoaded", function(){
 			 element.style.transitionProperty = "none"
 		console.log(element.style);
         }, 2000)
+
+<script>
+    function animationSpeed(){
+        setTimeout( () => {
+            const ani = document.getElementById('site-logo')
+            ani.style.animationDuration = "0.01ms"
+        }, 4000)
+    }
+    animationSpeed()
+</script>

@@ -2,14 +2,89 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1%;
-  padding: 1%;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.main_half {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(207, 56, 56, 0.6);
+}
+
+#main_half_left {
+  transform: translateX(-75%);
+  animation: main_half_left 1.4s linear forwards;
+  z-index: 99;
+}
+#main_half_right {
+  transform: translateX(75%);
+  animation: main_half_right 1.4s linear forwards;
+  z-index: 0;
+}
+
+@keyframes main_half_left {
+  from {
+    transform: translateX(-75%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes main_half_right {
+  from {
+    transform: translateX(75%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+#skip_login_left {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(50%);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  text-align: center;
+  padding: 5px;
+  z-index: 999;
+  overflow: visible;
+  animation: skip_login_left 1.4s linear forwards;
+  color: #fff !important;
+}
+
+#skip_login_right {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+}
+
+@keyframes skip_login_left {
+  from {
+    transform: rotateX(0deg) translateX(50%);
+  }
+  to {
+    transform: rotateX(720deg) translateX(50%);
+  }
 }
 
 .formcontainer {
@@ -21,11 +96,46 @@
 form {
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 1.5em;
   border-radius: 5px;
   border: 1px solid rgba(207, 195, 248, 0.9);
   /* box-shadow: 0px 0px 20px 2px rgba(27, 11, 87, 0.7); */
+}
+
+#login_form {
+  transform: rotateY(-90deg);
+  animation: login_form 2s linear forwards;
+}
+
+@keyframes login_form {
+  from {
+    transform: rotateX(-90deg);
+  }
+  70% {
+    transform: rotateX(-90deg);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
+}
+
+#create_user_form {
+  transform: rotateY(-90deg);
+  animation: create_user_form 2.6s linear forwards;
+}
+
+@keyframes create_user_form {
+  from {
+    transform: rotateX(-90deg);
+  }
+  75% {
+    transform: rotateX(-90deg);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
 }
 
 label {
@@ -43,18 +153,6 @@ input:focus {
 
 .errormsg {
   color: red;
-}
-
-.skip_login {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  text-align: center;
-  padding: 5px;
 }
 
 @media only screen and (max-width: 800px) {

@@ -18,6 +18,7 @@ function UserPage(props) {
 
   return (
     <React.Fragment>
+      { !props.loggedIn ? <Redirect to='/' /> : null }
       { 
         props.user[0] ? 
           <div style={{width: '50vw', margin: 'auto'}}>
