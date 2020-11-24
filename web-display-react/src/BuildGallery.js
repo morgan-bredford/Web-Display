@@ -38,22 +38,14 @@ console.log('reset')
   //   console.log('update')
   // },[savedimages])
 
-  const handleSubmit = (e,query,page) => {
-    e.preventDefault();
-    setQuery(e.target.searchbox.value)
-    // axios
-    //   .get(`${URL}?key=${apikey}&q=${query}&per_page=5&page=${page}`)
-    //   .then((res) => setSearchimages(res.data.hits))
-    //   .catch((err) => console.log(err));
-  };
-
-  // const addImage = (e,image) => {
-  //   const {id,previewURL,largeImageURL} = image
-  //   const imageobj = {id,previewURL, largeImageURL}
-  //   const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-  //   sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-  //   setSavedimages(newimagearray)
-  // }
+  // const handleSubmit = (e,query,page) => {
+  //   e.preventDefault();
+  //   setQuery(e.target.searchbox.value)
+  //   axios
+  //     .get(`${URL}?key=${apikey}&q=${query}&per_page=5&page=${page}`)
+  //     .then((res) => setSearchimages(res.data.hits))
+  //     .catch((err) => console.log(err));
+  // };
 
   const removeImage = (image_id) => {
     const newimagearray = savedimages.filter(
@@ -65,7 +57,6 @@ console.log('reset')
       user[0].galleryimages = newimagearray 
       
       axios
-      //.post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
       .post("http://127.0.0.1:8080/users/update",[user[0]])
       .then((res) => {
           props.setUser(user)

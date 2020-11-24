@@ -33,7 +33,9 @@ router.route("/find").get((req, res) => {
 })
 
 router.route('/update').post((req, res) => {
-  User.findOneAndUpdate({username: req.body[0].username},{galleryimages: req.body[0].galleryimages},{new: true})
+  console.log(req.body)
+  User.findOneAndUpdate({username: req.body[0].username},req.body[0],{new: true})
+  //User.findOneAndUpdate({username: req.body[0].username},{"$set": req.body[0]},{new: true})
     .then(users => 
       res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
