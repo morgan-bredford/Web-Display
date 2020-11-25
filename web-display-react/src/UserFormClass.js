@@ -52,6 +52,7 @@ class UserFormClass extends React.Component {
 
   render() {
     return (
+      <main>
       <div className="home_main">
         <div className="main_half" id="main_half_left">
           <Login setLoggedIn={this.props.setLoggedIn} setUser={this.props.setUser} loggedIn={this.props.loggedIn} />
@@ -112,6 +113,7 @@ class UserFormClass extends React.Component {
           <div id="skip_login_right"></div>
         </div>
       </div>
+      </main>
     );
   }
 }

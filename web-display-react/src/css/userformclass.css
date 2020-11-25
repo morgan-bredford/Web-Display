@@ -16,7 +16,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(207, 56, 56, 0.6);
+  background-color: rgba(40, 44, 52, 0.6);
 }
 
 #main_half_left {
@@ -58,14 +58,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: var(--background);
   border-radius: 50%;
   text-align: center;
   padding: 5px;
   z-index: 999;
   overflow: visible;
   animation: skip_login_left 1.4s linear forwards;
-  color: #fff !important;
 }
 
 @keyframes skip_login_left {
@@ -97,8 +96,7 @@
 form {
   display: flex;
   flex-direction: column;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 1.5em;
   border-radius: 5px;
   border: 1px solid rgba(207, 195, 248, 0.9);
@@ -145,7 +143,7 @@ label {
 
 input {
   color: #eee;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: var(--background);
 }
 
 input:focus {

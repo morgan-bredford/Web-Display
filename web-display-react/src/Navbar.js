@@ -8,14 +8,14 @@ function Navbar(props) {
     <nav>
       <ul>
         <NavLink to="/" exact={true}>
-          <li>hem</li>
+          <li>hem<img src="/images/react_logo_small.png" className="navimg"/></li>
         </NavLink>
         <NavLink to="/buildgallery">
-          <li>bygg galleri</li>
+          <li>bygg galleri<img src="/images/react_logo_small.png" className="navimg"/></li>
         </NavLink>
-        <NavLink to="/gallery"><li>Ditt galleri</li></NavLink>
+        <NavLink to="/gallery"><li>Ditt galleri<img src="/images/react_logo_small.png" className="navimg"/></li></NavLink>
         { 
-          props.loggedIn ? <NavLink to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}</li></NavLink> : <NavLink to="/login"><li>logga in</li></NavLink>
+          props.loggedIn ? <NavLink to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}<img src="/images/react_logo_small.png" className="navimg"/></li></NavLink> : <NavLink to="/login"><li>logga in<img src="/images/react_logo_small.png" className="navimg"/></li></NavLink>
         }
       </ul>
       <a href="http://vueapp161120.s3-website.eu-north-1.amazonaws.com">Vue</a>

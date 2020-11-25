@@ -3,6 +3,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --lightblue: rgb(97, 218, 251);
+  --background: rgb(40, 44, 52);
+}
+
+main {
+  color: var(--lightblue) !important;
+}
+
 label {
   font-weight: 700;
 }
