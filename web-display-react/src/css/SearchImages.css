@@ -1,3 +1,14 @@
+#form_search_img {
+  flex-direction: row;
+  gap: 0.5em;
+  width: 30vw;
+  margin: auto;
+}
+
+#form_search_img input {
+  width: 20vw !important;
+}
+
 #linkcontainer {
   display: flex;
   justify-content: center;

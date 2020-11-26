@@ -9,8 +9,13 @@
 }
 
 body {
-  color: var(--lightblue) !important;
-  background-color: rgba(40, 44, 52, .6);
+  color: var(--lightblue);
+  background-color: rgba(40, 44, 52, 0.6);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a:-webkit-any-link {
+  color: var(--lightblue);
 }
 
 label {
@@ -21,6 +26,7 @@ label {
   background-color: rgba(27, 11, 87, 0.1);
   display: flex;
   flex-wrap: wrap;
+  gap: 1em;
   width: 80vw;
   margin: 0 auto;
   padding: 10px;

@@ -98,7 +98,7 @@ class SearchImages extends Component {
         return(
             <div>
                 <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Sök på bilder från Pixabay</h1>
-                <form style={{display: 'flex',flexDirection: 'row',justifyContent: 'center'}} onSubmit={(e) => 
+                <form id="form_search_img" onSubmit={(e) => 
                     this.handleSubmit(e,e.target.searchbox.value,1)
                     }>
                     <input type="text" name="searchbox" style={{width: '40vw'}}/>
@@ -136,7 +136,7 @@ class SearchImages extends Component {
                             this.state.search_images.map((image) => (
                                 <div>
                                     <img src={image.previewURL} onClick={() => this.setState({large_image: image.largeImageURL})} />
-                                    <div style={{textAlign: 'center'}} onClick={(e) => this.addImage(e,image)} >lägg till +</div>
+                                    <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={(e) => this.addImage(e,image)} >lägg till +</div>
                                 </div> 
                             ))
                         }

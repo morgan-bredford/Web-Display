@@ -5,10 +5,12 @@ nav {
   /* background-size: 100vw;
   background-position: center;
   animation: zoom 200s infinite linear; */
+  position: relative;
   background: url(/images/react_logo_small.png) center no-repeat;
   background-color: var(--background);
   height: 10vh;
   font-size: 1.5em;
+  border-bottom: 1px solid var(--lightblue);
   /* animation: zoom 40s linear infinite; */
 }
 @keyframes zoom {
@@ -23,7 +25,6 @@ nav {
   }
 }
 
-
 ul {
   display: flex;
   align-items: center;
@@ -33,7 +34,6 @@ ul {
 a {
   margin: 4vh;
   text-decoration: none;
-  color: var(--lightblue);
 }
 
 a:last-child {
@@ -45,7 +45,7 @@ a:last-child {
 }
 
 .active li img {
-  width: 2em;
+  width: 1.8em;
   animation: logo_spin 8s linear infinite;
 }
 
@@ -59,7 +59,8 @@ li {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  text-shadow: 1px 1px var(--background), 1px -1px var(--background), -1px 1px var(--background), -1px -1px var(--background);
+  text-shadow: 1px 1px var(--background), 1px -1px var(--background),
+    -1px 1px var(--background), -1px -1px var(--background);
   z-index: 999;
 }
 
@@ -67,13 +68,13 @@ li {
   display: inline-flex;
   position: absolute;
   width: 0px;
-  height: 100%;
+  height: 150%;
   object-fit: contain;
   z-index: -1;
 }
 
 li:hover .navimg {
-  transition: width 1.2s linear;
+  transition: width 0.8s linear;
   width: 2em;
   animation: logo_spin 8s linear infinite;
 }
@@ -88,4 +89,35 @@ li:hover .navimg {
 
 li:last-child {
   margin-left: auto;
+}
+
+#vue_link {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: max-content;
+  height: 3vh;
+  right: 0;
+  bottom: 0;
+  transform: translate(-0.4em, 100%);
+  background-color: var(--background);
+  padding: 0.2em;
+  font-size: 0.8em;
+  text-align: center;
+  border-left: 1px solid var(--lightblue);
+  border-bottom: 1px solid var(--lightblue);
+  border-right: 1px solid var(--lightblue);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#vue_link_img {
+  height: 2.5vh;
+  object-fit: contain;
+  padding-right: 0.2em;
+}
+
+#vue_link_text {
+  color: #41b883;
+  padding-bottom: 0.2em;
 }
