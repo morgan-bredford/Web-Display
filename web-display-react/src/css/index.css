@@ -8,8 +8,9 @@
   --background: rgb(40, 44, 52);
 }
 
-main {
+body {
   color: var(--lightblue) !important;
+  background-color: rgba(40, 44, 52, .6);
 }
 
 label {

@@ -22,12 +22,12 @@
 #main_half_left {
   transform: translateX(-75%);
   animation: main_half_left 1.4s linear forwards;
-  z-index: 99;
+  z-index: 2;
 }
+
 #main_half_right {
   transform: translateX(75%);
   animation: main_half_right 1.4s linear forwards;
-  z-index: 0;
 }
 
 @keyframes main_half_left {
@@ -83,7 +83,7 @@
   transform: translateX(-50%) translateY(-50%);
   width: 10vw;
   height: 10vw;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #7e8085;
   border-radius: 50%;
 }
 
@@ -96,7 +96,7 @@
 form {
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(40, 44, 52, .6);
   padding: 1.5em;
   border-radius: 5px;
   border: 1px solid rgba(207, 195, 248, 0.9);
