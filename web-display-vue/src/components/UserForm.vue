@@ -152,7 +152,7 @@ button {
   }
   to {
     transform: scale(1);
-    outline: 100px solid rgba(73, 226, 253,.2);
+    outline: 100px solid rgba(63, 185, 132,.2);
   }
 }
 </style>
