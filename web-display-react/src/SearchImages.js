@@ -33,6 +33,7 @@ class SearchImages extends Component {
         e.preventDefault();
         this.setState({query, page})
         this.pageNav()
+        document.getElementById('main_search').style.backgroundImage = 'none'
     }
 
     searchImages = () => {
@@ -111,7 +112,7 @@ class SearchImages extends Component {
                         <div id="lightbox" onClick={() => this.setState({large_image: ""})}>
                             {
                                 this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) !== 0 ?  
-                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,-1)}} >{"<-"}</span>
+                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,-1)}} ><img src="/images/backward_arrow.svg" className="arrow"/></span>
                                 : null
                             }
                             <div id="lbimgcontainer">
@@ -123,7 +124,7 @@ class SearchImages extends Component {
                             </div>
                             {
                                 this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) + 1 < this.state.search_images.length ?  
-                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,1)}}>{"->"}</span>
+                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,1)}}><img src="/images/forward_arrow.svg" className="arrow"/></span>
                                 : null
                             }
                         </div>
@@ -132,13 +133,13 @@ class SearchImages extends Component {
                 { 
                   this.state.search_images.length ?  
                     <React.Fragment>
-                        <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>klicka på + för att lägga till bilden till ditt galleri</h4>
+                        <h4 style={{color: 'var(--lightblue)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>klicka på + för att lägga till bilden till ditt galleri</h4>
                         <div className="imagecontainer">
                         {
                             this.state.search_images.map((image) => (
                                 <div className="search_img">
                                     <img src={image.previewURL} onClick={() => this.setState({large_image: image.largeImageURL})} />
-                                    <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={(e) => this.addImage(e,image)} >lägg till +</div>
+                                    <div className="add_img" onClick={(e) => this.addImage(e,image)} >lägg till +</div>
                                 </div> 
                             ))
                         }

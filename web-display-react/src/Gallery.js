@@ -36,7 +36,7 @@ function Gallery(props){
     }
 
     return(
-        <React.Fragment>
+        <main>
         <br /><br /><br />
         <div className='imagecontainer'>
             {
@@ -48,7 +48,7 @@ function Gallery(props){
                                         setLoading(true)
                                         imageNav(e,-1)
                                         }}
-                                    >{"<-"}</span>
+                                    ><img src="/images/backward_arrow.svg" className="arrow"/></span>
                             : null
                         }
                         <div id="lbimgcontainer">
@@ -64,7 +64,7 @@ function Gallery(props){
                                     setLoading(true)
                                     imageNav(e,1)
                                 }}
-                                >{"->"}</span>
+                                ><img src="/images/forward_arrow.svg" className="arrow"/></span>
                             : null
                         }
                     </div>
@@ -89,7 +89,7 @@ function Gallery(props){
                 : <div>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
             }
         </div>
-        </React.Fragment>
+        </main>
     )
 }
 export default Gallery;

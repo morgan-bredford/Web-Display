@@ -1,7 +1,7 @@
 <template>
 <div class="">
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
-        <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}">-></span>
+        <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
         <div id="lbimgcontainer">
             <span id="test">
                 <img class="lbimg" :src="large_image" @load="loading = false" />
@@ -13,7 +13,7 @@
                 <span id="lbclose" @click="large_image = ''">X</span>
             </span>
         </div>
-        <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}">-></span>
+        <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
     </div>
     <div>
         <h1 >Sök på bilder från Pixabay</h1>
@@ -31,11 +31,11 @@
                 </div>
             </div>
             <div id="linkcontainer" v-if="search_images.length">
-                <span class="pagelinks" id="prev_ten" v-if="page > 10" @click="searchImages">
-                      -> </span>
+                <span class="pagelinks" id="prev_ten" v-if="page > 10">
+                    <img src="../assets/backward_arrow.svg" class="arrow" id="prev_ten" @click="searchImages"/></span>
                 <span class="pagelinks" v-for="(n, index) in 10" :key="index" :id="index+page_nav_index" @click="searchImages">{{index+page_nav_index}}</span>
-                 <span class="pagelinks" id="next_ten" @click="searchImages">
-                      -> </span>
+                 <span class="pagelinks" id="next_ten">
+                    <img src="../assets/forward_arrow.svg" class="arrow" id="next_ten" @click="searchImages"/></span>
             </div>
         </div>
         <br />

@@ -9,10 +9,10 @@ function Welcome(props){
       };
 
     return(
-        <React.Fragment>
+        <main>
             <h1>Välkommen {props.user[0].username}</h1>
             <button  onClick={logout}>Logga ut</button>
-        </React.Fragment>
+        </main>
     )
 }
 

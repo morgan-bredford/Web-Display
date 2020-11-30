@@ -9,6 +9,7 @@
   bottom: 0;
   background: url(/images/react_logo_small.png) center no-repeat;
   background-size: 100vw;
+  background-color: rgba(40, 44, 52, .9);
   z-index: -1;
 }
 
@@ -62,12 +63,13 @@
   justify-content: center;
   align-items: center;
   background-color: var(--background);
-  border: 1px solid var(--lightblue);
+  border: 2px solid var(--lightblue);
   border-radius: 50%;
   text-align: center;
   padding: 5px;
   z-index: 999;
   overflow: visible;
+  transition: all .3s linear;
   animation: skip_login_left 1.4s linear forwards;
 }
 
@@ -80,6 +82,12 @@
   }
 }
 
+#skip_login_left:hover {
+  color: var(--background);
+  background-color: var(--lightblue);
+  border-color: var(--background);
+}
+
 #skip_login_right {
   position: absolute;
   top: 50%;
@@ -87,7 +95,7 @@
   transform: translateX(-50%) translateY(-50%);
   width: 10vw;
   height: 10vw;
-  background-color: #7e8085;
+  background-color: rgba(40, 44, 52, .9);
   border-radius: 50%;
 }
 
@@ -103,7 +111,7 @@ form {
   background-color: rgba(40, 44, 52, 0.6);
   padding: 1.5em;
   border-radius: 5px;
-  border: 1px solid var(--lightblue);
+  border: 1px solid rgba(97, 218, 251, 0.9);
   /* box-shadow: 0px 0px 20px 2px rgba(27, 11, 87, 0.7); */
 }
 
@@ -141,11 +149,6 @@ form {
   }
 }
 
-button {
-  cursor: pointer;
-  background-color: var(--lightblue);
-}
-
 label {
   font-weight: 700;
 }
@@ -164,6 +167,44 @@ input:focus {
   color: red;
 }
 
+/* Change Autocomplete styles in Chrome*/
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+
+select:-webkit-autofill,
+select:-webkit-autofill:hover
+ {
+  -webkit-text-fill-color: var(--lightblue);
+  -webkit-text-background-color: var(--background);
+  background-color: var(--background);
+}
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--background);
+  background-color: var(--background);
+}
+input:-internal-autofill-selected {
+  color: -internal-light-dark(#282c34, #61dafb) !important;
+  background-color: var(--background) !important;
+} */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid var(--lightblue);
+  -webkit-text-fill-color: var(--lightblue);
+  -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 @media only screen and (max-width: 800px) {
   .home_main {
     flex-direction: column;

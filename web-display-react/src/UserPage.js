@@ -39,7 +39,8 @@ function UserPage(props) {
   };
 
   return (
-    <React.Fragment>
+    <main>
+      <br /><br />
       { !props.loggedIn ? <Redirect to='/' /> : null }
       { 
         props.user[0] ? 
@@ -97,8 +98,8 @@ function UserPage(props) {
             </Link>
           </div>
         :<div></div>
-      }<button onClick={()=>console.log(form)}>dont</button>
-    </React.Fragment>
+      }
+    </main>
   );
 }
 

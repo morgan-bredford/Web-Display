@@ -40,6 +40,10 @@ a:last-child {
   margin-left: auto;
 }
 
+a:visited {
+  color: var(--lightblue);
+}
+
 .active {
   color: var(--lightblue);
 }
@@ -65,7 +69,7 @@ li {
   text-transform: uppercase;
   text-shadow: 1px 1px var(--background), 1px -1px var(--background),
     -1px 1px var(--background), -1px -1px var(--background);
-  z-index: 999;
+  z-index: 4;
 }
 
 li::before {

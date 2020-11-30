@@ -198,14 +198,16 @@ console.log(`inside: ${temparray[0].id}`)
 }
 
   return (
-    <main>
+    <main id="main_search">
       <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage}  loggedIn={props.loggedIn} user={props.user} setUser={props.setUser} />
       <br />
      { savedimages.length ?
        <React.Fragment>
      <Link to={{pathname: "/gallery",
       savedImages:{savedimages}}}>
-      <h3 style={{color: 'black',textAlign: 'center'}}>Se bilderna i ditt Gallery {"->"}</h3>
+      <h3 style={{position: 'relative',width: 'max-content',margin: '1em auto',color: 'black',textAlign: 'center',zIndex: '1'}}>
+        Se bilderna i ditt Gallery 
+        <img src="/images/gallery_arrow.svg" className="arrow" style={{position: 'absolute',width: '1.25em',marginLeft: '5px'}}/></h3>
     </Link>
       <div className='imagecontainer'>
         { savedimages.map(image =>
