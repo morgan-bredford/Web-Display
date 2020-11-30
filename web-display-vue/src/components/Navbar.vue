@@ -69,7 +69,7 @@ li {
   text-shadow: 0px 0px 4px #000;
   display: block;
   position: relative;
-  
+    z-index: 333;
 }
 
 li:last-child {
@@ -80,12 +80,12 @@ li::before {
   content: "";
   display: inline-block;
   position: absolute;
-  background-color:  rgb(80, 245, 173);
+  background-color:  rgb(80, 245, 173,.2);
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  border: 2px solid black;
+  border: 1px solid black;
   transform: translate(25%,-30%);
   z-index: -1;
   transition: transform .4s linear;
@@ -96,10 +96,12 @@ li:hover::before {
 }
 
 a {
+  font-family: 'Times New Roman', Times, serif;
   margin: 4vh;
   text-decoration: none;
-  color: rgba(186, 248, 221, 0.7);
+  color: #fff;
   transition: color 1.4s;
+
 }
 
 a:last-child {

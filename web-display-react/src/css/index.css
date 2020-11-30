@@ -25,14 +25,14 @@ label {
 }
 
 .imagecontainer {
-  background-color: rgba(27, 11, 87, 0.1);
+  background-color: rgba(97, 218, 251, 0.25);
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   width: 80vw;
   margin: 0 auto;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .page-links {
@@ -43,16 +43,17 @@ label {
   line-height: 100%;
 }
 
-button {
-  cursor: pointer;
-  background-color: rgba(207, 195, 248, 0.5);
+.arrow {
+  width: 100%;
+  height: 80%;
+  transform: translateY(50%);
 }
 
 .prev_card {
   width: 170px;
   height: 180px;
   border-radius: 5px;
-  background-color: rgba(207, 195, 248, 0.75);
+  background-color: rgba(40, 44, 52, 0.75);
   margin: 10px;
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);

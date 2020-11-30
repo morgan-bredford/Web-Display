@@ -97,13 +97,15 @@ class SearchImages extends Component {
     render(){
         return(
             <div>
-                <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Sök på bilder från Pixabay</h1>
+                <br />
+                <h1 id="h1_search_img">Sök på bilder från Pixabay</h1>
                 <form id="form_search_img" onSubmit={(e) => 
                     this.handleSubmit(e,e.target.searchbox.value,1)
                     }>
                     <input type="text" name="searchbox" style={{width: '40vw'}}/>
                     <button>Sök bild</button>
                 </form>
+                <br />
                 { 
                     this.state.large_image ? 
                         <div id="lightbox" onClick={() => this.setState({large_image: ""})}>
@@ -134,7 +136,7 @@ class SearchImages extends Component {
                         <div className="imagecontainer">
                         {
                             this.state.search_images.map((image) => (
-                                <div>
+                                <div className="search_img">
                                     <img src={image.previewURL} onClick={() => this.setState({large_image: image.largeImageURL})} />
                                     <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={(e) => this.addImage(e,image)} >lägg till +</div>
                                 </div> 
@@ -148,7 +150,7 @@ class SearchImages extends Component {
                                     <span className="pagelinks" onClick={() => 
                                         this.setState({page: this.state.page_nav_index - 10,page_nav_index: this.state.page_nav_index - 10})
                                     }>
-                                    {"<-"}</span> 
+                                    <img src="/images/backward_arrow.svg" className="arrow"/></span> 
                                 :null
                             }
                             {
@@ -161,7 +163,7 @@ class SearchImages extends Component {
                                 this.state.page_links.length ? 
                                     <span className="pagelinks" onClick={() => 
                                         this.setState({page: this.state.page_nav_index + 10,page_nav_index: this.state.page_nav_index + 10})
-                                    }>{"->"}</span> 
+                                    }><img src="/images/forward_arrow.svg" className="arrow"/></span> 
                                 :null
                             }
                         </div>

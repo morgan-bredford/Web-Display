@@ -209,20 +209,18 @@ console.log(`inside: ${temparray[0].id}`)
     </Link>
       <div className='imagecontainer'>
         { savedimages.map(image =>
-          <span >
+          <div className="search_img">
             <Link to={`/imagesearch/`}>
             <img src={image.previewURL} id={image.id}/>
             </Link>
-            <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={ () => removeImage(image.id) } >ta bort</div>
-          </span>       
+            <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={ () => removeImage(image.id) } >ta bort X</div>
+          </div>       
         )}
       </div>
-      <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
+      <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400',display: 'none'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
       </React.Fragment>
       :null
       }
-      
-    <button onClick={() => console.log(savedimages)} >dont</button>
     </main>
   );
 }

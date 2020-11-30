@@ -31,7 +31,7 @@ ul {
   list-style: none;
 }
 
-a {
+nav a {
   margin: 4vh;
   text-decoration: none;
 }
@@ -42,6 +42,10 @@ a:last-child {
 
 .active {
   color: var(--lightblue);
+}
+
+.active li::before {
+  transform: scale(0.01);
 }
 
 .active li img {
@@ -64,6 +68,21 @@ li {
   z-index: 999;
 }
 
+li::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  background-color: rgba(97, 218, 251, 0.2);
+  width: 120%;
+  height: 90%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate(-10%, 5%);
+  z-index: -2;
+  transition: transform 0.7s linear;
+}
+
 .navimg {
   display: inline-flex;
   position: absolute;
@@ -71,6 +90,10 @@ li {
   height: 150%;
   object-fit: contain;
   z-index: -1;
+}
+
+li:hover::before {
+  transform: scale(0.01);
 }
 
 li:hover .navimg {
