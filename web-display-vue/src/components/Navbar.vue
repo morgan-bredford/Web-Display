@@ -37,6 +37,8 @@ export default {
 
 <style scoped >
 nav {
+  background: url(../assets/logo.png) center no-repeat;
+  background-size: 10vh;
   background-color: rgba(49, 71, 94, .9);
   height: 10vh;
   font-size: 1.5em;
@@ -118,7 +120,7 @@ a:hover {
   flex-direction: column;
   flex-wrap: wrap;
   width: 9em;
-  height: 3vh;
+  height: 1.5em;
   right: 0;
   bottom: 0;
   transform: translate(-0.4em, 100%);

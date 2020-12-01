@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section>
       <br /><br />
-      <h3 >eller om du inte redan har ett användarkonto kan du skapa ett här</h3>
+      <h3 style="font-style: italic;font-weight: 500">eller om du inte redan har ett användarkonto kan du skapa ett här</h3>
       <br />
       <div class="formcontainer" id="create_user_form">
         <form name="createUserForm" @submit.prevent="submitUser">
@@ -53,13 +53,14 @@
           <button>Skapa användare</button>
         </form>
       </div>
-        <br />
+      <aside>
         <router-link to="/buildgallery">
-          <h2 >det går även bra att testa galleriet utan att ha ett användarkonto
-          <span>-></span></h2>
+          <br />
+          <p>Testa galleriet utan att ha ett användarkonto</p>
+          <img src="../assets/gallery_arrow.svg" class="arrow">
         </router-link>
-      
-    </div>
+      </aside>
+    </section>
 </template>
 
 <script>
@@ -109,6 +110,23 @@ export default {
 <style scoped>
 * {
   font-family: Arial, Helvetica, sans-serif;
+}
+aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20%;
+  right: 17vw;
+  width: 10vw;
+  height: 10vw;
+  background-color: var(--lightgreen);
+  border-radius: 50%;
+  padding: .4em;
+  font-size: 1.1vw;
+}
+.arrow {
+  width: 3vw;
 }
 a {
   color: #000;

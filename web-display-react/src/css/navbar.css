@@ -123,7 +123,7 @@ li:last-child {
   display: flex;
   flex-wrap: wrap;
   width: max-content;
-  height: 3vh;
+  height: 1.5em;
   right: 0;
   bottom: 0;
   transform: translate(-0.4em, 100%);

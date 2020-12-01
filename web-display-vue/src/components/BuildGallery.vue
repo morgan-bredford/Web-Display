@@ -1,10 +1,19 @@
 <template>
-  <SearchImages />
-  <div class='imagecontainer' v-if="user.galleryimages.length">
-      <span v-for="img in user.galleryimages" :key="img.id">
-          <img :src=img.previewURL /><span @click="removeImg(img.id)">X</span>
-      </span>
-  </div>
+    <br />
+    <SearchImages />
+    <div class='imagecontainer' v-if="user.galleryimages.length">
+      <section v-for="img in user.galleryimages" :key="img.id">
+          <img :src=img.previewURL />
+          <div style="font-size: 14px;font-weight: 600" @click="removeImg(img.id)">ta bort X</div>
+      </section>
+      <aside>
+        <router-link to="/gallery">
+          <br />
+          <p>Se bilderna i ditt galleri</p>
+          <img src="../assets/gallery_arrow.svg" class="arrow" id="gallery_arrow">
+        </router-link>
+      </aside>
+    </div>
 </template>
 
 <script>
@@ -40,5 +49,25 @@ export default {
 </script>
 
 <style>
-
+.imagecontainer {
+    position: relative;
+}
+aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(1vw,-80%);
+  width: 7vw;
+  height: 7vw;
+  background-color: var(--lightgreen);
+  border-radius: 50%;
+  padding: .4em;
+  font-size: .9vw;
+}
+#gallery_arrow {
+    width: 3vw;
+}
 </style>

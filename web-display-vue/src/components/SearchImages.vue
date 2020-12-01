@@ -15,7 +15,7 @@
         </div>
         <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
     </div>
-    <div>
+    <div id="container_search">
         <h1 >Sök på bilder från Pixabay</h1>
         <div class="formcontainer">
             <form id="searchbox" @submit.prevent="searchImages">
@@ -24,21 +24,22 @@
             </form>
         </div>
     </div>
-        <div v-if="search">
-            <div class="imagecontainer">
-                <div :key="img.id" v-for="img in search_images">
-                    <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true}" /><div @click="addImage(img)">lägg till +</div>
-                </div>
-            </div>
-            <div id="linkcontainer" v-if="search_images.length">
-                <span class="pagelinks" id="prev_ten" v-if="page > 10">
-                    <img src="../assets/backward_arrow.svg" class="arrow" id="prev_ten" @click="searchImages"/></span>
-                <span class="pagelinks" v-for="(n, index) in 10" :key="index" :id="index+page_nav_index" @click="searchImages">{{index+page_nav_index}}</span>
-                 <span class="pagelinks" id="next_ten">
-                    <img src="../assets/forward_arrow.svg" class="arrow" id="next_ten" @click="searchImages"/></span>
+    <h4 v-if="search" style="color: var(--lightblue);textAlign: center;fontStyle: italic;fontWeight: 400">klicka på + för att lägga till bilden till ditt galleri</h4>
+    <div v-if="search">
+        <div class="imagecontainer">
+            <div :key="img.id" v-for="img in search_images">
+                <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true}" /><div style="font-weight: 600;cursor: pointer" @click="addImage(img)">lägg till +</div>
             </div>
         </div>
-        <br />
+        <div id="linkcontainer" v-if="search_images.length">
+            <span class="pagelinks" id="prev_ten" v-if="page > 10">
+                <img src="../assets/backward_arrow.svg" class="arrow" id="prev_ten" @click="searchImages"/></span>
+            <span class="pagelinks" v-for="(n, index) in 10" :key="index" :id="index+page_nav_index" @click="searchImages">{{index+page_nav_index}}</span>
+                <span class="pagelinks" id="next_ten">
+                <img src="../assets/forward_arrow.svg" class="arrow" id="next_ten" @click="searchImages"/></span>
+        </div>
+    </div>
+    <br />
     
 </div>
 </template>
@@ -72,6 +73,8 @@ export default {
             return index
         },
         searchImages(e){
+            // document.getElementsByClassName('formcontainer')[0].style.outline = '40px solid rgba(63, 185, 132, 0.2)'
+            document.getElementsByClassName('formcontainer')[0].style.outlineOffset = '-80px'
             if(e.target.id === 'prev_ten'){
                this.page_nav_index -= 10
                this.page = this.page_nav_index
@@ -154,6 +157,7 @@ export default {
 
 <style scoped>
     .formcontainer {
+        margin-bottom: 20px;
         border: none;
         border-radius: 5px;
     }
@@ -179,13 +183,15 @@ export default {
         border-radius: 50%;
         text-align: center;
         line-height: 200%;
-        background-color: #eee;
+        color: var(--darkblue);
+        background-color: rgba(63, 185, 132, 0.5);
         cursor: pointer;
+        transform: translateY(-25%);
         transition: background 0.3s linear;
     }
     .pagelinks:hover {
-        color: #eee;
-        background-color: #222;
+        color: rgba(63, 185, 132, 0.9);
+        background-color: var(--darkblue);
     }
     .add_img_hover {
         position: absolute;
