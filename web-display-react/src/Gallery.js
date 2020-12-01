@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
-import BuildGallery from './BuildGallery'
 import './css/searchimages.css'
 
 function Gallery(props){
     const [gallery_images,setGalleryImages] = useState([])
     const [large_image,setLargeImage] = useState("")
-    const [image_index,setImageIndex] = useState(-1)
+    //const [image_index,setImageIndex] = useState(-1)
     const [loading,setLoading] = useState(false)
 
     useEffect( () => {
@@ -48,7 +46,7 @@ function Gallery(props){
                                         setLoading(true)
                                         imageNav(e,-1)
                                         }}
-                                    ><img src="/images/backward_arrow.svg" className="arrow"/></span>
+                                    ><img src="/images/backward_arrow.svg" className="arrow" alt="arrow"/></span>
                             : null
                         }
                         <div id="lbimgcontainer">
@@ -64,7 +62,7 @@ function Gallery(props){
                                     setLoading(true)
                                     imageNav(e,1)
                                 }}
-                                ><img src="/images/forward_arrow.svg" className="arrow"/></span>
+                                ><img src="/images/forward_arrow.svg" className="arrow" alt="arrow"/></span>
                             : null
                         }
                     </div>

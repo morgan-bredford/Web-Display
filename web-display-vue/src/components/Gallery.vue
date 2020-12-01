@@ -1,13 +1,13 @@
 <template>
   <br /><br /><br />
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
-        <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}">-></span>
+        <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
         <div id="lbimgcontainer">
             <img class="lbimg" :src="large_image" @load="loading = false" />
             <span id="lbload" v-if="loading" >loading...</span>
             <span id="lbclose" @click="large_image = ''">X</span>
         </div>
-        <span class="lbnav" v-if="getImgIndex() < user.galleryimages.length - 1" @click.stop="() => {loading = true;imgNav(1)}">-></span>
+        <span class="lbnav" v-if="getImgIndex() < user.galleryimages.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
     </div>
     <div class="imagecontainer" v-if="user.galleryimages.length">
         <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages">

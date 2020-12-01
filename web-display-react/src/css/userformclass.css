@@ -8,10 +8,12 @@
   right: 0;
   bottom: 0;
   background: url(/images/react_logo_small.png) center no-repeat;
-  background-size: 100vw;
-  background-color: rgba(40, 44, 52, .9);
+  background-size: 1100vw;
+  
   z-index: -1;
+  animation: intro_background 5s linear forwards;
 }
+@keyframes intro_background {from{background-size: 1100vw;}to{background-size: 46vw;}}
 
 .main_half {
   position: relative;
@@ -57,15 +59,19 @@
   right: 0;
   transform: translateX(50%) translateY(-50%);
   transform-origin: top;
-  width: 10vw;
-  height: 10vw;
+  width: 9vw;
+  height: 9vw;
   display: flex;
+  flex-direction: column;
+  gap: .5em;
   justify-content: center;
   align-items: center;
-  background-color: var(--background);
+  color: var(--lightblue);
+  background-color: #448398;
   border: 2px solid var(--lightblue);
   border-radius: 50%;
   text-align: center;
+  font-size: 1vw;
   padding: 5px;
   z-index: 999;
   overflow: visible;
@@ -88,14 +94,61 @@
   border-color: var(--background);
 }
 
+#pulse_button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.7vw;
+  height: 2.7vw;
+  background-color: var(--lightblue);
+  border-radius: 50%;
+  z-index: 4;
+}
+#pulse_button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--lightblue);
+  border: .4vw solid var(--background);
+  border-radius: 50%;
+  z-index: 5;
+}
+#pulse_button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background);
+  border-radius: 50%;
+  z-index: 2;
+  transform: scale(1);
+  transform-origin: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {from{transform: scale(.95);opacity: 1;}to{transform: scale(1.5);opacity: 0;}}
+
+#inner_pulse_button {
+  width: 1.4vw;
+  height: 1.4vw;
+  background-color: var(--lightblue);
+  border: .4vw solid var(--background);
+  border-radius: 50%;
+  z-index: 7;
+}
+
 #skip_login_right {
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateX(-50%) translateY(-50%);
-  width: 10vw;
-  height: 10vw;
-  background-color: rgba(40, 44, 52, .9);
+  width: 9vw;
+  height: 9vw;
+  background-color: var(--lightblue);
   border-radius: 50%;
 }
 
@@ -160,6 +213,10 @@ input {
 
 input:focus {
   color: #000;
+  background-color: var(--lightblue);
+}
+
+button {
   background-color: var(--lightblue);
 }
 

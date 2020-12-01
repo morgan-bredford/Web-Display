@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 //import {Link} from 'react-router-dom'
-import { render } from "@testing-library/react";
 import './css/searchimages.css'
 
 
@@ -112,7 +111,7 @@ class SearchImages extends Component {
                         <div id="lightbox" onClick={() => this.setState({large_image: ""})}>
                             {
                                 this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) !== 0 ?  
-                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,-1)}} ><img src="/images/backward_arrow.svg" className="arrow"/></span>
+                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,-1)}} ><img src="/images/backward_arrow.svg" className="arrow" alt="arrow"/></span>
                                 : null
                             }
                             <div id="lbimgcontainer">
@@ -124,7 +123,7 @@ class SearchImages extends Component {
                             </div>
                             {
                                 this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) + 1 < this.state.search_images.length ?  
-                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,1)}}><img src="/images/forward_arrow.svg" className="arrow"/></span>
+                                    <span className="lbnav" onClick={(e) => {this.imageNav(e,1)}}><img src="/images/forward_arrow.svg" className="arrow" alt="arrow"/></span>
                                 : null
                             }
                         </div>
@@ -151,7 +150,7 @@ class SearchImages extends Component {
                                     <span className="pagelinks" onClick={() => 
                                         this.setState({page: this.state.page_nav_index - 10,page_nav_index: this.state.page_nav_index - 10})
                                     }>
-                                    <img src="/images/backward_arrow.svg" className="arrow"/></span> 
+                                    <img src="/images/backward_arrow.svg" className="arrow"  alt="arrow"/></span> 
                                 :null
                             }
                             {
@@ -164,7 +163,7 @@ class SearchImages extends Component {
                                 this.state.page_links.length ? 
                                     <span className="pagelinks" onClick={() => 
                                         this.setState({page: this.state.page_nav_index + 10,page_nav_index: this.state.page_nav_index + 10})
-                                    }><img src="/images/forward_arrow.svg" className="arrow"/></span> 
+                                    }><img src="/images/forward_arrow.svg" className="arrow"  alt="arrow"/></span> 
                                 :null
                             }
                         </div>

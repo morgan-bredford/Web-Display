@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import uuid from 'react-uuid'
 import './css/userformclass.css'
-import Im from './Im'
 import Login from './Login'
 import { Link } from 'react-router-dom'
 
@@ -57,7 +56,13 @@ class UserFormClass extends React.Component {
         <div className="main_half" id="main_half_left">
           <Login setLoggedIn={this.props.setLoggedIn} setUser={this.props.setUser} loggedIn={this.props.loggedIn} />
           <Link to="/buildgallery">
-          <div id="skip_login_left" onClick={this.removeAnimation}>testa utan att logga in</div></Link>
+          <div id="skip_login_left" onClick={this.removeAnimation}>
+            <div>Tryck för att<br />testa galleriet</div>
+            <div id="pulse_button">
+              <div id="inner_pulse_button">
+              </div>
+            </div>
+          </div></Link>
         </div>
         <div className="main_half" id="main_half_right">
           <div className="formcontainer">

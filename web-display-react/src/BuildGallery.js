@@ -1,17 +1,13 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import LargeImage from "./LargeImage";
 import SearchImages from "./SearchImages";
-import App3 from "./App3";
 
 function BuildGallery(props) {
-  const URL = "https://pixabay.com/api";
-  const apikey = "18623126-9e0d07d5ea60888b927459e25";
-  const [searchimages, setSearchimages] = useState([]);
+  //const [searchimages, setSearchimages] = useState([]);
   const [savedimages,setSavedimages] = useState([]);
-  const [pic, setPic] = useState("");
-  const [query, setQuery] = useState("")
+  //const [pic, setPic] = useState("");
+  //const [query, setQuery] = useState("")
   const [page, setPage] = useState(1)
 
   useEffect( () => {
@@ -132,7 +128,7 @@ console.log('reset')
       }
 
       savedimages.map( image => { 
-        if(e.target.id == image.id){
+        if(e.target.id === image.id){
           currentX += image.coordsoffset.xoff
           currentY += image.coordsoffset.yoff
         }
@@ -207,7 +203,7 @@ console.log(`inside: ${temparray[0].id}`)
       savedImages:{savedimages}}}>
       <h3 style={{position: 'relative',width: 'max-content',margin: '1em auto',color: 'black',textAlign: 'center',zIndex: '1'}}>
         Se bilderna i ditt Gallery 
-        <img src="/images/gallery_arrow.svg" className="arrow" style={{position: 'absolute',width: '1.25em',marginLeft: '5px'}}/></h3>
+        <img src="/images/gallery_arrow.svg" className="arrow" style={{position: 'absolute',width: '1.25em',marginLeft: '5px'}} alt="arrow"/></h3>
     </Link>
       <div className='imagecontainer'>
         { savedimages.map(image =>

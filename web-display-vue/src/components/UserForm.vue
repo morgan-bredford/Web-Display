@@ -116,7 +116,7 @@ aside {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 20%;
+  top: 30vh;
   right: 17vw;
   width: 10vw;
   height: 10vw;
