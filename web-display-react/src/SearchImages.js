@@ -66,9 +66,12 @@ class SearchImages extends Component {
                     console.log(err.response)})
             }
         }else{
-            const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
-            sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
-            this.props.setSavedimages(newimagearray)
+            const ids = JSON.parse(sessionStorage.getItem('imagearray')).map( img => img.id)
+            if(!ids.includes(image.id)){
+                const newimagearray = [...(JSON.parse(sessionStorage.getItem('imagearray'))),imageobj]
+                sessionStorage.setItem('imagearray',JSON.stringify(newimagearray))
+                this.props.setSavedimages(newimagearray)
+            }
         }
       
         
@@ -126,6 +129,7 @@ class SearchImages extends Component {
                                     <span className="lbnav" onClick={(e) => {this.imageNav(e,1)}}><img src="/images/forward_arrow.svg" className="arrow" alt="arrow"/></span>
                                 : null
                             }
+                            <button onClick={() => console.log(document.getElementsByClassName('lbimg')[0].getBoundingClientRect())}>dont</button>
                         </div>
                     : null
                 }
@@ -137,7 +141,7 @@ class SearchImages extends Component {
                         {
                             this.state.search_images.map((image) => (
                                 <div className="search_img">
-                                    <img src={image.previewURL} onClick={() => this.setState({large_image: image.largeImageURL})} />
+                                    <img src={image.previewURL} style={{cursor: 'pointer'}} onClick={() => this.setState({large_image: image.largeImageURL})} />
                                     <div className="add_img" onClick={(e) => this.addImage(e,image)} >lägg till +</div>
                                 </div> 
                             ))

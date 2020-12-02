@@ -201,9 +201,11 @@ console.log(`inside: ${temparray[0].id}`)
        <React.Fragment>
      <Link to={{pathname: "/gallery",
       savedImages:{savedimages}}}>
-      <h3 style={{position: 'relative',width: 'max-content',margin: '1em auto',color: 'black',textAlign: 'center',zIndex: '1'}}>
-        Se bilderna i ditt Gallery 
+        <p id="gallery_link">
+      <h3 style={{width: 'max-content'}}>
+        Se bilderna i ditt galleri
         <img src="/images/gallery_arrow.svg" className="arrow" style={{position: 'absolute',width: '1.25em',marginLeft: '5px'}} alt="arrow"/></h3>
+        </p>
     </Link>
       <div className='imagecontainer'>
         { savedimages.map(image =>

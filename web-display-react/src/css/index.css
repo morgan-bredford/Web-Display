@@ -12,13 +12,13 @@
 :root {
   /* --lightblue: #61dafb;
   --background: #282c34; */
-  --lightblue: rgb(97, 218, 251);
-  --background: rgb(40, 44, 52);
+  --lightblue: rgba(97, 218, 251, 1);
+  --background: rgba(40, 44, 52, 1);
 }
 
 body {
   color: var(--lightblue);
-  background-color: rgba(40, 44, 52, .97);
+  background-color: rgba(40, 44, 52, 0.97);
   font-family: Arial, Helvetica, sans-serif;
 }
 
