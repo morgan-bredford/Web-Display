@@ -69,19 +69,19 @@
   content: "";
   display: inline-block;
   position: absolute;
-  background-color: rgba(97, 218, 251, 0.2);
-  width: 60%;
-  height: 70%;
+  background-color: rgba(97, 218, 251, 0.4);
+  width: 65%;
+  height: 85%;
   top: 0;
   left: 50%;
   border-radius: 50%;
-  transform: translate(-50%, 25%);
+  transform: translate(-50%, 6%);
   z-index: -2;
   transition: background 200ms ease-in;
 }
 
 .add_img:hover::before {
-  background-color: rgba(97, 218, 251, 0.4);
+  background-color: rgba(97, 218, 251, 0.6);
 }
 
 #gallery_link {
