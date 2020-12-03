@@ -59,7 +59,7 @@ class SearchImages extends Component {
                 user[0].galleryimages.push(imageobj)      
                 axios
                 //.post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
-                .post("http://127.0.0.1:8080/users/update",[this.props.user[0]])
+                .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[this.props.user[0]])
                 .then((res) => {
                     this.props.setUser(user)
                     localStorage.setItem('user',JSON.stringify(user))

@@ -21,7 +21,7 @@ function UserPage(props) {
     props.setUser([form])
 
     axios
-      .post("http://127.0.0.1:8080/users/update", [form])
+      .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update", [form])
       .then((res) => { 
         console.log(res)
         localStorage.setItem('user', JSON.stringify([form]))
