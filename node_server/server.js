@@ -28,15 +28,3 @@ app.post("/test", (req,res) => {
   res.header("Access-Control-Allow-Origin","*")
   res.send('send success')
 })
-
-// app.get("/", (req, res) => {
-//   res.json({ response: "success", anotherres: "suc2" });
-//   //res.send();
-//   console.log("get");
-// });
-
-// const exercisesRouter = require('./routes/exercises');
-// const usersRouter = require('./routes/users');
-
-// app.use('/exercises', exercisesRouter);
-// app.use('/users', usersRouter);

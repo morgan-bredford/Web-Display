@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //import {Link} from 'react-router-dom'
 import './css/searchimages.css'
+import API_KEY from './api_key.js'
 
 
 class SearchImages extends Component {
@@ -12,7 +13,7 @@ class SearchImages extends Component {
             query: "",
             search_images: [],
             URL: "https://pixabay.com/api",
-            apikey: "18623126-9e0d07d5ea60888b927459e25",
+            apikey: API_KEY,
             page: 0,
             large_image: "",
             page_nav_index: 1,

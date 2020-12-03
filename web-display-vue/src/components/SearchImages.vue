@@ -47,6 +47,7 @@
 <script>
 import axios from "axios";
 import { mapState, mapMutations } from 'vuex'
+import API_KEY from '../api_key.js'
 
 export default {
     name: "SearchImages",
@@ -56,7 +57,7 @@ export default {
             query: "",
             search_images: [],
             URL: "https://pixabay.com/api",
-            apikey: "18623126-9e0d07d5ea60888b927459e25",
+            apikey: API_KEY,
             page: 1,
             large_image: "",
             page_nav_index: 1,
