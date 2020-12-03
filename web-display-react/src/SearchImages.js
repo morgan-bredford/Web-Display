@@ -18,6 +18,7 @@ class SearchImages extends Component {
             page_nav_index: 1,
             page_links: [],
             loading: false,
+            current_image: "",
         };
     }
 
@@ -43,6 +44,7 @@ class SearchImages extends Component {
     };
 
     addImage = (e,image) => {
+        e.stopPropagation()
         const date = new Date()
         const {id,previewURL,largeImageURL} = image
         const imageobj = {id,previewURL, largeImageURL,query: this.state.query, time: date.getTime()}
@@ -123,13 +125,14 @@ class SearchImages extends Component {
                                     this.state.loading ? <span id="lbload" >loading...</span> : null
                                 }
                                 <span id="lbclose" onClick={() => {this.setState({large_image: ""})}} >X</span>
+                                <aside id="lb_add_img" onClick={(e) => this.addImage(e,this.state.current_image)}><span id="lb_add_img_plus">+</span><br />lägg till bild</aside>
                             </div>
                             {
                                 this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) + 1 < this.state.search_images.length ?  
                                     <span className="lbnav" onClick={(e) => {this.imageNav(e,1)}}><img src="/images/forward_arrow.svg" className="arrow" alt="arrow"/></span>
                                 : null
                             }
-                            <button onClick={() => console.log(document.getElementsByClassName('lbimg')[0].getBoundingClientRect())}>dont</button>
+                            {/* <button onClick={() => console.log(document.getElementsByClassName('lbimg')[0].getBoundingClientRect())}>dont</button> */}
                         </div>
                     : null
                 }
@@ -141,7 +144,13 @@ class SearchImages extends Component {
                         {
                             this.state.search_images.map((image) => (
                                 <div className="search_img">
-                                    <img src={image.previewURL} style={{cursor: 'pointer'}} onClick={() => this.setState({large_image: image.largeImageURL})} />
+                                    <img src={image.previewURL} style={{cursor: 'pointer'}} 
+                                        onClick={() => {
+                                            this.setState({large_image: image.largeImageURL,current_image: image})
+                                            document.body.scrollTop = 0
+                                            document.documentElement.scrollTop = 0
+                                            }
+                                        } />
                                     <div className="add_img" onClick={(e) => this.addImage(e,image)} >lägg till +</div>
                                 </div> 
                             ))

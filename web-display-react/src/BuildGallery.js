@@ -68,6 +68,8 @@ console.log('reset')
     }
   }
 
+  const removeBackground = () => document.getElementById('main_search').style.backgroundImage = 'none'
+
   const getCoords =  () => {
     savedimages.map( image => {
         const obj = document.getElementById(image.id)
@@ -198,26 +200,27 @@ console.log(`inside: ${temparray[0].id}`)
       <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage}  loggedIn={props.loggedIn} user={props.user} setUser={props.setUser} />
       <br />
      { savedimages.length ?
-       <React.Fragment>
-     <Link to={{pathname: "/gallery",
-      savedImages:{savedimages}}}>
-        <p id="gallery_link">
-      <h3 style={{width: 'max-content'}}>
-        Se bilderna i ditt galleri
-        <img src="/images/gallery_arrow.svg" className="arrow" style={{position: 'absolute',width: '1.25em',marginLeft: '5px'}} alt="arrow"/></h3>
-        </p>
-    </Link>
-      <div className='imagecontainer'>
-        { savedimages.map(image =>
-          <div className="search_img">
-            <Link to={`/imagesearch/`}>
-            <img src={image.previewURL} id={image.id}/>
-            </Link>
-            <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={ () => removeImage(image.id) } >ta bort X</div>
-          </div>       
-        )}
-      </div>
-      <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400',display: 'none'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
+      <React.Fragment>
+        {removeBackground()}
+        <Link to={{pathname: "/gallery",
+          savedImages:{savedimages}}}>
+            <p id="gallery_link">
+              <h3 style={{width: 'max-content'}}>
+              Se bilderna i ditt galleri
+              <img src="/images/gallery_arrow.svg" className="arrow" style={{position: 'absolute',width: '1.25em',marginLeft: '5px'}} alt="arrow"/></h3>
+            </p>
+        </Link>
+        <div className='imagecontainer'>
+          { savedimages.map(image =>
+            <div className="search_img">
+              <Link to={`/imagesearch/`}>
+              <img src={image.previewURL} id={image.id}/>
+              </Link>
+              <div style={{textAlign: 'center',cursor: 'pointer'}} onClick={ () => removeImage(image.id) } >ta bort X</div>
+            </div>       
+          )}
+        </div>
+        <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400',display: 'none'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
       </React.Fragment>
       :null
       }

@@ -78,8 +78,7 @@ function Gallery(props){
                                 }} />
                             <div className="prev_card_info">
                                 Sökord: {image.query}<br />
-                                Sparad: {getSaveDate(image)} 
-                                
+                                Sparad: {getSaveDate(image)}
                             </div>
                         </span >
                     )

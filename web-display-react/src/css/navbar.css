@@ -136,12 +136,18 @@ li:last-child {
   border-right: 1px solid var(--lightblue);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  cursor: pointer;
 }
 
 #vue_link_img {
   height: 2.5vh;
   object-fit: contain;
   padding-right: 0.2em;
+  transition: transform 0.7s ease-in-out;
+}
+
+#vue_link:hover #vue_link_img {
+  transform: rotateY(360deg);
 }
 
 #vue_link_text {

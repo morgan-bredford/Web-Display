@@ -81,6 +81,10 @@ label {
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 
+.prev_card_info {
+  font-size: 14px;
+}
+
 #lightbox {
   /* width: 100vw;
     height: 100vh; */
@@ -97,6 +101,7 @@ label {
 }
 
 #lbimgcontainer {
+  position: relative;
   display: flex;
   width: 80vw;
   height: 80vh;
@@ -118,7 +123,9 @@ label {
 }
 
 #lbclose {
-  display: absolute;
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 50px;
   height: 50px;
   font-size: 24px;
@@ -129,7 +136,6 @@ label {
   color: var(--background);
   background-color: var(--lightblue);
   cursor: pointer;
-  transform: translate(-75px, -50px);
 }
 
 #lbload {
@@ -140,4 +146,39 @@ label {
   text-align: center;
   font-size: 36px;
   transform: translate(-100%, -50%);
+}
+
+#lb_add_img {
+  visibility: hidden;
+  position: absolute;
+  top: 25%;
+  right: 0;
+  transform: translate(0%, -50%);
+  display: grid;
+  place-items: center;
+  width: 10vw;
+  height: 10vw;
+  color: #000;
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(255, 255, 255, 0.25);
+  text-align: center;
+  font-size: 1.8vw;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#lb_add_img_plus {
+  width: 5vw;
+  height: 5vw;
+  font-size: 10vw;
+  line-height: 7vw;
+}
+
+#lbimgcontainer:hover #lb_add_img {
+  visibility: visible;
+}
+
+#lb_add_img:hover {
+  color: rgba(0, 0, 0, 0.99);
+  background-color: rgba(255, 255, 255, 0.55);
 }
