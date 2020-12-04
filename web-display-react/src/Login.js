@@ -34,6 +34,7 @@ function Login(props) {
               <input type="text" name="username" placeholder="name" />
               <label htmlFor="password">Lösenord:</label>
               <input type="text" name="password" placeholder="pass" />
+              <br />
               <button>Logga in</button>
           </form>
         </div>

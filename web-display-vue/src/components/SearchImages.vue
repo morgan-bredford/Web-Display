@@ -3,15 +3,13 @@
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
         <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
         <div id="lbimgcontainer">
-            <span id="test">
-                <img class="lbimg" :src="large_image" @load="loading = false" />
-                <span class="add_img_hover">
-                    <h1>+</h1>
-                    lägg till
-                </span>
-                <span id="lbload" v-if="loading" >loading...</span>
-                <span id="lbclose" @click="large_image = ''">X</span>
-            </span>
+            <img class="lbimg" :src="large_image" @load="loading = false" />
+            <aside id="lb_add_img" @click.stop="addImage(current_img)">
+                <h1 id="lb_add_img_plus">+</h1>
+                <p id="lb_add_img_text">lägg till bild</p>
+            </aside>
+            <span id="lbload" v-if="loading" >loading...</span>
+            <span id="lbclose" @click="large_image = ''">X</span>
         </div>
         <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
     </div>
@@ -28,7 +26,7 @@
     <div v-if="search">
         <div class="imagecontainer">
             <div :key="img.id" v-for="img in search_images">
-                <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true}" /><div style="font-weight: 600;cursor: pointer" @click="addImage(img)">lägg till +</div>
+                <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true;current_img = img}" /><div style="font-weight: 600;cursor: pointer" @click="addImage(img)">lägg till +</div>
             </div>
         </div>
         <div id="linkcontainer" v-if="search_images.length">
@@ -62,6 +60,7 @@ export default {
             large_image: "",
             page_nav_index: 1,
             loading: false,
+            current_img: "",
         }
     },
     computed: {
@@ -123,32 +122,33 @@ export default {
         },
         imgNav(move_index){
             const index = this.search_images.findIndex(img => img.largeImageURL === this.large_image)
+            this.current_img = this.search_images[index + move_index]
             this.large_image = this.search_images[index + move_index].largeImageURL
             console.log(index)
         },
         addImage(img){
             const ids = this.user.galleryimages.map( img => img.id)
-                if(!ids.includes(img.id)){
-                const {id,previewURL,largeImageURL} = img
-                const date = new Date()
-                const imageobj = {id,previewURL, largeImageURL, query: this.query, time: date.getTime() }
-                const newimagearray = [...this.user.galleryimages,imageobj]
-                if(this.loggedIn){
+            if(!ids.includes(img.id)){
+            const {id,previewURL,largeImageURL} = img
+            const date = new Date()
+            const imageobj = {id,previewURL, largeImageURL, query: this.query, time: date.getTime() }
+            const newimagearray = [...this.user.galleryimages,imageobj]
+            if(this.loggedIn){
 
-                    axios
-                        .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: this.user.username, galleryimages: newimagearray}])
-                        .then((res) => {
-                            console.log(res)
-                            this.addimg(imageobj)
-                            localStorage.setItem('user',JSON.stringify(this.user))
-                        })
-                .catch(err => {
-                    console.log(err.response)})
-                
-                }else{
-                    sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
-                    this.addimg(imageobj) 
-                }
+                axios
+                    .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: this.user.username, galleryimages: newimagearray}])
+                    .then((res) => {
+                        console.log(res)
+                        this.addimg(imageobj)
+                        localStorage.setItem('user',JSON.stringify(this.user))
+                    })
+            .catch(err => {
+                console.log(err.response)})
+            
+            }else{
+                sessionStorage.setItem('galleryimages',JSON.stringify(newimagearray))
+                this.addimg(imageobj) 
+            }
             }
         },
     },
@@ -194,14 +194,32 @@ export default {
         color: rgba(63, 185, 132, 0.9);
         background-color: var(--darkblue);
     }
-    .add_img_hover {
+    #lb_add_img {
         position: absolute;
-        top: 0;
+        top: 25%;
         right: 0;
-        width: 10%;
-        height: 10%;
-        background-color: rgba(255, 255, 255, 0.5);
-        display: none;
+        transform: translate(0%, -50%);
+        display: grid;
+        place-items: center;
+        width: 8vw;
+        height: 8vw;
+        color: var(--darkblue);
+        background-color: rgba(63, 185, 132, 0.28);
+        text-align: center;
+        font-size: 1.1vw;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #lb_add_img_plus {
+        width: 5vw;
+        height: 5vw;
+        font-size: 10vw;
+        line-height: 7vw;
+        transform: translate(-0.25vw,-0.70vw);
+    }
+    #lb_add_img:hover {
+        color: rgba(0, 0, 0, 1);
+        background-color: rgba(63, 185, 132, 0.55);
     }
     #test {
         position: relative;

@@ -2,6 +2,7 @@
 node_modules
 /node_modules
 /dist
+/api_key.js
 
 
 # local env files

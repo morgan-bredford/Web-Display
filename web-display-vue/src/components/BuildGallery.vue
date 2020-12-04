@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .imagecontainer {
     position: relative;
 }
@@ -66,6 +66,9 @@ aside {
   border-radius: 50%;
   padding: .4em;
   font-size: .9vw;
+}
+aside a:visited{
+  color: inherit;
 }
 #gallery_arrow {
     width: 3vw;

@@ -77,15 +77,17 @@ export default {
   width: 170px;
   height: 180px;
   border-radius: 5px;
-  background-color: rgba(207, 195, 248, 0.75);
+  background-color: var(--darkblue);
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
-
 .prev_card_img {
   width: 150px;
   height: 100px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
-
+.prev_card_info {
+    color: var(--lightgreen);
+    font-size: .9em;
+}
 </style>

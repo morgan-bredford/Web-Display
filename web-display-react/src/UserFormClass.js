@@ -69,7 +69,7 @@ class UserFormClass extends React.Component {
             <form id="create_user_form" onSubmit={this.handleSubmit}>
               <h1 style={{textAlign: 'center'}}>Skapa användare</h1>
               <br />
-              <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------obligatoriskt------------------</h5>
+              <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>--------------obligatoriskt----------------</h5>
               <label htmlFor="username">Användarnamn:</label>
               <input
                 type="text"
@@ -87,7 +87,7 @@ class UserFormClass extends React.Component {
                 onChange={this.handleChange}
                 placeholder="lösenord"
               />
-
+              <br />
               <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>----------------frivilligt------------------</h5>
               <label htmlFor="firstname">Förnamn:</label>
               <input
@@ -112,6 +112,7 @@ class UserFormClass extends React.Component {
                   <option value="Kvinna">Kvinna</option>
                   <option value="Annat">Annat</option>
               </select>
+              <br />
               <button>Skapa användare</button>
             </form>
           </div>

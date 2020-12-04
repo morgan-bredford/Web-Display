@@ -9,12 +9,11 @@
         <router-link to="/userpage" v-else><li>inloggad som: {{user.username}}</li></router-link>
     </ul>
     <div id="react_link">
-       
-          <img src="../assets/react_logo_small.png" id="react_link_img" />
-          <a href="http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com/" id="react_link_a">
-              <div id="react_link_text">React versionen</div>
-        </a>
-      </div>
+      <img src="../assets/react_logo_small.png" id="react_link_img" />
+      <a href="http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com/" id="react_link_a">
+          <div id="react_link_text">React versionen</div>
+      </a>
+    </div>
   </nav>
   <router-view/>
 </template>
@@ -111,7 +110,7 @@ a:last-child {
 }
 
 a:hover {
-  color: rgba(207, 195, 248, 0.7);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 #react_link {
@@ -140,10 +139,14 @@ a:hover {
 }
 
 #react_link_img {
-
   height: 100%;
   object-fit: contain;
-  padding-right: 0.2em;
+  margin-right: 0.2em;
+  transition: transform 5s ease-in-out;
+}
+
+#react_link:hover #react_link_img {
+  transform: rotate(5turn);
 }
 
 #react_link_text {

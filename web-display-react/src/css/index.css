@@ -36,10 +36,6 @@ a {
   color: var(--lightblue);
 } */
 
-label {
-  font-weight: 700;
-}
-
 .imagecontainer {
   background-color: rgba(97, 218, 251, 0.25);
   display: flex;
@@ -82,6 +78,7 @@ label {
 }
 
 .prev_card_info {
+  font-family: Montserrat;
   font-size: 14px;
 }
 
@@ -170,11 +167,7 @@ label {
   height: 5vw;
   font-size: 10vw;
   line-height: 7vw;
-  transform: translateX(-.25vw);
-}
-
-#lbimgcontainer:hover #lb_add_img {
-  visibility: visible;
+  transform: translateX(-0.25vw);
 }
 
 #lb_add_img:hover {

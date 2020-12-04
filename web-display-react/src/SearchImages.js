@@ -81,15 +81,12 @@ class SearchImages extends Component {
     }
 
     imageNav = (e,move_index) => {
-        e.stopPropagation()  
-        const index = this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image) + move_index
-        if(index > -1 && index < this.state.search_images.length){
-            this.setState(
-                {large_image: 
-                        this.state.search_images[(this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image)) + move_index]
-                        .largeImageURL}
-            )
-        }
+        e.stopPropagation()
+        const index = this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image)
+        this.setState(
+            {large_image: this.state.search_images[index + move_index].largeImageURL,
+                current_image: this.state.search_images[index + move_index]}
+        )
     }
 
     pageNav = () => {

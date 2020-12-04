@@ -9,11 +9,18 @@
   bottom: 0;
   background: url(/images/react_logo_small.png) center no-repeat;
   background-size: 1100vw;
-  
+
   z-index: -1;
   animation: intro_background 5s linear forwards;
 }
-@keyframes intro_background {from{background-size: 1100vw;}to{background-size: 46vw;}}
+@keyframes intro_background {
+  from {
+    background-size: 1100vw;
+  }
+  to {
+    background-size: 46vw;
+  }
+}
 
 .main_half {
   position: relative;
@@ -63,7 +70,7 @@
   height: 9vw;
   display: flex;
   flex-direction: column;
-  gap: .5em;
+  gap: 0.5em;
   justify-content: center;
   align-items: center;
   color: var(--lightblue);
@@ -75,7 +82,7 @@
   padding: 5px;
   z-index: 999;
   overflow: visible;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
   animation: skip_login_left 1.4s linear forwards;
 }
 
@@ -105,19 +112,19 @@
   z-index: 4;
 }
 #pulse_button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: var(--lightblue);
-  border: .4vw solid var(--background);
+  border: 0.4vw solid var(--background);
   border-radius: 50%;
   z-index: 5;
 }
 #pulse_button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -130,13 +137,22 @@
   transform-origin: center;
   animation: pulse 1.5s ease-in-out infinite;
 }
-@keyframes pulse {from{transform: scale(.95);opacity: 1;}to{transform: scale(1.5);opacity: 0;}}
+@keyframes pulse {
+  from {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
 
 #inner_pulse_button {
   width: 1.4vw;
   height: 1.4vw;
   background-color: var(--lightblue);
-  border: .4vw solid var(--background);
+  border: 0.4vw solid var(--background);
   border-radius: 50%;
   z-index: 7;
 }
@@ -161,6 +177,7 @@
 form {
   display: flex;
   flex-direction: column;
+  font-family: Montserrat;
   background-color: rgba(40, 44, 52, 0.6);
   padding: 1.5em;
   border-radius: 5px;
@@ -203,12 +220,14 @@ form {
 }
 
 label {
-  font-weight: 700;
+  font-weight: 500;
+  margin: 0.35em 0 0.15em 0;
 }
 
 input {
   color: var(--lightblue);
   background-color: var(--background);
+  font-size: 1em;
 }
 
 input:focus {
@@ -249,7 +268,7 @@ input:-internal-autofill-selected {
   background-color: var(--background) !important;
 } */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,

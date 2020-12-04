@@ -158,7 +158,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9;
+  z-index: 999;
 }
 
 #lbimgcontainer {
@@ -200,7 +200,7 @@ button:hover {
   cursor: pointer;
   top: 0;
   right: 0;
-  /* transform: translate(-75px, -50px); */
+  transform: translate(100%, 0%);
 }
 
 #lbload {
