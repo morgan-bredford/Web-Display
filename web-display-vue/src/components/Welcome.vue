@@ -1,7 +1,7 @@
 <template>
   <div>
       <br />
-      <h1 >Välkommen {{$store.state.user.username}} </h1>
+      <h1 id="hh1">Välkommen {{$store.state.user.username}} </h1>
       <router-link to="/" tag="button" @click="() =>  {$store.commit('logOut');$router.push('/');}">Logga ut</router-link>
       </div>
 </template>
@@ -20,5 +20,10 @@ export default {
 </script>
 
 <style>
-
+h1 {
+    text-align: center;
+}
+#hh1 {
+    text-align: center;
+}
 </style>

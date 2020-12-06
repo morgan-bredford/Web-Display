@@ -36,6 +36,10 @@ a {
   color: var(--lightblue);
 } */
 
+button {
+  text-transform: uppercase;
+}
+
 .imagecontainer {
   background-color: rgba(97, 218, 251, 0.25);
   display: flex;
@@ -69,11 +73,16 @@ a {
   margin: 10px;
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
+.prev_card:hover {
+  background-color: rgba(40, 44, 52, 0.9);
+}
 .prev_card_img {
   width: 150px;
   height: 100px;
+  margin-bottom: .4em;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 }
 

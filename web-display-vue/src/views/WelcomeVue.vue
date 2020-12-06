@@ -18,5 +18,12 @@ export default {
 </script>
 
 <style>
-
+h1 {
+    text-align: center;
+}
+a {
+  display: block;
+  width: max-content;
+  margin: auto;
+}
 </style>

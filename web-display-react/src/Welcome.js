@@ -10,8 +10,8 @@ function Welcome(props){
 
     return(
         <main>
-            <h1>Välkommen {props.user[0].username}</h1>
-            <button  onClick={logout}>Logga ut</button>
+            <h1 style={{textAlign: 'center'}}>Välkommen {props.user[0].username}</h1>
+            <button style={{display: 'block',margin: 'auto'}} onClick={logout}>Logga ut</button>
         </main>
     )
 }

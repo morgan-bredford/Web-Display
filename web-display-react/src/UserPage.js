@@ -44,17 +44,15 @@ function UserPage(props) {
       { !props.loggedIn ? <Redirect to='/' /> : null }
       { 
         props.user[0] ? 
-          <div style={{width: '50vw', margin: 'auto'}}>
-            <form name="createUserForm" onSubmit={submitHandler}>
-              <h1>Dina uppgifter</h1>
+          <div style={{width: '30vw', margin: 'auto'}}>
+            <form onSubmit={submitHandler}>
+              <h1 style={{fontSize: '2vw'}} >Redigera dina uppgifter</h1>
               <label htmlFor="username">Användarnamn:</label>
-              <input
-                type="text"
-                name="username"
+              <div
                 id="username"
-                value={form.username}
-                placeholder="användarnamn"
-              /><br />
+               >{form.username}
+              </div>
+              <br />
               <label htmlFor="password">Lösenord:</label>
               <input
                 type="text"
@@ -90,7 +88,7 @@ function UserPage(props) {
                 <option value="Annat">Annat</option>
               </select>
               <br />
-              <button>Uppdatera</button>
+              <button style={{width: '6vw',height: '6vw',margin: '2vh auto 0',padding: '0px',fontSize:'.9vw',borderRadius: '50%'}}>Uppdatera</button>
             </form>
             <br />
             <Link to="/" >

@@ -10,8 +10,8 @@
         <span class="lbnav" v-if="getImgIndex() < user.galleryimages.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
     </div>
     <div class="imagecontainer" v-if="user.galleryimages.length">
-        <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages">
-            <img class="prev_card_img" :src="img.previewURL" @click="large_image = img.largeImageURL" />
+        <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages"  @click="large_image = img.largeImageURL">
+            <img class="prev_card_img" :src="img.previewURL" />
              <div class="prev_card_info">
                 Sökord: {{img.query}}<br />
                 Sparad: {{getSaveDate(img)}}
@@ -80,14 +80,23 @@ export default {
   background-color: var(--darkblue);
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+.prev_card:hover {
+    background-color: rgb(49, 71, 94,.9);
 }
 .prev_card_img {
   width: 150px;
   height: 100px;
+  margin-bottom: .4em;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+}
+.prev_card_img:hover {
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 1);
 }
 .prev_card_info {
     color: var(--lightgreen);
     font-size: .9em;
+    line-height: 1.2em;
 }
 </style>

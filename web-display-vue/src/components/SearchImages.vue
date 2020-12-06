@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<main>
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
         <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
         <div id="lbimgcontainer">
@@ -18,15 +18,16 @@
         <div class="formcontainer">
             <form id="searchbox" @submit.prevent="searchImages">
                 <input type="text" name="searchbox" v-model="query" />
-                <button>Sök bild</button>
+                <button>Sök</button>
             </form>
         </div>
     </div>
+    <br />
     <h4 v-if="search" style="color: var(--lightblue);textAlign: center;fontStyle: italic;fontWeight: 400">klicka på + för att lägga till bilden till ditt galleri</h4>
     <div v-if="search">
         <div class="imagecontainer">
             <div :key="img.id" v-for="img in search_images">
-                <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true;current_img = img}" /><div style="font-weight: 600;cursor: pointer" @click="addImage(img)">lägg till +</div>
+                <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true;current_img = img}" /><div class="add_img_text" @click="addImage(img)">lägg till +</div>
             </div>
         </div>
         <div id="linkcontainer" v-if="search_images.length">
@@ -39,7 +40,7 @@
     </div>
     <br />
     
-</div>
+</main>
 </template>
 
 <script>
@@ -157,6 +158,9 @@ export default {
 </script>
 
 <style scoped>
+    main {
+        font-family: Montserrat, Arial;
+    }
     .formcontainer {
         margin-bottom: 20px;
         border: none;
@@ -165,10 +169,16 @@ export default {
     form {
         display: flex;
         flex-direction: row;
+        height: 8vh;
     }
     form input {
         width: 80%;
         font-style: normal;      
+    }
+    form button {
+        width: 18%;
+        height: 100%;
+        margin: 0px;
     }
     .imagecontainer{
         display: flex;
@@ -203,7 +213,7 @@ export default {
         place-items: center;
         width: 8vw;
         height: 8vw;
-        color: var(--darkblue);
+        color: rgba(0, 0, 0, .3);
         background-color: rgba(63, 185, 132, 0.28);
         text-align: center;
         font-size: 1.1vw;
@@ -221,7 +231,27 @@ export default {
         color: rgba(0, 0, 0, 1);
         background-color: rgba(63, 185, 132, 0.55);
     }
-    #test {
+    .add_img_text {
         position: relative;
+        width: max-content;
+        margin: auto;
+        font-family: Montserrat,Arial;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .add_img_text::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translate(-15%,25%);
+        width: 100%;
+        height: 100%;
+        background-color: rgba(63, 185, 132, 0.3);
+        z-index: -1;
+        transition: transform .5s linear;
+    }
+    .add_img_text:hover::after {
+        transform: translate(-5%,15%);
     }
 </style>

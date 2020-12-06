@@ -43,6 +43,17 @@ export default createStore({
             console.log(err.response)})
       }
     },
+    updateUser(context, user_form){
+      console.log(user_form)
+      axios
+          .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[user_form])
+          .then((res) => {
+            console.log(res)
+            localStorage.setItem('user',JSON.stringify(context.state.user))
+          })
+          .catch(err => {
+            console.log(err.response)})
+    }
   },
   modules: {
   },

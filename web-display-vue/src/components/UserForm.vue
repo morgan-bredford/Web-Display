@@ -120,16 +120,46 @@ aside {
   right: 17vw;
   width: 10vw;
   height: 10vw;
+  color: rgba(49, 71, 94,.5);
   background-color: var(--lightgreen);
   border-radius: 50%;
-  padding: .4em;
+  padding: .7em;
   font-size: 1.1vw;
+  overflow: hidden;
+  /* transition: all .2s linear; */
+}
+aside:hover {
+  background-color: rgba(63, 185, 132,.9);
+  /* box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, .7) */
+}
+aside:hover .arrow {
+  animation: move_arrow 1s;
+}
+@keyframes move_arrow {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(35%);
+  }
+  40% {
+    transform: translateX(25%);
+  }
+  70% {
+    transform: translateX(35%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 .arrow {
   width: 3vw;
 }
-a {
+/* a {
   color: #000;
+} */
+a:visited {
+  color: inherit;
 }
 a:hover {
   color:  rgb(27, 11, 87, 0.7);

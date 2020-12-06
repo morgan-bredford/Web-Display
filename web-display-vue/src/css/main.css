@@ -44,7 +44,7 @@ main {
   border-radius: 50%;
   border: 1px solid rgba(27, 11, 87, 0.9);
   outline: 100px solid rgba(63, 185, 132, 0.2);
-  width: clamp(200px, 80vw, 400px);
+  width: clamp(200px,40vw,400px);
 }
 
 form {
@@ -123,15 +123,16 @@ input:focus {
 }
 
 button {
+  text-transform: uppercase;
   font-weight: 500;
   border-radius: 10px;
-  cursor: pointer;
-  background-color: rgba(207, 195, 248, 0.5);
   margin-top: 1em;
+  background-color: rgba(49, 71, 94, 0.2);
+  cursor: pointer;
 }
 
 button:hover {
-  background-color: rgba(112, 255, 68, 0.9);
+  background-color: var(--lightgreen);
 }
 
 .imagecontainer {
@@ -147,8 +148,6 @@ button:hover {
 }
 
 #lightbox {
-  /* width: 100vw;
-      height: 100vh; */
   position: absolute;
   top: 0;
   left: 0;

@@ -1,7 +1,5 @@
 <template>
-  <div class="about">
     <UserInfo />
-  </div>
 </template>
 
 <script>

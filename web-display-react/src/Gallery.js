@@ -71,11 +71,11 @@ function Gallery(props){
             { 
                 gallery_images.length ? gallery_images.map(image => {
                     return (
-                        <span className="prev_card" >
-                            <img className="prev_card_img" src={image.previewURL} id={image.id} onClick={() => {
-                                setLoading(true)
-                                setLargeImage(image.largeImageURL)
-                                }} />
+                        <span className="prev_card" onClick={() => {
+                            setLoading(true)
+                            setLargeImage(image.largeImageURL)
+                            }}>
+                            <img className="prev_card_img" src={image.previewURL} id={image.id}  />
                             <div className="prev_card_info">
                                 Sökord: {image.query}<br />
                                 Sparad: {getSaveDate(image)}

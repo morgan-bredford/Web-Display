@@ -4,7 +4,7 @@
     <div class='imagecontainer' v-if="user.galleryimages.length">
       <section v-for="img in user.galleryimages" :key="img.id">
           <img :src=img.previewURL />
-          <div style="font-size: 14px;font-weight: 600" @click="removeImg(img.id)">ta bort X</div>
+          <div class="remove_img_text" @click="removeImg(img.id)">ta bort X</div>
       </section>
       <aside>
         <router-link to="/gallery">
@@ -70,7 +70,55 @@ aside {
 aside a:visited{
   color: inherit;
 }
+aside:hover {
+  background-color: rgba(63, 185, 132,.9);
+  /* box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, .7) */
+}
+aside:hover .arrow {
+  animation: move_arrow 1s;
+}
+@keyframes move_arrow {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(35%);
+  }
+  40% {
+    transform: translateX(25%);
+  }
+  70% {
+    transform: translateX(35%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 #gallery_arrow {
     width: 3vw;
+}
+.remove_img_text {
+  position: relative;
+  width: max-content;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.remove_img_text::after {
+  content: '';
+  position: absolute;
+  right: .3em;
+  width: 0px;
+  height: 0px;
+  background-color: var(--lightgreen);
+  box-shadow: 0 0 0 rgb(63, 185, 132);
+  z-index: -1;
+  transition: box-shadow 1s linear;
+}
+.remove_img_text:hover::after {
+  box-shadow: 0 0 10px 7px rgb(63, 185, 132);
 }
 </style>
