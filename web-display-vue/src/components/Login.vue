@@ -53,6 +53,9 @@ export default {
 </script>
 
 <style scoped>
+    * {
+        font-family: Montserrat, Ariel;
+    }
     .formcontainer {
         width: clamp(200px, 80vw, 350px);
     }

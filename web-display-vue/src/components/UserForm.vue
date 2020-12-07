@@ -5,9 +5,8 @@
       <br />
       <div class="formcontainer" id="create_user_form">
         <form name="createUserForm" @submit.prevent="submitUser">
-          <h1 >Skapa användare</h1>
-          <br />
-          <h5 >----------------obligatoriskt------------------</h5>
+          <h2 >Skapa användare</h2>
+          <h6 >-------------obligatoriskt---------------</h6>
           <label htmlFor="username">Användarnamn:</label>
           <input
             type="text"
@@ -26,7 +25,7 @@
             placeholder="lösenord"
           />
           <br />
-          <h5 >----------------frivilligt------------------</h5>
+          <h6 >----------------frivilligt------------------</h6>
           <label htmlFor="firstname">Förnamn:</label>
           <input
             type="text"
@@ -109,7 +108,14 @@ export default {
 
 <style scoped>
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat,Arial, Helvetica, sans-serif;
+}
+h2 {
+  margin-bottom: .3em;
+}
+h6 {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
 }
 aside {
   display: flex;
@@ -121,7 +127,7 @@ aside {
   width: 10vw;
   height: 10vw;
   color: rgba(49, 71, 94,.5);
-  background-color: var(--lightgreen);
+  background-color: rgba(63, 185, 132,.2);
   border-radius: 50%;
   padding: .7em;
   font-size: 1.1vw;
@@ -129,7 +135,7 @@ aside {
   /* transition: all .2s linear; */
 }
 aside:hover {
-  background-color: rgba(63, 185, 132,.9);
+  background-color: rgba(63, 185, 132,.6);
   /* box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, .7) */
 }
 aside:hover .arrow {

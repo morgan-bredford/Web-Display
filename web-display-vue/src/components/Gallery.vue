@@ -3,12 +3,13 @@
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
         <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
         <div id="lbimgcontainer">
-            <img class="lbimg" :src="large_image" @load="loading = false" />
+            <img class="lbimg" :src="large_image" @load="loading = false" @click.stop="(e) => e.stopPropagation()" />
             <span id="lbload" v-if="loading" >loading...</span>
             <span id="lbclose" @click="large_image = ''">X</span>
         </div>
         <span class="lbnav" v-if="getImgIndex() < user.galleryimages.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
     </div>
+    <h4 style="color: var(--lightblue);textAlign: center;fontStyle: italic;fontWeight: 400" v-if="user.galleryimages.length">klicka på bilden</h4>
     <div class="imagecontainer" v-if="user.galleryimages.length">
         <span class="prev_card" v-bind:key="img.id" v-for="img in user.galleryimages"  @click="large_image = img.largeImageURL">
             <img class="prev_card_img" :src="img.previewURL" />

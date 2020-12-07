@@ -62,7 +62,7 @@ aside {
   transform: translate(1vw,-80%);
   width: 7vw;
   height: 7vw;
-  background-color: var(--lightgreen);
+  background-color: rgba(63, 185, 132,.2);
   border-radius: 50%;
   padding: .4em;
   font-size: .9vw;
@@ -71,7 +71,7 @@ aside a:visited{
   color: inherit;
 }
 aside:hover {
-  background-color: rgba(63, 185, 132,.9);
+  background-color: rgba(63, 185, 132,.6);
   /* box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, .7) */
 }
 aside:hover .arrow {

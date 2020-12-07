@@ -3,7 +3,7 @@
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
         <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
         <div id="lbimgcontainer">
-            <img class="lbimg" :src="large_image" @load="loading = false" />
+            <img class="lbimg" :src="large_image" @load="loading = false" @click.stop="(e) => e.stopPropagation()"/>
             <aside id="lb_add_img" @click.stop="addImage(current_img)">
                 <h1 id="lb_add_img_plus">+</h1>
                 <p id="lb_add_img_text">lägg till bild</p>
@@ -169,7 +169,8 @@ export default {
     form {
         display: flex;
         flex-direction: row;
-        height: 8vh;
+        height: 5vh;
+        padding: .5em;
     }
     form input {
         width: 80%;

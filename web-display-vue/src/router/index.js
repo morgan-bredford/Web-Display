@@ -4,6 +4,7 @@ import WelcomeVue from '../views/WelcomeVue.vue'
 import GalleryVue from '../views/GalleryVue.vue'
 import UserPageVue from '../views/UserPageVue.vue'
 import LoginVue from '../views/LoginVue.vue'
+import testVue from '../views/testVue.vue'
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/userpage',
     name: 'userpagevue',
     component: UserPageVue
+  },
+  {
+    path: '/test',
+    name: 'testvue',
+    component: testVue
   }
 ]
 
