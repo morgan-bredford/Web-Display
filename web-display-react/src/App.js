@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import Gallery from "./Gallery";
 import Login from './Login'
 import Welcome from './Welcome'
+import ImageTest from './ImageTest'
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
           />
           <Route path="/buildgallery" component={() => <BuildGallery user={user} setUser={setUser} loggedIn={loggedIn} /> } />
           <Route path="/gallery" component={() => <Gallery user={user} loggedIn={loggedIn} /> } />
+          <Route path="/test" component={() => <ImageTest /> } />
           <Redirect to="/" />
         </Switch>
       </div>

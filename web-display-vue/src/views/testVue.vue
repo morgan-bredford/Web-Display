@@ -1,34 +1,28 @@
 <template>
   <form>
-      <v-file-input
-       v-model="file"
-       chips
-       accept="image/*"
-       label="Image"
-       @change="onFileChange"
-    />
-     <input type="file" accept="image/*" @change="onFileChange" />
+     <input type="file" accept="image/*" @change="uploadImage($event)" />
   </form>
+  <img v-if="item.imageUrl" :src="item.imageUrl" />
 </template>
 
 <script>
+//import axios from 'axios'
 export default {
     data() { 
         return {
-            file: null, 
-            image: null 
+           item:{
+                image : null,
+                imageUrl: null
             }
-        },
-    methods: {
-        onFileChange() {
-            const reader = new FileReader()
-            reader.readAsDataURL(this.file)
-            reader.onload = e => {
-                this.image = e.target.result
-                console.log(this.image)
-            }
-        },
+        }
     },
+    methods: {
+        uploadImage(event) {
+            const file = event.target.files[0]
+            this.image = file
+            this.item.imageUrl = URL.createObjectURL(file)
+        },
+    }
 }
 </script>
     
