@@ -130,7 +130,7 @@ aside {
   background-color: rgba(63, 185, 132,.2);
   border-radius: 50%;
   padding: .7em;
-  font-size: 1.1vw;
+  font-size: 1vw;
   overflow: hidden;
   /* transition: all .2s linear; */
 }

@@ -19,7 +19,7 @@
             </div>
         </span>
     </div>
-    <div v-else>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
+    <div id="empty_gallery" v-else>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
 </template>
 
 <script>
@@ -99,5 +99,12 @@ export default {
     color: var(--lightgreen);
     font-size: .9em;
     line-height: 1.2em;
+}
+#empty_gallery {
+    width: 70vw;
+    margin:auto;
+    padding: 9px;
+    border-radius: 5px;
+    background-color: rgba(63, 185, 132,.6);
 }
 </style>

@@ -170,7 +170,7 @@ export default {
         display: flex;
         flex-direction: row;
         height: 5vh;
-        padding: .5em;
+        padding: .6em;
     }
     form input {
         width: 80%;
@@ -250,7 +250,7 @@ export default {
         height: 100%;
         background-color: rgba(63, 185, 132, 0.3);
         z-index: -1;
-        transition: transform .5s linear;
+        transition: transform .35s linear;
     }
     .add_img_text:hover::after {
         transform: translate(-5%,15%);

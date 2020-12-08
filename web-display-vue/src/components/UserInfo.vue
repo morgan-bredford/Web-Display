@@ -68,6 +68,9 @@ export default {
 </script>
 
 <style scoped>
+  * {
+    font-family: Montserrat, Arial;
+  }
   .formcontainer {
     display: block;
     margin-top: 6vh;

@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
 :root {
   /* --lightblue: #61dafb;
   --background: #282c34; */
@@ -32,12 +36,19 @@ a {
   text-decoration: none;
 }
 
+a:link {
+  color: inherit;
+}
+
 /* a:-webkit-any-link {
   color: var(--lightblue);
 } */
 
 button {
+  font-family: Montserrat, Arial;
+  font-weight: 500;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .imagecontainer {

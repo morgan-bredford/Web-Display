@@ -52,7 +52,6 @@ function UserPage(props) {
                 id="username"
                >{form.username}
               </div>
-              <br />
               <label htmlFor="password">Lösenord:</label>
               <input
                 type="text"
@@ -61,7 +60,7 @@ function UserPage(props) {
                 defaultValue={form.password}
                 placeholder="lösenord"
                 onChange={handleChange}
-              /><br />
+              />
               <label htmlFor="firstname">Förnamn:</label>
               <input
                 type="text"
@@ -70,7 +69,7 @@ function UserPage(props) {
                 defaultValue={form.firstname}
                 placeholder="förnamn"
                 onChange={handleChange}
-              /><br />
+              />
               <label htmlFor="lastname">Efternamn:</label>
               <input
                 type="text"
@@ -79,7 +78,7 @@ function UserPage(props) {
                 defaultValue={form.lastname}
                 placeholder="efternamn"
                 onChange={handleChange}
-              /><br />
+              />
               <label htmlFor="gender">Kön:</label>
               <select id="gender" name="gender" defaultValue={form.gender} onChange={handleChange} >
                 <option value={form.gender}>{form.gender}</option>
@@ -87,8 +86,7 @@ function UserPage(props) {
                 <option value="Kvinna">Kvinna</option>
                 <option value="Annat">Annat</option>
               </select>
-              <br />
-              <button style={{width: '6vw',height: '6vw',margin: '2vh auto 0',padding: '0px',fontSize:'.9vw',borderRadius: '50%'}}>Uppdatera</button>
+              <button style={{width: '6vw',height: '6vw',margin: '2vh auto 0',padding: '0px',fontSize:'.85vw',borderRadius: '50%'}}>Uppdatera</button>
             </form>
             <br />
             <Link to="/" >

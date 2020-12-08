@@ -68,7 +68,6 @@ class UserFormClass extends React.Component {
           <div className="formcontainer">
             <form id="create_user_form" onSubmit={this.handleSubmit}>
               <h1 style={{textAlign: 'center'}}>Skapa användare</h1>
-              <br />
               <h5 style={{textAlign: 'center',fontStyle: 'italic',opacity: '0.5'}}>--------------obligatoriskt----------------</h5>
               <label htmlFor="username">Användarnamn:</label>
               <input
