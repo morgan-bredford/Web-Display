@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const multer = require('multer')
 const path = require('path')
+const FormData = require('form-data');
 
 require("dotenv").config();
 
@@ -19,12 +20,12 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
-});
+// const uri = process.env.ATLAS_URI;
+// mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+// const connection = mongoose.connection;
+// connection.once("open", () => {
+//   console.log("MongoDB database connection established successfully");
+// });
 
 app.post("/test", (req,res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -47,3 +48,45 @@ const upload = multer({
     checkFileType(file, cb);
   }
 }).single('inpFile');
+
+app.post('/upload', (req, res) => {
+  upload(req, res, (err) => {
+    // var newfile = req.body.get('inpFile');
+    //   console.log(newfile.name);       //filename
+    //   console.log(newfile.size); 
+    
+    //console.log(req.body.get('inpFile'))
+    res.send('succ')
+    // if(err){
+    //   res.render('index', {
+    //     msg: err
+    //   });
+    // } else {
+    //   if(req.file == undefined){
+    //     res.render('index', {
+    //       msg: 'Error: No File Selected!'
+    //     });
+    //   } else {
+    //     res.render('index', {
+    //       msg: 'File Uploaded!',
+    //       file: `uploads/${req.file.filename}`
+    //     });
+    //   }
+    // }
+  });
+});
+
+function checkFileType(file, cb){
+  // Allowed ext
+  const filetypes = /jpeg|jpg|png|gif/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+
+  if(mimetype && extname){
+    return cb(null,true);
+  } else {
+    cb('Error: Images Only!');
+  }
+}
