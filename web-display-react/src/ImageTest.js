@@ -9,7 +9,16 @@ class ImageTest extends React.Component {
             imageUrl: null
         }
     }
-
+    handleSubmit = () => {
+        console.log(this.props.user)
+        const newuser = this.props.user[0]
+        newuser.image = this.state.image
+        console.log(newuser)
+        axios
+          .post("http://127.0.0.1:8080/users/update", [newuser])
+          .catch(err => {
+            console.log(err.response.data.message)})
+      }
     uploadImage = (event) => {
         const inpFile = document.getElementById('file')
         console.log(inpFile.files)
@@ -21,8 +30,9 @@ class ImageTest extends React.Component {
                 .catch(err => {
                     console.log(err.response)})
         const file = event.target.files[0]
-        this.image = file
+        this.setState({image: file})
         this.setState({imageUrl: URL.createObjectURL(file)})
+        console.log(this.state.image)
     }
 
     uploadImage2 = (e) => {
@@ -48,8 +58,9 @@ class ImageTest extends React.Component {
             <React.Fragment>
                 <br /><br />
                     <label htmlFor='file'>upload</label>
-                    <input type="file" accept="image/*" name="image" id="file" onChange={this.uploadImage2} style={{display: 'none'}} />
+                    <input type="file" accept="image/*" name="image" id="file" onChange={this.uploadImage} style={{display: 'none'}} />
                 <img src={this.state.imageUrl} />
+                <button onClick={this.handleSubmit}>dont</button>
             </React.Fragment>
         )
     }

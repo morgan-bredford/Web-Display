@@ -30,6 +30,9 @@ const userSchema = new Schema({
     },
     galleryimages: {
         type: Array,
+    },
+    image: {
+        type: Object,
     }
 },
 {

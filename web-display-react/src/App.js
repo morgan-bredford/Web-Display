@@ -44,7 +44,7 @@ function App() {
           />
           <Route path="/buildgallery" component={() => <BuildGallery user={user} setUser={setUser} loggedIn={loggedIn} /> } />
           <Route path="/gallery" component={() => <Gallery user={user} loggedIn={loggedIn} /> } />
-          <Route path="/test" component={() => <ImageTest /> } />
+          <Route path="/test" component={() => <ImageTest  user={user}/> } />
           <Redirect to="/" />
         </Switch>
       </div>

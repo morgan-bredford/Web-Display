@@ -19,12 +19,12 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-// const uri = process.env.ATLAS_URI;
-// mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
-// const connection = mongoose.connection;
-// connection.once("open", () => {
-//   console.log("MongoDB database connection established successfully");
-// });
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("MongoDB database connection established successfully");
+});
 
 app.post("/test", (req,res) => {
   res.header("Access-Control-Allow-Origin","*")
