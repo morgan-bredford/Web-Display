@@ -38,6 +38,22 @@ function UserPage(props) {
     props.setLoggedIn(false)
   };
 
+  const uploadImage = (event) => {
+    const inpFile = event.target.files[0]
+    console.log(inpFile.files)
+    const endpoint = "./upload.php"
+    const formData = new FormData()
+    formData.append("inpFile", inpFile.files[0])
+    axios
+    .post('http://127.0.0.1:8080/users/image',formData)
+            .catch(err => {
+                console.log(err.response)})
+    const file = event.target.files[0]
+    this.setState({image: file})
+    this.setState({imageUrl: URL.createObjectURL(file)})
+    console.log(this.state.image)
+}
+
   return (
     <main>
       <br /><br />
@@ -47,6 +63,8 @@ function UserPage(props) {
           <div style={{width: '30vw', margin: 'auto'}}>
             <form onSubmit={submitHandler}>
               <h1 style={{fontSize: '2vw'}} >Redigera dina uppgifter</h1>
+              <label htmlFor='file'>upload</label>
+                    <input type="file" accept="image/*" name="image" id="file" onChange={uploadImage} />
               <label htmlFor="username">Användarnamn:</label>
               <div
                 id="username"

@@ -37,6 +37,7 @@ app.use(express.static('./public'))
 const storage = multer.diskStorage({
   destination: '.public/uploads/',
   filename: (req, file, cb) => {
+    console.log(file)
     cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
 })
@@ -51,28 +52,23 @@ const upload = multer({
 
 app.post('/upload', (req, res) => {
   upload(req, res, (err) => {
-    // var newfile = req.body.get('inpFile');
-    //   console.log(newfile.name);       //filename
-    //   console.log(newfile.size); 
-    
-    //console.log(req.body.get('inpFile'))
-    res.send('succ')
-    // if(err){
-    //   res.render('index', {
-    //     msg: err
-    //   });
-    // } else {
-    //   if(req.file == undefined){
-    //     res.render('index', {
-    //       msg: 'Error: No File Selected!'
-    //     });
-    //   } else {
-    //     res.render('index', {
-    //       msg: 'File Uploaded!',
-    //       file: `uploads/${req.file.filename}`
-    //     });
-    //   }
-    // }
+    if(err){
+      res.render('index', {
+        msg: err
+      });
+    } else {
+      if(req.body == undefined){
+        res.render('index', {
+          msg: 'Error: No File Selected!'
+        });
+      } 
+      // else {
+      //   res.render('index', {
+      //     msg: 'File Uploaded!',
+      //     file: `uploads/${req.body.filename}`
+      //   });
+      // }
+    }
   });
 });
 
