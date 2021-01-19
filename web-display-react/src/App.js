@@ -10,10 +10,11 @@ import Welcome from './Welcome'
 import ImageTest from './ImageTest'
 
 function App() {
-
+// Setup storing user info and if they are logged in.
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
 
+// If the user using this browser didn't log out at the end of their last session then get their info from local storage and set it as current user
   useEffect( () => {
     if(localStorage.getItem('user')){
       setLoggedIn(true) 
@@ -25,7 +26,9 @@ function App() {
     <Router>
       <div className="App"  >
         <Navbar loggedIn={loggedIn} user={user} />
+         {/* Setup switch so any invalid url redirects to main page  */}
         <Switch>
+          {/* Checks if user is logged in and redirects accordingly */}
           { loggedIn ?
               <Route path="/" exact component={() => <Welcome user={user} setLoggedIn={setLoggedIn} setUser={setUser} />} />
             :
@@ -45,6 +48,7 @@ function App() {
           <Route path="/buildgallery" component={() => <BuildGallery user={user} setUser={setUser} loggedIn={loggedIn} /> } />
           <Route path="/gallery" component={() => <Gallery user={user} loggedIn={loggedIn} /> } />
           <Route path="/test" component={() => <ImageTest  user={user}/> } />
+          {/* Redirects to main page if url extension is invalid */}
           <Redirect to="/" />
         </Switch>
       </div>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-//import {Link} from 'react-router-dom'
 import './css/searchimages.css'
 import API_KEY from './api_key.js'
 
@@ -23,6 +22,7 @@ class SearchImages extends Component {
         };
     }
 
+    //Updates the component when the user does a search or navigates through the searched images or the lightbox 
     componentDidUpdate(prevProps,prevState){
         if(this.state.query && this.state.query !== prevState.query) {this.searchImages()}
         if(this.state.query && this.state.page !== prevState.page) {this.searchImages()}
@@ -30,6 +30,7 @@ class SearchImages extends Component {
         if(this.state.large_image !== prevState.large_image){this.setState({loading: true})}
     }
 
+    //Updates the state when the user does a new search and creates a navbar to navigate through the search results
     handleSubmit = (e,query,page) => {
         e.preventDefault();
         this.setState({query, page})
@@ -44,6 +45,7 @@ class SearchImages extends Component {
           .catch((err) => console.log(err));
     };
 
+    //Adds an image to the gallery array and updates it everywhere its stored
     addImage = (e,image) => {
         e.stopPropagation()
         const date = new Date()
@@ -80,6 +82,7 @@ class SearchImages extends Component {
         
     }
 
+    //Navigate through images in the lightbox
     imageNav = (e,move_index) => {
         e.stopPropagation()
         const index = this.state.search_images.findIndex(img => img.largeImageURL === this.state.large_image)
@@ -89,6 +92,7 @@ class SearchImages extends Component {
         )
     }
 
+    //Navigate through the search result pages
     pageNav = () => {
         const page_array = []
         for(let i=0;i<10;i++){
@@ -110,6 +114,7 @@ class SearchImages extends Component {
                 </form>
                 <br />
                 { 
+                // Opens the lightbox if an image in the gallery has been clicked 
                     this.state.large_image ? 
                         <div id="lightbox" onClick={() => this.setState({large_image: ""})}>
                             {
@@ -135,8 +140,9 @@ class SearchImages extends Component {
                     : null
                 }
                 { 
+                //Display search result
                   this.state.search_images.length ?  
-                    <React.Fragment>
+                    <>
                         <h4 style={{color: 'var(--lightblue)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400'}}>klicka på + för att lägga till bilden till ditt galleri</h4>
                         <div className="imagecontainer">
                         {
@@ -155,6 +161,7 @@ class SearchImages extends Component {
                         }
                         </div>
                         <br />
+                        {/* Display navigation bar for navigating through the search result */}
                         <div id="linkcontainer">
                             {
                                 this.state.page_links.length && this.state.page > 10 ? 
@@ -178,7 +185,7 @@ class SearchImages extends Component {
                                 :null
                             }
                         </div>
-                    </React.Fragment>
+                    </>
                     : null    
                 }
             </div>

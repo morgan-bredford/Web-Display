@@ -25,7 +25,7 @@ function Login(props) {
       }
 
     return(
-      <React.Fragment>
+      <>
         { props.loggedIn ? <Redirect to='/' /> : null }
         <div className="formcontainer">
           <form id="login_form" onSubmit={(e) => login(e)}>
@@ -38,7 +38,7 @@ function Login(props) {
               <button>Logga in</button>
           </form>
         </div>
-      </React.Fragment>
+      </>
     )
 }
 

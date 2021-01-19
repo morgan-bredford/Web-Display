@@ -7,14 +7,19 @@ function Gallery(props){
     //const [image_index,setImageIndex] = useState(-1)
     const [loading,setLoading] = useState(false)
 
+    // Sets the gallery image array depending if the user is logged in
     useEffect( () => {
+        // If the user is logged in get the image array from the user object
         if(props.loggedIn){
             setGalleryImages(props.user[0].galleryimages)
-        }else if(sessionStorage.getItem('imagearray')){
+        }
+        // If the user is not logged in get the image array from session storage
+        else if(sessionStorage.getItem('imagearray')){
                 setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
         }
     },[])
 
+    //Navigation of which image shows in the lightbox, moves to next or previous in the gallery array 
     const imageNav = (e,nav_index) => { 
         e.stopPropagation()  
         const index = gallery_images.findIndex(img => img.largeImageURL === large_image) + nav_index
@@ -24,6 +29,8 @@ function Gallery(props){
             .largeImageURL)
         }
     }
+
+    // Creates the date string thats added to the image object when saved in the gallery
     const getSaveDate = img => {
         const date = new Date(img.time)
         const options = {  
@@ -38,6 +45,7 @@ function Gallery(props){
         <br /><br /><br />
         <div className='imagecontainer'>
             {
+                // Opens the lightbox if an image in the gallery has been clicked 
                 large_image ?
                     <div id="lightbox" onClick={(e) => setLargeImage("") }>
                         {

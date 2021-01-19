@@ -10,11 +10,13 @@ function BuildGallery(props) {
   //const [query, setQuery] = useState("")
   const [page, setPage] = useState(1)
 
+  // Sets the gallery image array depending if its a logged in user, a non logged in user or a new user
   useEffect( () => {
+    // If the user is logged in get the image array from the user object
     if(props.loggedIn){
-console.log('reset')
       setSavedimages(props.user[0].galleryimages)
     }else{
+    // If the user is not logged in get the image array from session storage or if its a new user set it to empty
       if(sessionStorage.getItem('imagearray')){
         setSavedimages(JSON.parse(sessionStorage.getItem('imagearray')))
       }else{
@@ -43,6 +45,7 @@ console.log('reset')
   //     .catch((err) => console.log(err));
   // };
 
+  // remove image from gallery array and update in every place its stored
   const removeImage = (image_id) => {
     const newimagearray = savedimages.filter(
       (image) => image.id !== image_id
@@ -52,6 +55,7 @@ console.log('reset')
       let user = props.user
       user[0].galleryimages = newimagearray 
       
+      // Updates the database
       axios
       .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[user[0]])
       .then((res) => {
@@ -70,6 +74,7 @@ console.log('reset')
 
   const removeBackground = () => document.getElementById('main_search').style.backgroundImage = 'none'
 
+  // Experimental sorting images through dragging, only works in Chrome
   const getCoords =  () => {
     savedimages.map( image => {
         const obj = document.getElementById(image.id)
@@ -199,8 +204,9 @@ console.log(`inside: ${temparray[0].id}`)
     <main id="main_search">
       <SearchImages setSavedimages={setSavedimages} page={page} setPage={setPage}  loggedIn={props.loggedIn} user={props.user} setUser={props.setUser} />
       <br />
+      {/* Checks if there are any images saved to the gallery and if so displays them */}
      { savedimages.length ?
-      <React.Fragment>
+      <>
         {removeBackground()}
         <Link to={{pathname: "/gallery",
           savedImages:{savedimages}}}>
@@ -211,6 +217,7 @@ console.log(`inside: ${temparray[0].id}`)
             </p>
         </Link>
         <div className='imagecontainer'>
+          {/* Loop through the saved images and display them */}
           { savedimages.map(image =>
             <div className="search_img">
               <Link to={`/imagesearch/`}>
@@ -221,7 +228,7 @@ console.log(`inside: ${temparray[0].id}`)
           )}
         </div>
         <h4 style={{color: 'rgba(0, 0, 0, 0.7)',textAlign: 'center',fontStyle: 'italic',fontWeight: '400',display: 'none'}}>dra bilderna och släpp dem för att ändra ordning på dem i galleriet</h4>
-      </React.Fragment>
+      </>
       :null
       }
     </main>

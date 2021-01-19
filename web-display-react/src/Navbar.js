@@ -19,11 +19,10 @@ function Navbar(props) {
         }
       </ul>
       <div id="vue_link">
-       
-          <img src="../images/vue.ico" id="vue_link_img"  alt="logo"/>
-            <a href="http://vueapp161120.s3-website.eu-north-1.amazonaws.com/" style={{margin: '0'}}>
-              <div id="vue_link_text">Vue versionen</div>
-            </a>
+        <img src="../images/vue.ico" id="vue_link_img"  alt="logo"/>
+        <a href="http://vueapp161120.s3-website.eu-north-1.amazonaws.com/" style={{margin: '0'}}>
+          <div id="vue_link_text">Vue versionen</div>
+        </a>
       </div>
     </nav>
   );

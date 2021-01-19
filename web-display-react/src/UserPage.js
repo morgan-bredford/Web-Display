@@ -6,6 +6,7 @@ import axios from 'axios'
 function UserPage(props) {
   const [form, setForm] = useState({})
 
+  //Inserts user info into the page form 
   useEffect( () => {
     setForm(props.user[0])
     //props.setUser([form])
@@ -16,6 +17,7 @@ function UserPage(props) {
     setForm({...form, [e.target.name]: e.target.value })
   }
 
+  //Updates the user and saves it 
   const submitHandler = (e) => {
     e.preventDefault()
     props.setUser([form])
