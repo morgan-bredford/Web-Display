@@ -31,7 +31,7 @@ function Login(props) {
           <form id="login_form" onSubmit={(e) => login(e)}>
           <h1 style={{textAlign: 'center'}}>Logga in</h1>
               <label htmlFor="username">Användarnamn:</label>
-              <input type="text" name="username" placeholder="namn" />
+              <input type="text" name="username" placeholder="användarnamn" />
               <label htmlFor="password">Lösenord:</label>
               <input type="text" name="password" placeholder="lösenord" />
               <br />
