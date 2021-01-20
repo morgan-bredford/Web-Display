@@ -1,8 +1,5 @@
-bara en av samma bild
-centrera galleritext
-göra gallerikort
-kolla lightbox
-jag
-webcam
-jacka
-mus
+Redux
+Typescript
+Context
+memo
+connect
