@@ -1,0 +1,93 @@
+.ts_app {
+  width: 40vw;
+  margin: auto;
+  margin-top: 5vh;
+  padding: 10px;
+  background-color: var(--background);
+  text-align: center;
+  border: 1px solid rgba(97, 218, 251, 0.9);
+  border-radius: 5px;
+}
+
+#ts_stats {
+  margin-bottom: 1.5vh;
+  font-size: 1.29vw;
+  font-weight: 600;
+}
+
+#ts_form {
+  font-size: 1.7vw;
+  font-weight: 600;
+}
+
+.ts_select {
+  width: 10vw;
+  margin: auto;
+  font-size: 1.25vw;
+}
+
+#ts_button {
+  width: 10vw;
+  margin: auto;
+  font-size: 1.35vw;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#bottom_margin {
+  margin-bottom: 1vh;
+}
+
+.ts_answer {
+  width: 20vw;
+  margin: auto;
+  margin-bottom: 8px;
+  color: black;
+  background-color: var(--lightblue);
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  /* box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5); */
+}
+
+.ts_answer:hover {
+  /* box-shadow: -1px -1px 1px rgb(0, 0, 0, 0.5); */
+  background-color: rgba(97, 218, 251, 0.7);
+}
+
+#ts_right_or_wrong {
+  visibility: hidden;
+  width: 5vw;
+  height: 28px;
+  margin: auto;
+  margin-bottom: 1vh;
+  padding: 5px;
+  background-color: var(--lightblue);
+  color: var(--background);
+  text-align: center;
+  font-weight: 600;
+  border-radius: 3px;
+}
+
+.ts_correct {
+  background-color: rgb(115, 211, 128);
+}
+
+.ts_correct:hover {
+  background-color: rgb(115, 211, 128);
+}
+
+.ts_wrong {
+  background-color: rgb(233, 83, 83);
+}
+
+.ts_wrong:hover {
+  background-color: rgb(233, 83, 83);
+}
+
+#ts_result {
+  display: none;
+  margin-bottom: 2vh;
+  font-size: 1.75vw;
+  font-weight: 600;
+}
