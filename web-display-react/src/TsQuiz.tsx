@@ -16,16 +16,7 @@ export const shuffleArray = (array: string[]) =>
 [...array].sort(() => Math.random() - 0.5)
 
 function TsQuiz () {
-  const [questions, setQuestions] = useState<Question[]>([
-    // {
-    // category: 'ph',
-    // correct_answer: 'ph',
-    // difficulty: 'ph',
-    // incorrect_answers: [],
-    // question: 'ph',
-    // type: 'ph'
-    // }
-])
+  const [questions, setQuestions] = useState<Question[]>([])
   const [active, setActive] = useState<boolean>(false)
   const [active_question, setActive_question] = useState<number>(0)
   const [total_questions, setTotal_of_questions] = useState<number>(0)
@@ -49,7 +40,7 @@ function TsQuiz () {
     e.preventDefault()
     setScore(0)
     setAnswered(false)
-    const num_of_questions: Number_of_questions = ((e.currentTarget.elements.namedItem('num_of_questions') as HTMLInputElement).value as Number_of_questions)
+    const num_of_questions: Number_of_questions = ((e.currentTarget.elements.namedItem('num_of_questions') as HTMLInputElement).value as unknown as Number_of_questions)
     const difficulty: Difficulty = ((e.currentTarget.elements.namedItem('difficulty') as HTMLInputElement).value as Difficulty)
     const ques = await getQuestions(num_of_questions, difficulty)
     const rand_quest_array = shuffleArray([...ques[active_question].incorrect_answers, ques[active_question].correct_answer])
@@ -74,11 +65,13 @@ function TsQuiz () {
       document.getElementById("ts_right_or_wrong")!.style.visibility = 'visible'
       if( e.currentTarget.innerHTML === questions[active_question].correct_answer ){
         e.currentTarget.classList.add("ts_correct")
+        document.getElementById("ts_right_or_wrong")!.style.backgroundColor = 'rgb(115, 211, 128)'
         document.getElementById("ts_right_or_wrong")!.innerHTML = 'Rätt!'
         setScore(prevscore => prevscore + 1)
       }else{
         e.currentTarget.classList.add("ts_wrong")
-        document.getElementById("ts_right_or_wrong")!.innerHTML = 'Fel.'
+        document.getElementById("ts_right_or_wrong")!.style.backgroundColor = 'rgb(233, 83, 83)'
+        document.getElementById("ts_right_or_wrong")!.innerHTML = `Korrekt svar: ${questions[active_question].correct_answer}`
         //const child_nodes: (NodeListOf<ChildNode> | undefined) = document.getElementById('answers')?.childNodes
         const child_nodes: (NodeListOf<ChildNode>) = document.getElementById('ts_answers')!.childNodes
         //if(child_nodes){

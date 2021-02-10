@@ -57,7 +57,7 @@
 
 #ts_right_or_wrong {
   visibility: hidden;
-  width: 5vw;
+  width: max-content;
   height: 28px;
   margin: auto;
   margin-bottom: 1vh;

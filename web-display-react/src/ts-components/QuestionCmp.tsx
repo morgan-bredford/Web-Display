@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import { Question } from '../TsQuiz'
 import "../tsMain.css"
 
@@ -13,16 +12,9 @@ import "../tsMain.css"
 //     type: string
 // }
 type Props = Question & {checkAnswer: any} & {active_question: number} & {randomized_questions: string[]}
-
-// const shuffleArray = (array: string[]) =>
-// [...array].sort(() => Math.random() - 0.5);
-
-let ans_num: number = 0
  
-const QuestionCmp: React.FC<Props> = ({category, correct_answer, difficulty, incorrect_answers, question, type, checkAnswer, active_question, randomized_questions}) => {
-  // console.log('q render')
-  // useEffect( () => console.log(correct_answer),[correct_answer])
-    //const randomized_answers: string[] = shuffleArray([...incorrect_answers, correct_answer])
+const QuestionCmp: React.FC<Props> = ({category, question, checkAnswer, randomized_questions}) => {
+  
     return (
         <div>
            <h1 id="bottom_margin">{category}</h1>

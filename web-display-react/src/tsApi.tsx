@@ -1,9 +1,9 @@
 
 
 export enum Number_of_questions {
-    FIVE = '5',
-    TEN = '10',
-    FIFTHTEEN = '15'
+    FIVE = 5,
+    TEN = 10,
+    FIFTHTEEN = 15,
 }
 
 export enum Difficulty {
