@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import UserPage from './UserPage'
-import UserFormClass from "./UserFormClass";
-import BuildGallery from "./BuildGallery";
-import Navbar from "./Navbar";
+import UserPage from './components/UserPage'
+import UserFormClass from "./components/UserFormClass";
+import BuildGallery from "./components/BuildGallery";
+import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import Gallery from "./Gallery";
-import Login from './Login'
-import Welcome from './Welcome'
+import Gallery from "./components/Gallery";
+import Login from './components/Login'
+import Welcome from './components/Welcome'
 import ImageTest from './ImageTest'
 import TsQuiz from "./TsQuiz";
 

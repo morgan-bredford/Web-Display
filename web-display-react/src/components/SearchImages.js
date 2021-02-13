@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import './css/searchimages.css'
-import API_KEY from './api_key.js'
+import '../css/searchimages.css'
+import API_KEY from '../api_key.js'
 
 
 class SearchImages extends Component {
