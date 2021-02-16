@@ -1,5 +1,0 @@
-Redux
-Typescript
-Context
-memo
-connect
