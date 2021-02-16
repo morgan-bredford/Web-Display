@@ -33,7 +33,7 @@ export default createStore({
           (image) => image.id !== id
         )
         axios
-          .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: context.state.user.username, galleryimages: newimagearray}])
+          .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: context.state.user.username, galleryimages: newimagearray}])
           .then((res) => {
             console.log(res)
             context.commit('setGallery', newimagearray)
@@ -46,7 +46,7 @@ export default createStore({
     updateUser(context, user_form){
       console.log(user_form)
       axios
-          .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[user_form])
+          .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[user_form])
           .then((res) => {
             console.log(res)
             localStorage.setItem('user',JSON.stringify(context.state.user))

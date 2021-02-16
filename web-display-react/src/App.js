@@ -15,7 +15,8 @@ function App() {
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
 
-// If the user using this browser didn't log out at the end of their last session then get their info from local storage and set it as current user
+// If the user using this browser didn't log out at the end of their last session then get their info 
+// from local storage and set it as current user
   useEffect( () => {
     if(localStorage.getItem('user')){
       setLoggedIn(true) 

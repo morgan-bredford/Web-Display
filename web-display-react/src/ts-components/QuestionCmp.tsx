@@ -20,7 +20,6 @@ const QuestionCmp: React.FC<Props> = ({category, question, checkAnswer, randomiz
            <h1 id="bottom_margin">{category}</h1>
            <h2 id="bottom_margin" dangerouslySetInnerHTML={{__html: question}}></h2>
            <p id="ts_right_or_wrong"></p>
-           {/* <p>{correct_answer}</p> */}
            <div id="ts_answers">
             {
               randomized_questions.map( answer => 

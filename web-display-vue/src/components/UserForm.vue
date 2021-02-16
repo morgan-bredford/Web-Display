@@ -90,7 +90,7 @@ export default {
             // const user = {username: this.username,password: this.password,firstname: this.firstname,lastname: this.lastname,gender: this.gender,galleryimages: []}
             this.formData.galleryimages = []
             axios
-              .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/add", this.formData)
+              .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/add", this.formData)
               .then((res) => { 
                 console.log(res)
                  localStorage.setItem('user', JSON.stringify(this.formData))

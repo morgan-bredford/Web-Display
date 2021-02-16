@@ -24,18 +24,6 @@ function TsQuiz () {
   const [randomized_questions,setRandomizedQuestions] = useState<string[]>([])
   const [answered, setAnswered] = useState<boolean>(false)
 
-  // useEffect( 
-  //   () =>
-  //   { const ts = async () => {
-  //     const url = 'https://opentdb.com/api.php?amount=5'
-  
-  //     const qs = await (await fetch(url)).json()
-  //     setQuestions(qs.results)  
-  //   }
-  //   ts()}
-  //   ,[]
-  // )
-
   const startGame = async (e: React.FormEvent<HTMLFormElement> ) => {
     e.preventDefault()
     setScore(0)

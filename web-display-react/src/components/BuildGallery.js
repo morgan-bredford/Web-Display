@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import SearchImages from "./SearchImages";
 
 function BuildGallery(props) {
-  //const [searchimages, setSearchimages] = useState([]);
   const [savedimages,setSavedimages] = useState([]);
-  //const [pic, setPic] = useState("");
-  //const [query, setQuery] = useState("")
   const [page, setPage] = useState(1)
 
   // Sets the gallery image array depending if its a logged in user, a non logged in user or a new user
@@ -36,15 +33,6 @@ function BuildGallery(props) {
   //   console.log('update')
   // },[savedimages])
 
-  // const handleSubmit = (e,query,page) => {
-  //   e.preventDefault();
-  //   setQuery(e.target.searchbox.value)
-  //   axios
-  //     .get(`${URL}?key=${apikey}&q=${query}&per_page=5&page=${page}`)
-  //     .then((res) => setSearchimages(res.data.hits))
-  //     .catch((err) => console.log(err));
-  // };
-
   // remove image from gallery array and update in every place its stored
   const removeImage = (image_id) => {
     const newimagearray = savedimages.filter(
@@ -57,7 +45,7 @@ function BuildGallery(props) {
       
       // Updates the database
       axios
-      .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[user[0]])
+      .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[user[0]])
       .then((res) => {
           props.setUser(user)
           localStorage.setItem('user',JSON.stringify(user))

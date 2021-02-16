@@ -9,11 +9,9 @@ function UserPage(props) {
   //Inserts user info into the page form 
   useEffect( () => {
     setForm(props.user[0])
-    //props.setUser([form])
   },[])
   
   const handleChange = (e) => {
-    //props.setUser([{ [e.target.name]: e.target.value }]);
     setForm({...form, [e.target.name]: e.target.value })
   }
 
@@ -23,7 +21,7 @@ function UserPage(props) {
     props.setUser([form])
 
     axios
-      .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update", [form])
+      .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update", [form])
       .then((res) => { 
         console.log(res)
         localStorage.setItem('user', JSON.stringify([form]))

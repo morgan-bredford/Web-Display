@@ -5,9 +5,6 @@ import '../css/userformclass.css'
 import Login from './Login'
 import { Link } from 'react-router-dom'
 
-// import UserForm from 'react-hook-form'
-// const {register,handleSubmit,errors} = useForm()
-
 class UserFormClass extends React.Component {
   constructor() {
     super();
@@ -43,7 +40,6 @@ class UserFormClass extends React.Component {
   }
 
   removeAnimation = () => {
-    
     const skip = document.getElementById('skip_login_left')
     skip.style.color = 'red'
     console.log(skip)

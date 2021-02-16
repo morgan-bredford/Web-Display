@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="about">
         <br />
         <h1 >Välkommen att logga in</h1>
         <br />
@@ -7,9 +7,7 @@
             <form @submit.prevent="logIn">
                 <label htmlFor="username">Användarnamn:</label>
                 <input type="text" name="username" v-model="formData.username" placeholder="användarnamn" />
-                
                 <label htmlFor="password">Lösenord:</label>
-                
                 <input type="text" name="password" v-model="formData.password" placeholder="lösenord" />
                 <button>Logga in</button>               
             </form>
@@ -36,7 +34,7 @@ export default {
         logIn(){
        
             axios
-            .get("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/find?search="+this.formData.username)
+            .get("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/find?search="+this.formData.username)
             .then((res) => {
                 if(res.data.length){
                     if(res.data[0].password === this.formData.password){

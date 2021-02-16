@@ -1,46 +1,45 @@
 <template>
-<main>
-    <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
-        <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
-        <div id="lbimgcontainer">
-            <img class="lbimg" :src="large_image" @load="loading = false" @click.stop="(e) => e.stopPropagation()"/>
-            <aside id="lb_add_img" @click.stop="addImage(current_img)">
-                <h1 id="lb_add_img_plus">+</h1>
-                <p id="lb_add_img_text">lägg till bild</p>
-            </aside>
-            <span id="lbload" v-if="loading" >loading...</span>
-            <span id="lbclose" @click="large_image = ''">X</span>
+    <main>
+        <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
+            <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
+            <div id="lbimgcontainer">
+                <img class="lbimg" :src="large_image" @load="loading = false" @click.stop="(e) => e.stopPropagation()"/>
+                <aside id="lb_add_img" @click.stop="addImage(current_img)">
+                    <h1 id="lb_add_img_plus">+</h1>
+                    <p id="lb_add_img_text">lägg till bild</p>
+                </aside>
+                <span id="lbload" v-if="loading" >loading...</span>
+                <span id="lbclose" @click="large_image = ''">X</span>
+            </div>
+            <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
         </div>
-        <span class="lbnav" v-if="getImgIndex() < search_images.length - 1" @click.stop="() => {loading = true;imgNav(1)}"><img src="../assets/forward_arrow.svg" class="arrow"></span>
-    </div>
-    <div id="container_search">
-        <h1 >Sök på bilder från Pixabay</h1>
-        <div class="formcontainer">
-            <form id="searchbox" @submit.prevent="searchImages">
-                <input type="text" name="searchbox" v-model="query" />
-                <button>Sök</button>
-            </form>
-        </div>
-    </div>
-    <br />
-    <h4 v-if="search" style="color: var(--lightblue);textAlign: center;fontStyle: italic;fontWeight: 400">klicka på + för att lägga till bilden till ditt galleri</h4>
-    <div v-if="search">
-        <div class="imagecontainer">
-            <div :key="img.id" v-for="img in search_images">
-                <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true;current_img = img}" /><div class="add_img_text" @click="addImage(img)">lägg till +</div>
+        <div id="container_search">
+            <h1 >Sök på bilder från Pixabay</h1>
+            <div class="formcontainer">
+                <form id="searchbox" @submit.prevent="searchImages">
+                    <input type="text" name="searchbox" v-model="query" />
+                    <button>Sök</button>
+                </form>
             </div>
         </div>
-        <div id="linkcontainer" v-if="search_images.length">
-            <span class="pagelinks" id="prev_ten" v-if="page > 10">
-                <img src="../assets/backward_arrow.svg" class="arrow" id="prev_ten" @click="searchImages"/></span>
-            <span class="pagelinks" v-for="(n, index) in 10" :key="index" :id="index+page_nav_index" @click="searchImages">{{index+page_nav_index}}</span>
-                <span class="pagelinks" id="next_ten">
-                <img src="../assets/forward_arrow.svg" class="arrow" id="next_ten" @click="searchImages"/></span>
+        <br />
+        <h4 v-if="search" style="color: var(--lightblue);textAlign: center;fontStyle: italic;fontWeight: 400">klicka på + för att lägga till bilden till ditt galleri</h4>
+        <div v-if="search">
+            <div class="imagecontainer">
+                <div :key="img.id" v-for="img in search_images">
+                    <img :src="img.previewURL" @click="() =>  {large_image = img.largeImageURL;loading = true;current_img = img}" /><div class="add_img_text" @click="addImage(img)">lägg till +</div>
+                </div>
+            </div>
+            <div id="linkcontainer" v-if="search_images.length">
+                <span class="pagelinks" id="prev_ten" v-if="page > 10">
+                    <img src="../assets/backward_arrow.svg" class="arrow" id="prev_ten" @click="searchImages"/></span>
+                <span class="pagelinks" v-for="(n, index) in 10" :key="index" :id="index+page_nav_index" @click="searchImages">{{index+page_nav_index}}</span>
+                    <span class="pagelinks" id="next_ten">
+                    <img src="../assets/forward_arrow.svg" class="arrow" id="next_ten" @click="searchImages"/></span>
+            </div>
         </div>
-    </div>
-    <br />
-    
-</main>
+        <br />
+    </main>
 </template>
 
 <script>
@@ -137,7 +136,7 @@ export default {
             if(this.loggedIn){
 
                 axios
-                    .post("http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: this.user.username, galleryimages: newimagearray}])
+                    .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[{username: this.user.username, galleryimages: newimagearray}])
                     .then((res) => {
                         console.log(res)
                         this.addimg(imageobj)

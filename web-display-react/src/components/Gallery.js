@@ -4,7 +4,6 @@ import '../css/searchimages.css'
 function Gallery(props){
     const [gallery_images,setGalleryImages] = useState([])
     const [large_image,setLargeImage] = useState("")
-    //const [image_index,setImageIndex] = useState(-1)
     const [loading,setLoading] = useState(false)
 
     // Sets the gallery image array depending if the user is logged in

@@ -1,4 +1,5 @@
 <template>
+  <main class="about">
     <br />
     <SearchImages />
     <div class='imagecontainer' v-if="user.galleryimages.length">
@@ -14,6 +15,7 @@
         </router-link>
       </aside>
     </div>
+  </main>
 </template>
 
 <script>

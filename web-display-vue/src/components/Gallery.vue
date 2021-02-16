@@ -1,5 +1,6 @@
 <template>
   <br /><br /><br />
+    <!-- Opens the lightbox if an image in the gallery has been clicked  -->
     <div id="lightbox" v-if="large_image" @click.stop="large_image = ''">
         <span class="lbnav" v-if="getImgIndex() > 0"  @click.stop="() => {loading = true;imgNav(-1)}"><img src="../assets/backward_arrow.svg" class="arrow"></span>
         <div id="lbimgcontainer">
@@ -51,6 +52,7 @@ export default {
     methods: {
         test: () => console.log(this.loggedIn),
         ...mapMutations(['setGallery','setUser','logIn']),
+        //Navigation of which image shows in the lightbox, moves to next or previous in the gallery array 
         imgNav(move_index){
             const index = this.getImgIndex()
             this.large_image = this.user.galleryimages[index + move_index].largeImageURL
@@ -60,6 +62,7 @@ export default {
             console.log(index)
             return index
         },
+        // Creates the date string thats added to the image object when saved in the gallery
         getSaveDate: img => {
             const date = new Date(img.time)
             const options = {  
