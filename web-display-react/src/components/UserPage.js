@@ -63,9 +63,9 @@ function UserPage(props) {
           <div style={{width: '30vw', margin: 'auto'}}>
             <form onSubmit={submitHandler}>
               <h1 style={{fontSize: '2vw'}} >Redigera dina uppgifter</h1>
-              <label htmlFor='file'>upload</label>
+              {/* <label htmlFor='file'>upload</label>
                     <input type="file" accept="image/*" name="image" id="file" onChange={uploadImage} />
-              <label htmlFor="username">Användarnamn:</label>
+              <label htmlFor="username">Användarnamn:</label> */}
               <div
                 id="username"
                >{form.username}

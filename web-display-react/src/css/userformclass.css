@@ -178,7 +178,7 @@ form {
   display: flex;
   flex-direction: column;
   font-family: Montserrat, Arial;
-  background-color: rgba(40, 44, 52, 0.6);
+  background-color: rgba(40, 44, 52, 0.75);
   padding: 1.5em;
   border-radius: 5px;
   border: 1px solid rgba(97, 218, 251, 0.9);
