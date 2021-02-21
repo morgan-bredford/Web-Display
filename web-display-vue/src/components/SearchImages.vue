@@ -79,7 +79,7 @@ export default {
                this.page_nav_index -= 10
                this.page = this.page_nav_index
                axios
-                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=18&page=${this.page}`)
+                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=9&page=${this.page}`)
                     .then((res) => {
                         this.search_images = res.data.hits
                         this.search = true
@@ -90,7 +90,7 @@ export default {
                this.page_nav_index += 10
                this.page = this.page_nav_index
                axios
-                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=10&page=${this.page}`)
+                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=9&page=${this.page}`)
                     .then((res) => {
                         this.search_images = res.data.hits
                         this.search = true
@@ -100,7 +100,7 @@ export default {
            if(e.target.id){
                this.page = e.target.id
                axios
-                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=10&page=${this.page}`)
+                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=9&page=${this.page}`)
                     .then((res) => {
                         this.search_images = res.data.hits
                         this.search = true
@@ -109,7 +109,7 @@ export default {
            }else
             if(this.query){
                 axios
-                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=10&page=${this.page}`)
+                    .get(`${this.URL}?key=${this.apikey}&q=${this.query}&per_page=9&page=${this.page}`)
                     .then((res) => {
                         this.search_images = res.data.hits
                         this.search = true

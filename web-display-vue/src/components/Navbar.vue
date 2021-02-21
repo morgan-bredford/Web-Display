@@ -10,7 +10,7 @@
     </ul>
     <div id="react_link">
       <img src="../assets/react_logo_small.png" id="react_link_img" />
-      <a href="http://ec2-13-48-204-0.eu-north-1.compute.amazonaws.com/" id="react_link_a">
+      <a href="http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com/" id="react_link_a">
           <div id="react_link_text">React versionen</div>
       </a>
     </div>
