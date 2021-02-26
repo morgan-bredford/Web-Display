@@ -122,17 +122,13 @@
             currentAnswer.value = true
             numOfCorrectAnswers.value = numOfCorrectAnswers.value + 1
             document.getElementById('ts_right_or_wrong')!.innerHTML = 'Rätt!'
-            //document.getElementById('ts_right_or_wrong')!.classList.add('visible')
-            //document.getElementById('ts_right_or_wrong')!.style.backgroundColor = 'green'
             e.classList.add('right')
             answered.value = true
           }else{
             currentAnswer.value = false
             console.log('wrong')
             e.classList.add("wrong")
-            //document.getElementById("ts_right_or_wrong")!.style.backgroundColor = 'red'
             document.getElementById("ts_right_or_wrong")!.innerHTML = `Korrekt svar: ${questions.value[activeQuestion.value].correct_answer}`
-            //document.getElementById('ts_right_or_wrong')!.classList.add('visible')
             answered.value = true
             const child_nodes: (NodeListOf<ChildNode>) = document.getElementById('ts_answers')!.childNodes
             for(let i=1;i<child_nodes.length-1;i++){
