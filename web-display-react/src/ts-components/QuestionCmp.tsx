@@ -11,7 +11,7 @@ import "../tsMain.css"
 //     question: string
 //     type: string
 // }
-type Props = Question & {checkAnswer: any} & {active_question: number} & {randomized_questions: string[]}
+type Props = Question & {checkAnswer: Function} & {active_question: number} & {randomized_questions: string[]}
  
 const QuestionCmp: React.FC<Props> = ({category, question, checkAnswer, randomized_questions}) => {
   

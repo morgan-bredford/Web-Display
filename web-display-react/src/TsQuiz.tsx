@@ -34,10 +34,8 @@ function TsQuiz () {
     const rand_quest_array = shuffleArray([...ques[active_question].incorrect_answers, ques[active_question].correct_answer])
     setQuestions(ques)
     setRandomizedQuestions(rand_quest_array)
-    setTotal_of_questions(+num_of_questions)
+    setTotal_of_questions(num_of_questions)
     setActive(true)
-    // const result_div = document.getElementById('result')
-    // if(result_div) result_div.style.display = 'none'
     document.getElementById('ts_result')!.style.display = 'none'
   }
 
@@ -62,14 +60,12 @@ function TsQuiz () {
         document.getElementById("ts_right_or_wrong")!.innerHTML = `Korrekt svar: ${questions[active_question].correct_answer}`
         //const child_nodes: (NodeListOf<ChildNode> | undefined) = document.getElementById('answers')?.childNodes
         const child_nodes: (NodeListOf<ChildNode>) = document.getElementById('ts_answers')!.childNodes
-        //if(child_nodes){
-          for(let i=0;i<child_nodes.length;i++){
-            let node = document.getElementById(String(i))!
-            if(node.innerHTML === questions[active_question].correct_answer) {
-              node.classList.add("ts_correct")
-            }
+        for(let i=0;i<child_nodes.length;i++){
+          let node = document.getElementById(String(i))!
+          if(node.innerHTML === questions[active_question].correct_answer) {
+            node.classList.add("ts_correct")
           }
-        //}
+        }
       }
     }
     setAnswered(true)
