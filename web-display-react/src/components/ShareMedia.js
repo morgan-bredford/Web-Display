@@ -2,6 +2,7 @@ import { useState } from "react"
 import React from 'react'
 import axios from 'axios'
 import '../css/sharemedia.css'
+import Alt1 from "./Alt1"
 
 
 const ShareMedia = () => {
@@ -14,7 +15,12 @@ const ShareMedia = () => {
         console.log(formdata)
 
         axios.post("https://api.cloudinary.com/v1_1/dhusv2stv/image/upload", formdata)
-        .then( res => console.log(res) )
+        //.then( res => console.log(res.data.url) )
+        .then( res => {
+            document.getElementById('uploaded_media').src = res.data.url
+            document.getElementById('uploaded_media').style.display = 'flex'
+            document.getElementById('upload_media_label').style.display = 'none'
+        })
         .catch( err => console.log(err) )
     }
 
@@ -38,8 +44,7 @@ const ShareMedia = () => {
                     </div>
                     :
                     <div>
-                        <p>du har valt {alt}</p>
-                        <input type="file" onChange={ e => uploadMedia(e.target.files) } />
+                        <Alt1 uploadMedia={uploadMedia} />
                     </div>
                 }
             </div>
