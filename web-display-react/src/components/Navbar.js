@@ -17,6 +17,9 @@ function Navbar(props) {
         <NavLink to="/quiz">
           <li>quiz<img src="/images/react_logo_small.png" className="navimg" alt="logo"/></li>
         </NavLink>
+        <NavLink to="/sharemedia">
+          <li>Share Media<img src="/images/react_logo_small.png" className="navimg" alt="logo"/></li>
+        </NavLink>
         { 
           props.loggedIn ? <NavLink to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}<img src="/images/react_logo_small.png" className="navimg" alt="logo"/></li></NavLink> : <NavLink to="/login"><li>logga in<img src="/images/react_logo_small.png" className="navimg"/></li></NavLink>
         }

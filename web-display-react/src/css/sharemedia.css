@@ -1,0 +1,20 @@
+.share_media {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choose_media_look {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70vw;
+  height: 30vh;
+  background-color: blueviolet;
+}
+
+.choose_media_look_choice {
+  background-color: burlywood;
+}
