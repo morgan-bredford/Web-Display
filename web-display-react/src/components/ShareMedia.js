@@ -10,7 +10,7 @@ const ShareMedia = () => {
     const [gallery_images,setGalleryImages] = useState([])
 
     useEffect( () => {
-        setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
+        if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
     },[]) 
 
     const uploadMedia = (files) => {
@@ -24,15 +24,15 @@ const ShareMedia = () => {
         .then( res => {
             document.getElementById('chosen_media').src = res.data.url
             document.getElementById('chosen_media').style.display = 'flex'
-            document.getElementsByClassName('pic_source_choice').style.display = 'none'
+            document.getElementById('choose_media_container').style.display = 'none'
         })
         .catch( err => console.log(err) )
     }
 
     const chooseGalleryPic = (url) => {
         document.getElementById('chosen_media').src = url
-        document.getElementById('chosen_media').style.display = 'unset'
-        document.getElementsByClassName('pic_source_choice').style.display = 'none'
+        document.querySelector('.chosen_media_container').style.display = 'unset'
+        //document.getElementById('choose_media_container').style.display = 'none'
     }
 
     return(
