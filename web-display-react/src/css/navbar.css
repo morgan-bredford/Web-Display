@@ -9,7 +9,7 @@ nav {
   background: url(/images/react_logo_small.png) center no-repeat;
   background-color: var(--background);
   height: 10vh;
-  font-size: 1.5em;
+  font-size: 1.5vw;
   border-bottom: 1px solid var(--lightblue);
   /* animation: zoom 40s linear infinite; */
 }

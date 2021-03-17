@@ -8,6 +8,7 @@ import Alt1 from "./Alt1"
 const ShareMedia = () => {
     const [alt, setAlt] = useState('')
     const [gallery_images,setGalleryImages] = useState([])
+    const [preview, setPreview] = useState({text: "", media: ""})
 
     useEffect( () => {
         if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
@@ -32,7 +33,13 @@ const ShareMedia = () => {
     const chooseGalleryPic = (url) => {
         document.getElementById('chosen_media').src = url
         document.querySelector('.chosen_media_container').style.display = 'unset'
-        //document.getElementById('choose_media_container').style.display = 'none'
+        previewHandler({media: url})
+    }
+
+    const previewHandler = (p) => {
+        console.log(p)
+        setPreview({...preview, ...p})
+        console.log(preview)
     }
 
     return(
@@ -55,7 +62,7 @@ const ShareMedia = () => {
                     </div>
                     :
                     <div>
-                        <Alt1 uploadMedia={uploadMedia} chooseGalleryPic={chooseGalleryPic} gallery_images={gallery_images}/>
+                        <Alt1 uploadMedia={uploadMedia} chooseGalleryPic={chooseGalleryPic} gallery_images={gallery_images} preview={preview} previewHandler={previewHandler}/>
                     </div>
                 }
             </div>

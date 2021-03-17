@@ -12,11 +12,13 @@ const FontOptions = (props) => {
                 <option value="24px">24</option>
                 <option value="36px">36</option>
             </select>
-            <label htmlFor="bold_check">Bold</label>
+            <label htmlFor="bold_check" id="bold_button">B</label>
             <input type="checkbox" className="inflex" id="bold_check" value="700" 
             onClick={ (e) => e.target.checked 
-                ? props.setFontOptions({...props.fontOptions, fontWeight: e.target.value})
-                : props.setFontOptions({...props.fontOptions, fontWeight: '500'})
+                ? (props.setFontOptions({...props.fontOptions, fontWeight: e.target.value}),
+                  document.querySelector('#bold_button').style.boxShadow = 'inset 1px 1px 1px rgba(0, 0, 0, 0.7)' )
+                : (props.setFontOptions({...props.fontOptions, fontWeight: '500'}),
+                  document.querySelector('#bold_button').style.boxShadow = '1px 1px 1px rgba(0, 0, 0, 0.7)' )
             } />
         </section>
     )
