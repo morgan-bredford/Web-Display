@@ -1,4 +1,5 @@
 .share_media {
+  position: relative;
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -6,6 +7,7 @@
   color: black;
 }
 
+/* ----- Choose Media Modal ---------------------------------- */
 .choose_media_look {
   display: flex;
   flex-flow: row;
@@ -30,10 +32,17 @@
   padding: 1em;
 }
 
-.alt1_section {
+.text_section {
   display: flex;
   position: relative;
-  width: 49%;
+  padding: 1em;
+  background-color: wheat;
+  border: 2px dotted black;
+}
+
+.media_section {
+  display: flex;
+  position: relative;
   padding: 1em;
   background-color: wheat;
   border: 2px dotted black;
@@ -56,6 +65,11 @@
 
 .inflex {
   display: inline-flex;
+  height: minmax(18px, 1.5vw);
+}
+
+.choose_font_style {
+  max-width: 60%;
 }
 
 #bold_check {
@@ -70,15 +84,18 @@
 }
 
 #bold_button {
-  width: 25px;
-  height: 25px;
+  width: 1.5vw;
+  min-width: 1.5vw;
+  height: 1.5vw;
   margin: 0;
   padding: 2px;
   text-align: center;
+  font-size: 1vw;
   font-weight: 700;
-  line-height: 150%;
+  line-height: 1.29vw;
   background-color: #ddd;
   border-radius: 50%;
+  cursor: pointer;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
 }
 
@@ -132,8 +149,11 @@
   position: absolute;
   top: 1em;
   right: 1em;
-  text-decoration: underline;
+  padding: 2px;
   background-color: blanchedalmond;
+  border: 1px solid black;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 #choose_gallery_pic_modal {
@@ -168,7 +188,51 @@
 
 /* -------------- Preview -------------------------------------------------------- */
 .preview_modal {
+  display: 'none';
+  /* flex-direction: row;
+  align-items: center;
+  gap: 1em; */
+  position: 'absolute';
+  top: 0;
+  left: 0;
+  width: 70vw;
+  height: max-content;
+  padding: .5em;
   /* white-space: pre-line; */
-  /* white-space: pre-wrap;
-  overflow-wrap: break-word; */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.preview_button {
+  width: max-content;
+  margin: auto;
+}
+
+.preview_headline {
+  text-decoration: underline;
+}
+
+.preview_text {
+  display: inline-flex;
+  white-space: pre-wrap;
+  max-width: 50vw;
+  overflow-wrap: break-word;
+}
+
+.preview_media_container {
+  display: inline-flex;
+  max-width: 20vw;
+}
+
+.preview_blog_image {
+  /* width: 300px;
+  height: 300px; */
+  float: right;
+  max-width: 20vw;
+  padding-left: 1vw;
+  padding-bottom: 1vw;
+  object-fit: contain;
 }

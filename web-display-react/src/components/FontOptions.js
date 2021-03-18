@@ -3,7 +3,7 @@ import React from 'react';
 const FontOptions = (props) => {
     return(
         <section id="fontoptions">
-            <select className="inflex" onChange={ (e) => props.setFontOptions({...props.fontOptions, fontFamily: e.target.value})}>
+            <select className="inflex choose_font_style" onChange={ (e) => props.setFontOptions({...props.fontOptions, fontFamily: e.target.value})}>
                 <option value="Arial">Arial</option>
                 <option value="Times New Roman">Times New Roman</option>
             </select>

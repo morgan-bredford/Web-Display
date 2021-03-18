@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FontOptions from './FontOptions';
 
-const Alt1 = (props) => {
+const Utube = (props) => {
     const [fontOptions, setFontOptions] = useState({fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'})
     
 
@@ -13,7 +13,7 @@ const Alt1 = (props) => {
 
     return(
         <div>
-        <div className="alt">
+        <div className="alt" style={{flexDirection: 'column',gap: '1em'}}>
             {/* Gallery Modal */}
             <section id="choose_gallery_pic_modal">
                 <span onClick={() => document.getElementById('choose_gallery_pic_modal').style.display = 'none'}>
@@ -46,16 +46,8 @@ const Alt1 = (props) => {
                     <button>Sätt länk</button>
                 </form>
             </section>
-            {/* BlogText section */}
-            <section className="text_section" style={{width: '69%'}}>
-                <section className="blog_text_container">
-                    <FontOptions fontOptions={fontOptions} setFontOptions={setFontOptions}/>
-                    <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.previewHandler({headline: e.target.value}) } />
-                    <textarea className="blogtext" style={fontOptions} onChange={ e => props.previewHandler({text: e.target.value}) }></textarea>
-                </section>
-            </section>
             {/* Upload Media section */}
-            <section className="media_section" style={{width: '29%'}}>
+            <section className="media_section" style={{height: '100%'}}>
                 <section className="chosen_media_container">
                     <img src="" id="chosen_media" alt="" />
                     <span id="chosen_media_delete" onClick={() => document.querySelector('.chosen_media_container').style.display = 'none'}>Byt bild</span>
@@ -71,13 +63,22 @@ const Alt1 = (props) => {
                     </div>
                </section> 
             </section>
+            {/* BlogText section */}
+            <section className="text_section" style={{}}>
+                <section className="blog_text_container">
+                    <FontOptions fontOptions={fontOptions} setFontOptions={setFontOptions}/>
+                    <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.previewHandler({headline: e.target.value}) } />
+                    <textarea className="blogtext" style={fontOptions} onChange={ e => props.previewHandler({text: e.target.value}) }></textarea>
+                </section>
+            </section>
             {/* Preview Modal */}
             <div className="preview_modal" style={{...fontOptions,display: 'none',position: 'absolute'}}>
-                <section>
-                    <h1 className="preview_headline">{props.preview.headline}</h1>
-                    <img src={props.preview.media} className="preview_blog_image" alt="" />
-
-                    <p>{props.preview.text}</p>
+                <section style={{display: 'flex', flexDirection: 'column'}}>
+                    <img src={props.preview.media} className="" alt="" style={{display: 'block',objectFit: 'contain'}}/>
+                    <section style={{}}>
+                        <h1 className="preview_headline">{props.preview.headline}</h1>
+                        <p style={{textAlign: 'center'}}>{props.preview.text}</p>
+                    </section>
                     {/* <section className="preview_headline">
                         <h1>{props.preview.headline}</h1>
                     </section>
@@ -103,4 +104,4 @@ const Alt1 = (props) => {
     )
 }
 
-export default Alt1
+export default Utube
