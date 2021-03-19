@@ -72,33 +72,28 @@ const Alt1 = (props) => {
                </section> 
             </section>
             {/* Preview Modal */}
-            <div className="preview_modal" style={{...fontOptions,display: 'none',position: 'absolute'}}>
+            <div className="preview_modal" style={{...fontOptions,display: 'none',position: 'absolute',width: `clamp(400px,${props.preview.text.length}px / 2,80vw)`}}>
                 <section>
                     <h1 className="preview_headline">{props.preview.headline}</h1>
                     <img src={props.preview.media} className="preview_blog_image" alt="" />
-
                     <p>{props.preview.text}</p>
-                    {/* <section className="preview_headline">
-                        <h1>{props.preview.headline}</h1>
-                    </section>
-                    <section className="preview_text">
-                        {props.preview.text}
-                    </section>
-                </section>
-                <section className="preview_media_container">
-                    <img src={props.preview.media} className="preview_media" alt="" /> */}
                 </section>
                 <div>
                     <span onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
                         Avbryt
                     </span>
-                    <span>
+                    <span onClick={ () => props.publishEntry('blog') }>
                         Publicera
                     </span>
                 </div>
             </div>
         </div>
-            <div className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'block'}>Förhandsgranska</div>
+            <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'block'}>
+                Förhandsgranska
+            </span>
+            <span className="preview_button" onClick={() => document.querySelector('.share_media').style.display = 'none'}>
+                Avbryt
+            </span>
         </div>
     )
 }
