@@ -72,34 +72,35 @@ const Insta = (props) => {
                 </section>
             </section>
             {/* Preview Modal */}
-            <div className="preview_modal" style={{...fontOptions,display: 'none',position: 'absolute'}}>
-                <section style={{display: 'flex',gap: '1em'}}>
-                    <img src={props.preview.media} className="" alt="" style={{width: '79%',marginBottom: 'auto',objectFit: 'contain'}}/>
-                    <section style={{width: '19%'}}>
-                        <h1 className="preview_headline">{props.preview.headline}</h1>
-                        <p>{props.preview.text}</p>
+            <section className="preview_modal"   onClick={ e => {
+                    e.stopPropagation()
+                    document.querySelector('.preview_modal').style.display = 'none'
+                }}>
+                <div className="preview" style={{...fontOptions}}>
+                    <section style={{display: 'flex',gap: '1em'}}>
+                        <img src={props.preview.media} className="preview_insta_image" alt="" />
+                        <section style={{width: '19%'}}>
+                            <h1 className="preview_headline">{props.preview.headline}</h1>
+                            <p>{props.preview.text}</p>
+                        </section>
                     </section>
-                    {/* <section className="preview_headline">
-                        <h1>{props.preview.headline}</h1>
-                    </section>
-                    <section className="preview_text">
-                        {props.preview.text}
-                    </section>
-                </section>
-                <section className="preview_media_container">
-                    <img src={props.preview.media} className="preview_media" alt="" /> */}
-                </section>
-                <div>
-                    <span onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
-                        Avbryt
-                    </span>
-                    <span>
-                        Publicera
-                    </span>
+                    <div>
+                    <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
+                            Avbryt
+                        </span>
+                        <span className="preview_button" onClick={ () => props.publishEntry('insta') }>
+                            Publicera
+                        </span>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
-            <div className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'block'}>Förhandsgranska</div>
+            <div className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'block'}>
+                Förhandsgranska
+            </div>
+            <span className="preview_button" onClick={() => document.querySelector('.share_media').style.display = 'none'}>
+                Avbryt
+            </span>
         </div>
     )
 }

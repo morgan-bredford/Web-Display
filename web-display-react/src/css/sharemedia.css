@@ -1,3 +1,21 @@
+/* --------- Entries ----------------------------------------- */
+.entry_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(400px,40vw,700px);
+  margin: auto;
+  background-color: burlywood;
+}
+
+.entry {
+  width: 96%;
+  margin: 1em 1em;
+  padding: 1em;
+  text-align: center;
+  background-color: rgb(111, 112, 49);
+  cursor: pointer;
+}
 /* ----- Choose Media Modal ---------------------------------- */
 .share_media {
   display: none;
@@ -192,15 +210,26 @@
 
 /* -------------- Preview -------------------------------------------------------- */
 .preview_modal {
-  display: "none";
-  /* flex-direction: row;
+  display: none;
+  justify-content: center;
   align-items: center;
-  gap: 1em; */
-  position: "absolute";
+  position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
   width: 70vw;
   height: max-content;
+  max-height: 90vh;
+  overflow: auto;
   padding: 0.5em;
   /* white-space: pre-line; */
   white-space: pre-wrap;
@@ -208,14 +237,11 @@
   background-color: rgba(255, 255, 255, 1);
   border: 2px solid black;
   border-radius: 10px;
-}
-
-.preview_button {
-  width: max-content;
-  margin: auto;
+  z-index: 9;
 }
 
 .preview_headline {
+  font-size: 1em;
   text-decoration: underline;
 }
 
@@ -235,16 +261,56 @@
   /* width: 300px;
   height: 300px; */
   float: right;
-  max-width: 20vw;
   padding-left: 1vw;
   padding-bottom: 1vw;
   object-fit: contain;
 }
 
+.preview_insta_image {
+  width: 79%;
+  margin-top: 1em;
+  margin-bottom: auto;
+  object-fit: contain;
+}
+
+.preview_button {
+  margin: 1em;
+  padding: 3px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
 /* -------- Show Entry Modal --------------------------------------- */
-.show_entry_modal {
-  display: none;
+.entry_modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* --------- Blog Modal --------------------------------------- */
+.blog_modal {
+  position: relative;
+  padding: 1em;
+  background-color: rgb(221, 249, 251);
+  border-radius: 5px;
+  z-index: 3;
+}
+
+.close_entry_modal {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  padding: 2px;
+  background-color: rgb(210, 249, 251);
+  border: 1px solid black;
+  border-radius: 3px;
+  cursor: pointer;
+  transform: translate(calc(1.5em + 100%),-1em)
 }
