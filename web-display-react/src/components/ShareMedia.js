@@ -5,7 +5,7 @@ import '../css/sharemedia.css'
 import Alt1 from "./Alt1"
 import Insta from "./Insta"
 import Utube from "./Utube"
-import TestBlog from "./TestBlog"
+import Blog from "./Blog"
 import {Link} from 'react-router-dom'
 import Picture from "./Picture"
 
@@ -16,9 +16,10 @@ const ShareMedia = () => {
     const [preview, setPreview] = useState({headline: "",text: "", media: ""})
     const [ActiveEntry, setActiveEntry] = useState()
     const [showEntry, setShowEntry] = useState(false)
+    const [addEntry, setAddEntry] = useState([])
     let entry_array = [
         {
-            entry_type: TestBlog,
+            entry_type: Blog,
             headline:'Headline1',
             text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, lacus in fringilla laoreet, nulla diam imperdiet sem, ac laoreet ex turpis vitae tellus. Donec in mi at sem suscipit pellentesque. Integer sed lorem interdum ligula placerat eleifend eu eu lorem. Nam non nisi nec neque tristique volutpat. Integer sed bibendum ipsum. Donec non pharetra ligula, luctus posuere nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.Sed efficitur ante risus, varius cursus neque mattis vitae. In hac habitasse platea dictumst. Proin quis interdum nibh, id efficitur nulla. Duis ornare interdum nibh ut tempus. Curabitur sit amet lacinia eros, at fermentum diam. Integer bibendum commodo porta. Sed condimentum nisl in elementum tempor. Sed vulputate quis enim sed malesuada. Vestibulum porta volutpat ipsum, et gravida nisi hendrerit faucibus. Etiam ac convallis dui, in feugiat elit. Suspendisse posuere consectetur augue, ac elementum metus pellentesque lobortis. Vivamus sagittis id orci vitae egestas. Praesent eleifend quis dolor sit amet vulputate.Aenean quis risus dui. Nulla ultrices magna et arcu dictum, at mollis erat feugiat. Quisque ut luctus neque, a interdum diam. Nunc efficitur, risus in fringilla interdum, arcu sem dictum purus, in accumsan erat ligula vel felis. Vivamus non nisi non mauris sagittis tempus ut id dolor. Ut eleifend sapien eget elit lobortis, lacinia aliquet erat euismod. Fusce aliquam ligula eu leo dapibus, vestibulum tincidunt mi consequat. Fusce magna tortor, feugiat quis quam sit amet, gravida facilisis libero.',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
@@ -27,7 +28,7 @@ const ShareMedia = () => {
         {
             entry_type: Picture,
             headline:'Headline2',
-            text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, lacus in fringilla laoreet, nulla diam imperdiet sem, ac laoreet ex turpis vitae tellus. Donec in mi at sem suscipit pellentesque. Integer sed lorem interdum ligula placerat eleifend eu eu lorem. Nam non nisi nec neque tristique volutpat. Integer sed bibendum ipsum. Donec non pharetra ligula, luctus posuere nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.Sed efficitur ante risus, varius cursus neque mattis vitae. In hac habitasse platea dictumst. Proin quis interdum nibh, id efficitur nulla. Duis ornare interdum nibh ut tempus. Curabitur sit amet lacinia eros, at fermentum diam. Integer bibendum commodo porta. Sed condimentum nisl in elementum tempor. Sed vulputate quis enim sed malesuada. Vestibulum porta volutpat ipsum, et gravida nisi hendrerit faucibus. Etiam ac convallis dui, in feugiat elit. Suspendisse posuere consectetur augue, ac elementum metus pellentesque lobortis. Vivamus sagittis id orci vitae egestas. Praesent eleifend quis dolor sit amet vulputate.Aenean quis risus dui. Nulla ultrices magna et arcu dictum, at mollis erat feugiat. Quisque ut luctus neque, a interdum diam. Nunc efficitur, risus in fringilla interdum, arcu sem dictum purus, in accumsan erat ligula vel felis. Vivamus non nisi non mauris sagittis tempus ut id dolor. Ut eleifend sapien eget elit lobortis, lacinia aliquet erat euismod. Fusce aliquam ligula eu leo dapibus, vestibulum tincidunt mi consequat. Fusce magna tortor, feugiat quis quam sit amet, gravida facilisis libero.',
+            text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, lacus in fringilla laoreet, nulla diam imperdiet sem, ac laoreet ex turpis vitae tellus. Donec in mi at sem suscipit pellentesque. Integer sed lorem interdum ligula placerat eleifend eu eu lorem. Nam non nisi nec neque tristique volutpat. Integer sed bibendum ipsum. Donec non pharetra ligula, luctus posuere nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.Sed efficitur ante risus, varius cursus neque mattis vitae. In hac habitasse platea dictumst. Proin quis interdum nibh, id efficitur nulla. Duis ornare interdum nibh ut tempus. Curabitur sit amet lacinia eros, at fermentum diam. Integer bibendum commodo porta. Sed condimentum nisl in elementum tempor. Sed vulputate quis enim sed malesuada. Vestibulum porta volutpat ipsum, et gravida nisi hendrerit faucibus. Etiam ac convallis dui, in feugiat elit. Suspendisse posuere consectetur augue, ac elementum metus pellentesque lobortis. Vivamus sagittis id orci vitae egestas. Praesent eleifend quis dolor sit amet vulputate.Aenean quis risus dui. Nulla ultrices magna et arcu dictum, at mollis erat feugiat. Quisque ut luctus neque, a interdum diam. Nunc efficitur, risus in fringilla interdum, arcu sem dictum purus, in accumsan erat ligula vel felis. Vivamus non nisi non mauris sagittis tempus ut id dolor. Ut eleifend sapien eget elit lobortis, lacinia aliquet erat euismod. Fusce aliquam ligula eu leo dapibus, vestibulum tincidunt mi consequat. Fusce magna tortor, feugiat quis quam sit amet, gravida facilisis libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a convallis magna. Maecenas sit amet nibh et eros posuere sagittis. Morbi et rutrum orci. Integer laoreet sapien et lacus tincidunt, ac pretium neque posuere. Curabitur posuere, felis vitae facilisis pellentesque, nibh risus iaculis ex, quis sollicitudin felis orci ut dui. Nulla eleifend tempus eros et hendrerit. Nunc egestas tellus a tortor tincidunt, sed vulputate eros accumsan. Ut sit amet rutrum arcu. Sed in interdum ex. Duis sit amet consequat elit. Cras quis suscipit mi.Sed ut libero et lacus varius euismod eget a ex. Sed semper massa non viverra tincidunt. Proin ac nibh et magna pharetra eleifend eu eget tellus. Morbi sagittis massa est, cursus varius augue venenatis eget. Vestibulum sodales magna enim, vel rhoncus quam faucibus eu. Aenean nibh diam, bibendum vel erat eget, ornare convallis libero. Vestibulum tempus aliquam pulvinar. Nunc in augue ut ligula rutrum elementum at eget nulla. Sed eu ipsum ut ligula luctus cursus blandit quis tortor. Vivamus sit amet urna eget nisi tristique fringilla in vel ligula. Praesent sapien leo, gravida convallis porta eget, luctus a est. Sed tincidunt arcu eu lorem venenatis, et ornare mi efficitur. Fusce in turpis ut massa auctor volutpat eget sit amet ipsum. Duis ultrices elementum lectus, vitae facilisis metus gravida quis. Aliquam ut ullamcorper lacus. Pellentesque venenatis ornare iaculis.',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
             font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}
         },
@@ -39,13 +40,6 @@ const ShareMedia = () => {
             font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}
         }
     ]
-    
-    
-    const comps = {
-        b: TestBlog,
-        p: Picture
-    }
-    let SpEn
 
     useEffect( () => {
         if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
@@ -86,6 +80,19 @@ const ShareMedia = () => {
         localStorage.setItem('entry', JSON.stringify(entry))
         console.log(entry)
         document.querySelector('.share_media').style.display = 'none'
+        setAddEntry([entry])
+    }
+
+    const mProps = {
+        uploadMedia,
+        chooseGalleryPic,
+        gallery_images,
+        preview,
+        previewHandler,
+        publishEntry,
+        setAlt,
+        setAddEntry
+
     }
 
     // const showEntry = () => {
@@ -95,7 +102,6 @@ const ShareMedia = () => {
     return(
         <>
         <main>
-            <Link to="/" ><button>dsf</button></Link>
             <button onClick={ () => document.querySelector('.share_media').style.display = 'flex' }>new entry</button>
             <section className="entry_container">
                 {
@@ -109,21 +115,27 @@ const ShareMedia = () => {
                             Entry
                         </div>)
                     })
+                }
+                {
+                    addEntry.map( (entry, index) => {
+                        return (
+                        <div className="entry" id={index} onClick={ () => {
+                            setActiveEntry(entry)
+                            setShowEntry(true)
+                            } 
+                        }>
+                            Entry2
+                        </div>)
+                    })
                 } 
             </section>
             { showEntry 
                 ?<section className="entry_modal" 
                     onClick={( (e) => {
                         setShowEntry(false)
-                    })} ><ActiveEntry.entry_type entry={ActiveEntry} /></section>
+                    })} ><ActiveEntry.entry_type entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
                 : null 
             }
-            {/* {
-                localStorage.getItem('entry')
-                ?
-                    <section onClick={showEntry}>Entry</section>
-                : null
-            } */}
             <section className="new_entry_modal">
                 <div className="share_media">
                 {!alt 
@@ -143,11 +155,12 @@ const ShareMedia = () => {
                             </div>
                         : alt === 'alt1'
                             ?
-                                <Alt1 uploadMedia={uploadMedia} chooseGalleryPic={chooseGalleryPic} gallery_images={gallery_images} preview={preview} previewHandler={previewHandler} publishEntry={publishEntry}/>
+                                // <Alt1 uploadMedia={uploadMedia} chooseGalleryPic={chooseGalleryPic} gallery_images={gallery_images} preview={preview} previewHandler={previewHandler} publishEntry={publishEntry} setAlt={setAlt}/>
+                                <Alt1 mProps={mProps} />
                             :  alt === 'alt2'
                                 ?
-                                <Insta uploadMedia={uploadMedia} chooseGalleryPic={chooseGalleryPic} gallery_images={gallery_images} preview={preview} previewHandler={previewHandler} publishEntry={publishEntry}/> 
-                                : <Utube uploadMedia={uploadMedia} chooseGalleryPic={chooseGalleryPic} gallery_images={gallery_images} preview={preview} previewHandler={previewHandler} publishEntry={publishEntry}/>
+                                <Insta mProps={mProps}/> 
+                                : <Utube mProps={mProps}/>
                     }
                 </div>
             </section>

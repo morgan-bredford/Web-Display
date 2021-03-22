@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TestBlog = (props) => {
+const Blog = (props) => {
     const [fontOptions, setFontOptions] = useState({fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'})
     const [testBlog, setTestBlog] = useState(
         {
@@ -19,9 +19,15 @@ const TestBlog = (props) => {
                 <img src={props.entry.media} className="preview_blog_image" alt="" style={{width: `clamp(100px,${props.entry.text.length}px / 5,20vw)`}}/>
                 <p>{props.entry.text}</p>
             </section>
-            <p className="close_entry_modal" onClick={ () => document.querySelector('.entry_modal').style.display = 'none' }>Stäng</p>
+            <p className="close_entry_modal" 
+                onClick={ () => {
+                    document.querySelector('.entry_modal').style.display = 'none'
+                    props.setShowEntry(false)
+                }}>
+                    Stäng
+            </p>
         </div>
     )
 }
 
-export default TestBlog
+export default Blog

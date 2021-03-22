@@ -7,7 +7,7 @@ const Insta = (props) => {
 
     const link = e => {
         e.preventDefault()
-        props.chooseGalleryPic(e.target[0].value)
+        props.mProps.chooseGalleryPic(e.target[0].value)
         document.getElementById('choose_link_pic_modal').style.display = 'none'
     }
 
@@ -20,11 +20,11 @@ const Insta = (props) => {
                     Avbryt X
                 </span>
                 { 
-                    props.gallery_images.length ? props.gallery_images.map(image => {
+                    props.mProps.gallery_images.length ? props.mProps.gallery_images.map(image => {
                         return (
                             <span onClick={ 
                                 () => {
-                                    props.chooseGalleryPic(image.largeImageURL)
+                                    props.mProps.chooseGalleryPic(image.largeImageURL)
                                     document.getElementById('choose_gallery_pic_modal').style.display = 'none' 
                                 }
                             }>
@@ -50,11 +50,17 @@ const Insta = (props) => {
             <section className="media_section" style={{width: '74%'}}>
                 <section className="chosen_media_container">
                     <img src="" id="chosen_media" alt="" />
-                    <span id="chosen_media_delete" onClick={() => document.querySelector('.chosen_media_container').style.display = 'none'}>Byt bild</span>
+                    <span id="chosen_media_delete" 
+                        onClick={() => {
+                            props.mProps.chooseGalleryPic('')
+                            document.querySelector('.chosen_media_container').style.display = 'none'
+                        }}>
+                        Byt bild
+                    </span>
                 </section>
                 <section id="choose_media_container">
                     <label htmlFor="choose_upload_pic" className="pic_source_choice" id="choose_upload_pic_label">Klicka här för att ladda upp bild</label>
-                    <input type="file" className="pic_source_input" id="choose_upload_pic" onChange={ e => props.uploadMedia(e.target.files) } />
+                    <input type="file" className="pic_source_input" id="choose_upload_pic" onChange={ e => props.mProps.uploadMedia(e.target.files) } />
                     <div className="pic_source_choice" id="choose_gallery_pic_label" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'flex' }>
                         Välj bild från ditt galleri
                     </div>
@@ -67,8 +73,8 @@ const Insta = (props) => {
             <section className="text_section" style={{width: '24%'}}>
                 <section className="blog_text_container">
                     <FontOptions fontOptions={fontOptions} setFontOptions={setFontOptions}/>
-                    <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.previewHandler({headline: e.target.value}) } />
-                    <textarea className="blogtext" style={fontOptions} onChange={ e => props.previewHandler({text: e.target.value}) }></textarea>
+                    <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.mProps.previewHandler({headline: e.target.value}) } />
+                    <textarea className="blogtext" style={fontOptions} onChange={ e => props.mProps.previewHandler({text: e.target.value}) }></textarea>
                 </section>
             </section>
             {/* Preview Modal */}
@@ -76,29 +82,34 @@ const Insta = (props) => {
                     e.stopPropagation()
                     document.querySelector('.preview_modal').style.display = 'none'
                 }}>
-                <div className="preview" style={{...fontOptions}}>
+                <div className="preview" style={{...fontOptions}}  onClick={ e => e.stopPropagation()}>
                     <section style={{display: 'flex',gap: '1em'}}>
-                        <img src={props.preview.media} className="preview_insta_image" alt="" />
+                        <img src={props.mProps.preview.media} className="preview_insta_image" alt="" />
                         <section style={{width: '19%'}}>
-                            <h1 className="preview_headline">{props.preview.headline}</h1>
-                            <p>{props.preview.text}</p>
+                            <h1 className="preview_headline">{props.mProps.preview.headline}</h1>
+                            <p>{props.mProps.preview.text}</p>
                         </section>
                     </section>
                     <div>
-                    <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
-                            Avbryt
-                        </span>
-                        <span className="preview_button" onClick={ () => props.publishEntry('insta') }>
+                        <span className="preview_button" onClick={ () => props.mProps.publishEntry('insta') }>
                             Publicera
+                        </span>
+                        <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
+                            Avbryt
                         </span>
                     </div>
                 </div>
             </section>
         </div>
-            <div className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'block'}>
+            <div className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'flex'}>
                 Förhandsgranska
             </div>
-            <span className="preview_button" onClick={() => document.querySelector('.share_media').style.display = 'none'}>
+            <span className="preview_button" 
+                onClick={() => {
+                    document.querySelector('.share_media').style.display = 'none'
+                    props.mProps.setAlt('')
+                    }}
+                >
                 Avbryt
             </span>
         </div>

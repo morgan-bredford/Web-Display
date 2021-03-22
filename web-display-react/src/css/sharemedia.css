@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(400px,40vw,700px);
+  width: clamp(400px, 40vw, 700px);
   margin: auto;
   background-color: burlywood;
 }
@@ -47,7 +47,7 @@
 .alt {
   display: flex;
   justify-content: space-between;
-  position: relative;
+
   width: 80vw;
   height: 70vh;
   color: black;
@@ -294,13 +294,35 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* --------- Blog Modal --------------------------------------- */
+/* --------- Entry Modal --------------------------------------- */
 .blog_modal {
   position: relative;
   padding: 1em;
   background-color: rgb(221, 249, 251);
   border-radius: 5px;
   z-index: 3;
+}
+
+.picture_modal {
+  display: flex;
+  gap: 1em;
+  position: relative;
+  width: 70vw;
+  height: max-content;
+  max-height: 90vh;
+  padding: 0.5em;
+  /* white-space: pre-line; */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  background-color: rgb(221, 249, 251);
+  border: 2px solid black;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+.picture_text {
+  max-height: 82vh;
+  overflow: auto;
 }
 
 .close_entry_modal {
@@ -312,5 +334,5 @@
   border: 1px solid black;
   border-radius: 3px;
   cursor: pointer;
-  transform: translate(calc(1.5em + 100%),-1em)
+  transform: translate(calc(1.5em + 100%), -1em);
 }
