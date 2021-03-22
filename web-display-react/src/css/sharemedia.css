@@ -5,19 +5,65 @@
   align-items: center;
   width: clamp(400px, 40vw, 700px);
   margin: auto;
-  background-color: burlywood;
 }
 
 .entry {
+  display: flex;
   width: 96%;
-  margin: 1em 1em;
-  padding: 1em;
+  height: 15vh;
+  margin: .5em  ;
   text-align: center;
-  background-color: rgb(111, 112, 49);
+  border-radius: 10px;
   cursor: pointer;
 }
+
+.entry_label {
+  display: grid;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  font-size: 3vh;
+  border-radius: 40px 0px 0px 4px;
+}
+.entry_label_blog_bg {
+  background-color: rgb(150, 52, 230);
+}
+.entry_label_picture_bg {
+  background-color: rgb(39, 51, 224);
+}
+.entry_label_video_bg {
+  background-color: rgb(21, 80, 75);
+}
+
+.entry_label_text {
+  text-transform: uppercase;
+  transform: rotate(-90deg);
+}
+
+.entry_preview {
+  position: relative;
+  width: 80%;
+  padding: 1em;
+  color: black;
+  overflow: hidden;
+  background-color: var(--lightblue);
+  border-radius: 0px 10px 10px 0px;
+}
+
+.entry_fade { 
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; 
+  padding: 20% 0; 
+  /* "transparent" only works here because == rgba(0,0,0,0) */
+  background-image: linear-gradient(to bottom, transparent, var(--background));
+}
+
 /* ----- Choose Media Modal ---------------------------------- */
-.share_media {
+.choose_new_entry_modal {
   display: none;
   position: absolute;
   top: 0;
@@ -37,22 +83,29 @@
   align-items: center;
   width: 70vw;
   height: 30vh;
-  background-color: blueviolet;
+  background-color: var(--lightblue);
+  border: 4px dotted black;
 }
 
 .choose_media_look_choice {
-  background-color: burlywood;
+  padding: 1em;
+  color: var(--lightblue);
+  font-size: 3vh;
+  text-transform: uppercase;
+  background-color: var(--background);
+  border-radius: 5px;
 }
 
 .alt {
   display: flex;
   justify-content: space-between;
-
   width: 80vw;
-  height: 70vh;
+  height: 80vh;
+  margin-top: 9vh;
+  margin-bottom: 1em;
+  padding: 1em;
   color: black;
   background-color: white;
-  padding: 1em;
 }
 
 .text_section {
@@ -97,6 +150,16 @@
 
 #bold_check {
   display: none;
+}
+
+.headline_input {
+  color: black;
+  background-color: rgb(251, 242, 229);
+}
+
+.headline_input:focus {
+  color: black;
+  background-color: rgb(255, 255, 255);
 }
 
 .blogtext {
@@ -189,6 +252,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  color: wheat;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 4;
 }
@@ -226,10 +290,11 @@
   flex-direction: column;
   align-items: center;
   gap: 1em;
-  width: 70vw;
+  position: relative;
+  width: max-content;
+  max-width: 70vw;
   height: max-content;
   max-height: 90vh;
-  overflow: auto;
   padding: 0.5em;
   /* white-space: pre-line; */
   white-space: pre-wrap;
@@ -266,18 +331,22 @@
   object-fit: contain;
 }
 
-.preview_insta_image {
-  width: 79%;
-  margin-top: 1em;
-  margin-bottom: auto;
-  object-fit: contain;
+.preview_button_container {
+  display: flex;
+  justify-content: center; 
 }
 
 .preview_button {
   margin: 1em;
   padding: 3px;
-  border: 1px solid black;
+  text-transform: uppercase;
+  border: 1px solid wheat;
   border-radius: 4px;
+  cursor: pointer;
+}
+
+.video {
+  width: 100%;
 }
 
 /* -------- Show Entry Modal --------------------------------------- */
@@ -303,6 +372,19 @@
   z-index: 3;
 }
 
+.close_entry_modal {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  padding: 2px;
+  background-color: rgb(210, 249, 251);
+  border: 1px solid black;
+  border-radius: 3px;
+  cursor: pointer;
+  transform: translate(calc(1.5em + 100%), -1em);
+}
+
+/* ------- Picture Modal --------------------------------------- */
 .picture_modal {
   display: flex;
   gap: 1em;
@@ -320,19 +402,31 @@
   z-index: 3;
 }
 
+.picture_image {
+  width: 79%;
+  margin-top: 1em;
+  margin-bottom: auto;
+  object-fit: contain;
+}
+
+.picture_text_container {
+  width: 19%;
+}
+
 .picture_text {
   max-height: 82vh;
   overflow: auto;
 }
 
-.close_entry_modal {
+.new_entry_modal {
+  display: none;
   position: absolute;
-  top: 1em;
-  right: 1em;
-  padding: 2px;
-  background-color: rgb(210, 249, 251);
-  border: 1px solid black;
-  border-radius: 3px;
-  cursor: pointer;
-  transform: translate(calc(1.5em + 100%), -1em);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: wheat;
+  background-color: rgba(0, 0, 0, 0.7);
 }

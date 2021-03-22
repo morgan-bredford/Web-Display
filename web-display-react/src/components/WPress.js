@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import Blog from './Blog';
 import FontOptions from './FontOptions';
-import Video from './Video';
 
-const Utube = (props) => {
+const WPress = (props) => {
+    
     const fontOptions = props.mProps.preview.font_options
 
     const link = e => {
@@ -13,10 +14,10 @@ const Utube = (props) => {
 
     return(
         <div>
-            <div className="alt" style={{flexDirection: 'column'}}>
+            <div className="alt"  onClick={ e => e.stopPropagation() }>
                 {/* Gallery Modal */}
                 <section id="choose_gallery_pic_modal" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'none'}>
-                    <span>
+                    <span onClick={() => document.getElementById('choose_gallery_pic_modal').style.display = 'none'}>
                         Avbryt X
                     </span>
                     { 
@@ -24,7 +25,7 @@ const Utube = (props) => {
                             return (
                                 <span onClick={ 
                                     () => {
-                                        props.mProps.chooseGalleryPic(image.largeImageURL) 
+                                        props.mProps.chooseGalleryPic(image.largeImageURL)
                                     }
                                 }>
                                     <img className="prev_card_img" src={image.previewURL} id={image.id}  />
@@ -45,8 +46,16 @@ const Utube = (props) => {
                         <button>Sätt länk</button>
                     </form>
                 </section>
+                {/* BlogText section */}
+                <section className="text_section" style={{width: '69%'}}>
+                    <section className="blog_text_container">
+                        <FontOptions preview={props.mProps.preview} previewHandler={props.mProps.previewHandler} />
+                        <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.mProps.previewHandler({headline: e.target.value}) } />
+                        <textarea className="blogtext" style={fontOptions} onChange={ e => props.mProps.previewHandler({text: e.target.value}) }></textarea>
+                    </section>
+                </section>
                 {/* Upload Media section */}
-                <section className="media_section" style={{height: '70%',marginBottom: '1em'}}>
+                <section className="media_section" style={{width: '29%'}}>
                     <section className="chosen_media_container">
                         <img src="" id="chosen_media" alt="" />
                         <span id="chosen_media_delete" 
@@ -58,41 +67,30 @@ const Utube = (props) => {
                         </span>
                     </section>
                     <section id="choose_media_container">
-                        <label htmlFor="choose_upload_pic" className="pic_source_choice" id="choose_upload_pic_label">
-                            Klicka här för att ladda upp video
-                        </label>
+                        <label htmlFor="choose_upload_pic" className="pic_source_choice" id="choose_upload_pic_label">Klicka här för att ladda upp bild</label>
                         <input type="file" className="pic_source_input" id="choose_upload_pic" onChange={ e => props.mProps.uploadMedia(e.target.files) } />
                         <div className="pic_source_choice" id="choose_gallery_pic_label" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'flex' }>
-                            Välj video från ditt galleri
+                            Välj bild från ditt galleri
                         </div>
                         <div className="pic_source_choice" id="choose_link_pic_label" onClick={ () => document.getElementById('choose_link_pic_modal').style.display = 'flex' }>
-                            Klistra in länk till video
+                            Klistra in länk till bild
                         </div>
                 </section> 
                 </section>
-                {/* BlogText section */}
-                <section className="text_section" style={{height: '30vh'}}>
-                    <section className="blog_text_container">
-                        <FontOptions preview={props.mProps.preview} previewHandler={props.mProps.previewHandler} />
-                        <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.mProps.previewHandler({headline: e.target.value}) } />
-                        <textarea className="blogtext" style={fontOptions} onChange={ e => props.mProps.previewHandler({text: e.target.value}) }></textarea>
-                    </section>
-                </section>
                 {/* Preview Modal */}
-                <section className="preview_modal"   onClick={ e => {
+                <section className="preview_modal"  onClick={ e => {
                         e.stopPropagation()
                         document.querySelector('.preview_modal').style.display = 'none'
-                    }}>
-                    <div className="preview" style={{...fontOptions}}  onClick={ e => e.stopPropagation()}>
-                        <section style={{display: 'flex',flexDirection: 'column',gap: '1em'}}>
-                            <img src={props.mProps.preview.media} className="video" alt="" />
-                            <section style={{textAlign: 'center'}}>
-                                <h1 className="preview_headline">{props.mProps.preview.headline}</h1>
-                                <p>{props.mProps.preview.text}</p>
-                            </section>
+                    } 
+                }>
+                    <div className="preview" style={{...fontOptions,width: 'clamp(400px,max-content,70vw)'}} onClick={ e => e.stopPropagation()}>
+                        <section style={{}}>
+                            <h1 className="preview_headline">{props.mProps.preview.headline}</h1>
+                            <img src={props.mProps.preview.media} className="preview_blog_image" alt="" style={{width: `clamp(100px,20vw,20vw)`}} />
+                            <p>{props.mProps.preview.text}</p>
                         </section>
                         <div>
-                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Video) }>
+                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Blog) }>
                                 Publicera
                             </span>
                             <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
@@ -119,4 +117,4 @@ const Utube = (props) => {
     )
 }
 
-export default Utube
+export default WPress

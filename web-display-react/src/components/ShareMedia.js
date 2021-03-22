@@ -2,51 +2,53 @@ import { useState, useEffect } from "react"
 import React from 'react'
 import axios from 'axios'
 import '../css/sharemedia.css'
-import Alt1 from "./Alt1"
+import WPress from "./WPress"
 import Insta from "./Insta"
 import Utube from "./Utube"
 import Blog from "./Blog"
-import {Link} from 'react-router-dom'
 import Picture from "./Picture"
+import Video from "./Video"
 
 
 const ShareMedia = () => {
     const [alt, setAlt] = useState()
     const [gallery_images,setGalleryImages] = useState([])
-    const [preview, setPreview] = useState({headline: "",text: "", media: ""})
+    const [preview, setPreview] = useState({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'} })
     const [ActiveEntry, setActiveEntry] = useState()
     const [showEntry, setShowEntry] = useState(false)
-    const [addEntry, setAddEntry] = useState([])
-    let entry_array = [
+    const [entryArray, setEntryArray] = useState([
         {
             entry_type: Blog,
             headline:'Headline1',
-            text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, lacus in fringilla laoreet, nulla diam imperdiet sem, ac laoreet ex turpis vitae tellus. Donec in mi at sem suscipit pellentesque. Integer sed lorem interdum ligula placerat eleifend eu eu lorem. Nam non nisi nec neque tristique volutpat. Integer sed bibendum ipsum. Donec non pharetra ligula, luctus posuere nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.Sed efficitur ante risus, varius cursus neque mattis vitae. In hac habitasse platea dictumst. Proin quis interdum nibh, id efficitur nulla. Duis ornare interdum nibh ut tempus. Curabitur sit amet lacinia eros, at fermentum diam. Integer bibendum commodo porta. Sed condimentum nisl in elementum tempor. Sed vulputate quis enim sed malesuada. Vestibulum porta volutpat ipsum, et gravida nisi hendrerit faucibus. Etiam ac convallis dui, in feugiat elit. Suspendisse posuere consectetur augue, ac elementum metus pellentesque lobortis. Vivamus sagittis id orci vitae egestas. Praesent eleifend quis dolor sit amet vulputate.Aenean quis risus dui. Nulla ultrices magna et arcu dictum, at mollis erat feugiat. Quisque ut luctus neque, a interdum diam. Nunc efficitur, risus in fringilla interdum, arcu sem dictum purus, in accumsan erat ligula vel felis. Vivamus non nisi non mauris sagittis tempus ut id dolor. Ut eleifend sapien eget elit lobortis, lacinia aliquet erat euismod. Fusce aliquam ligula eu leo dapibus, vestibulum tincidunt mi consequat. Fusce magna tortor, feugiat quis quam sit amet, gravida facilisis libero.',
+            text: 'Blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
+            background: 'rgb(150, 52, 230)',
             font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}
         },
         {
             entry_type: Picture,
             headline:'Headline2',
-            text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, lacus in fringilla laoreet, nulla diam imperdiet sem, ac laoreet ex turpis vitae tellus. Donec in mi at sem suscipit pellentesque. Integer sed lorem interdum ligula placerat eleifend eu eu lorem. Nam non nisi nec neque tristique volutpat. Integer sed bibendum ipsum. Donec non pharetra ligula, luctus posuere nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.Sed efficitur ante risus, varius cursus neque mattis vitae. In hac habitasse platea dictumst. Proin quis interdum nibh, id efficitur nulla. Duis ornare interdum nibh ut tempus. Curabitur sit amet lacinia eros, at fermentum diam. Integer bibendum commodo porta. Sed condimentum nisl in elementum tempor. Sed vulputate quis enim sed malesuada. Vestibulum porta volutpat ipsum, et gravida nisi hendrerit faucibus. Etiam ac convallis dui, in feugiat elit. Suspendisse posuere consectetur augue, ac elementum metus pellentesque lobortis. Vivamus sagittis id orci vitae egestas. Praesent eleifend quis dolor sit amet vulputate.Aenean quis risus dui. Nulla ultrices magna et arcu dictum, at mollis erat feugiat. Quisque ut luctus neque, a interdum diam. Nunc efficitur, risus in fringilla interdum, arcu sem dictum purus, in accumsan erat ligula vel felis. Vivamus non nisi non mauris sagittis tempus ut id dolor. Ut eleifend sapien eget elit lobortis, lacinia aliquet erat euismod. Fusce aliquam ligula eu leo dapibus, vestibulum tincidunt mi consequat. Fusce magna tortor, feugiat quis quam sit amet, gravida facilisis libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a convallis magna. Maecenas sit amet nibh et eros posuere sagittis. Morbi et rutrum orci. Integer laoreet sapien et lacus tincidunt, ac pretium neque posuere. Curabitur posuere, felis vitae facilisis pellentesque, nibh risus iaculis ex, quis sollicitudin felis orci ut dui. Nulla eleifend tempus eros et hendrerit. Nunc egestas tellus a tortor tincidunt, sed vulputate eros accumsan. Ut sit amet rutrum arcu. Sed in interdum ex. Duis sit amet consequat elit. Cras quis suscipit mi.Sed ut libero et lacus varius euismod eget a ex. Sed semper massa non viverra tincidunt. Proin ac nibh et magna pharetra eleifend eu eget tellus. Morbi sagittis massa est, cursus varius augue venenatis eget. Vestibulum sodales magna enim, vel rhoncus quam faucibus eu. Aenean nibh diam, bibendum vel erat eget, ornare convallis libero. Vestibulum tempus aliquam pulvinar. Nunc in augue ut ligula rutrum elementum at eget nulla. Sed eu ipsum ut ligula luctus cursus blandit quis tortor. Vivamus sit amet urna eget nisi tristique fringilla in vel ligula. Praesent sapien leo, gravida convallis porta eget, luctus a est. Sed tincidunt arcu eu lorem venenatis, et ornare mi efficitur. Fusce in turpis ut massa auctor volutpat eget sit amet ipsum. Duis ultrices elementum lectus, vitae facilisis metus gravida quis. Aliquam ut ullamcorper lacus. Pellentesque venenatis ornare iaculis.',
+            text:'Foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
-            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}
+            background: 'rgb(39, 51, 224)',
+            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '24px'}
         },
         {
-            entry_type: 'video',
+            entry_type: Video,
             headline:'Headline3',
-            text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, lacus in fringilla laoreet, nulla diam imperdiet sem, ac laoreet ex turpis vitae tellus. Donec in mi at sem suscipit pellentesque. Integer sed lorem interdum ligula placerat eleifend eu eu lorem. Nam non nisi nec neque tristique volutpat. Integer sed bibendum ipsum. Donec non pharetra ligula, luctus posuere nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.Sed efficitur ante risus, varius cursus neque mattis vitae. In hac habitasse platea dictumst. Proin quis interdum nibh, id efficitur nulla. Duis ornare interdum nibh ut tempus. Curabitur sit amet lacinia eros, at fermentum diam. Integer bibendum commodo porta. Sed condimentum nisl in elementum tempor. Sed vulputate quis enim sed malesuada. Vestibulum porta volutpat ipsum, et gravida nisi hendrerit faucibus. Etiam ac convallis dui, in feugiat elit. Suspendisse posuere consectetur augue, ac elementum metus pellentesque lobortis. Vivamus sagittis id orci vitae egestas. Praesent eleifend quis dolor sit amet vulputate.Aenean quis risus dui. Nulla ultrices magna et arcu dictum, at mollis erat feugiat. Quisque ut luctus neque, a interdum diam. Nunc efficitur, risus in fringilla interdum, arcu sem dictum purus, in accumsan erat ligula vel felis. Vivamus non nisi non mauris sagittis tempus ut id dolor. Ut eleifend sapien eget elit lobortis, lacinia aliquet erat euismod. Fusce aliquam ligula eu leo dapibus, vestibulum tincidunt mi consequat. Fusce magna tortor, feugiat quis quam sit amet, gravida facilisis libero.',
+            text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
-            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}
+            background: 'rgb(21, 80, 75)',
+            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '36px'}
         }
-    ]
+    ])
 
     useEffect( () => {
         if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
-        localStorage.setItem('entry_array',JSON.stringify(entry_array))
+        localStorage.setItem('entry_array',JSON.stringify(entryArray))
     },[]) 
 
-    useEffect( () => console.log('render') )
+    //useEffect( () => console.log('render') )
 
     const uploadMedia = (files) => {
         const formdata = new FormData()
@@ -64,6 +66,13 @@ const ShareMedia = () => {
         .catch( err => console.log(err) )
     }
 
+    const chooseMedia = (media_choice) => {
+        document.querySelector('.choose_new_entry_modal').style.display = 'none'
+        setAlt(media_choice)
+        setPreview({...preview,background: 'rgb(150, 52, 230)'})
+        document.querySelector('.new_entry_modal').style.display = 'flex'
+    }
+
     const chooseGalleryPic = (url) => {
         document.getElementById('chosen_media').src = url
         document.querySelector('.chosen_media_container').style.display = 'unset'
@@ -72,15 +81,18 @@ const ShareMedia = () => {
 
     const previewHandler = (p) => {
         setPreview({...preview, ...p})
-        console.log(preview.text.length)
     }
 
     const publishEntry = (entry_type) => {
         const entry = {...preview, entry_type}
-        localStorage.setItem('entry', JSON.stringify(entry))
+        document.querySelector('.choose_new_entry_modal').style.display = 'none'
+        document.querySelector('.new_entry_modal').style.display = 'none'
         console.log(entry)
-        document.querySelector('.share_media').style.display = 'none'
-        setAddEntry([entry])
+        setEntryArray([entry,...entryArray])
+        console.log(entryArray)
+        document.querySelector('.preview_modal').style.display = 'none'
+        setAlt('')
+        setPreview({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'} })
     }
 
     const mProps = {
@@ -90,44 +102,32 @@ const ShareMedia = () => {
         preview,
         previewHandler,
         publishEntry,
-        setAlt,
-        setAddEntry
-
+        setAlt
     }
-
-    // const showEntry = () => {
-    //     document.querySelector('.entry_modal').style.display = 'unset'
-    // }
 
     return(
         <>
         <main>
-            <button onClick={ () => document.querySelector('.share_media').style.display = 'flex' }>new entry</button>
+            <button onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'flex' }>new entry</button>
             <section className="entry_container">
                 {
-                    entry_array.map( (entry, index) => {
+                    entryArray.map( (entry, index) => {
                         return (
                         <div className="entry" id={index} onClick={ () => {
                             setActiveEntry(entry)
                             setShowEntry(true)
                             } 
                         }>
-                            Entry
+                            <p className="entry_label" style={{backgroundColor: entry.background}}>
+                                <p className="entry_label_text">{entry.entry_type.name}</p>
+                            </p>
+                            <p className="entry_preview" style={{...entry.font_options}}>
+                                {entry.text}
+                                <p className="entry_fade"></p>
+                            </p>
                         </div>)
                     })
                 }
-                {
-                    addEntry.map( (entry, index) => {
-                        return (
-                        <div className="entry" id={index} onClick={ () => {
-                            setActiveEntry(entry)
-                            setShowEntry(true)
-                            } 
-                        }>
-                            Entry2
-                        </div>)
-                    })
-                } 
             </section>
             { showEntry 
                 ?<section className="entry_modal" 
@@ -136,33 +136,30 @@ const ShareMedia = () => {
                     })} ><ActiveEntry.entry_type entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
                 : null 
             }
+            <section className="choose_new_entry_modal" onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'none' }>
+                {!alt && <div className="choose_media_look" >
+                        <p className="choose_media_look_choice" onClick={ () => chooseMedia('blog') }>
+                            skapa blogg
+                        </p>
+                        
+                        <p className="choose_media_look_choice" onClick={ () => chooseMedia('picture') }>
+                            dela bild
+                        </p>
+                        <p className="choose_media_look_choice" onClick={ () => chooseMedia('video') }>
+                            dela video
+                        </p>
+                    </div>
+                }
+            </section>
             <section className="new_entry_modal">
-                <div className="share_media">
-                {!alt 
+                { alt === 'blog'
+                    ?
+                        <WPress mProps={mProps} />
+                    :  alt === 'picture'
                         ?
-                            <div className="choose_media_look">
-                                <p className="choose_media_look_choice" onClick={() => setAlt('alt1')}>
-                                    1. alternativ
-                                </p>
-                                
-                                <p className="choose_media_look_choice" onClick={() => setAlt('alt2')}>
-                                    2. alternativ
-                                </p>
-                                
-                                <p className="choose_media_look_choice" onClick={() => setAlt('alt3')}>
-                                    3. alternativ
-                                </p>
-                            </div>
-                        : alt === 'alt1'
-                            ?
-                                // <Alt1 uploadMedia={uploadMedia} chooseGalleryPic={chooseGalleryPic} gallery_images={gallery_images} preview={preview} previewHandler={previewHandler} publishEntry={publishEntry} setAlt={setAlt}/>
-                                <Alt1 mProps={mProps} />
-                            :  alt === 'alt2'
-                                ?
-                                <Insta mProps={mProps}/> 
-                                : <Utube mProps={mProps}/>
-                    }
-                </div>
+                        <Insta mProps={mProps}/> 
+                        : <Utube mProps={mProps}/>
+                }
             </section>
         </main>
         </>

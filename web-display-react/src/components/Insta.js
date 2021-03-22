@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import FontOptions from './FontOptions';
+import Picture from './Picture';
 
 const Insta = (props) => {
-    const [fontOptions, setFontOptions] = useState({fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'})
+    const fontOptions = props.mProps.preview.font_options
     
-
     const link = e => {
         e.preventDefault()
         props.mProps.chooseGalleryPic(e.target[0].value)
@@ -13,105 +13,106 @@ const Insta = (props) => {
 
     return(
         <div>
-        <div className="alt">
-            {/* Gallery Modal */}
-            <section id="choose_gallery_pic_modal">
-                <span onClick={() => document.getElementById('choose_gallery_pic_modal').style.display = 'none'}>
-                    Avbryt X
-                </span>
-                { 
-                    props.mProps.gallery_images.length ? props.mProps.gallery_images.map(image => {
-                        return (
-                            <span onClick={ 
-                                () => {
-                                    props.mProps.chooseGalleryPic(image.largeImageURL)
-                                    document.getElementById('choose_gallery_pic_modal').style.display = 'none' 
-                                }
-                            }>
-                                <img className="prev_card_img" src={image.previewURL} id={image.id}  />
-                            </span >
-                        )
-                    })
-                    : <div>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
-                }
-            </section>
-            {/* Link Modal */}
-            <section id="choose_link_pic_modal">
-                <span onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
+            <div className="alt">
+                {/* Gallery Modal */}
+                <section id="choose_gallery_pic_modal" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'none'}>
+                    <span onClick={() => document.getElementById('choose_gallery_pic_modal').style.display = 'none'}>
                         Avbryt X
-                </span>
-                <form onSubmit={ e => link(e)}>
-                    Klistra in länk till bild:
-                    <input type="text" />
-                    <button>Sätt länk</button>
-                </form>
-            </section>
-            {/* Upload Media section */}
-            <section className="media_section" style={{width: '74%'}}>
-                <section className="chosen_media_container">
-                    <img src="" id="chosen_media" alt="" />
-                    <span id="chosen_media_delete" 
-                        onClick={() => {
-                            props.mProps.chooseGalleryPic('')
-                            document.querySelector('.chosen_media_container').style.display = 'none'
-                        }}>
-                        Byt bild
                     </span>
+                    { 
+                        props.mProps.gallery_images.length ? props.mProps.gallery_images.map(image => {
+                            return (
+                                <span onClick={ 
+                                    () => {
+                                        props.mProps.chooseGalleryPic(image.largeImageURL)
+                                    }
+                                }>
+                                    <img className="prev_card_img" src={image.previewURL} id={image.id}  />
+                                </span >
+                            )
+                        })
+                        : <div>Ditt galleri är förvärvarande tomt, gå till 'Bygg galleri' för att lägga till bilder</div>
+                    }
                 </section>
-                <section id="choose_media_container">
-                    <label htmlFor="choose_upload_pic" className="pic_source_choice" id="choose_upload_pic_label">Klicka här för att ladda upp bild</label>
-                    <input type="file" className="pic_source_input" id="choose_upload_pic" onChange={ e => props.mProps.uploadMedia(e.target.files) } />
-                    <div className="pic_source_choice" id="choose_gallery_pic_label" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'flex' }>
-                        Välj bild från ditt galleri
-                    </div>
-                    <div className="pic_source_choice" id="choose_link_pic_label" onClick={ () => document.getElementById('choose_link_pic_modal').style.display = 'flex' }>
-                        Klistra in länk till bild
-                    </div>
-               </section> 
-            </section>
-            {/* BlogText section */}
-            <section className="text_section" style={{width: '24%'}}>
-                <section className="blog_text_container">
-                    <FontOptions fontOptions={fontOptions} setFontOptions={setFontOptions}/>
-                    <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.mProps.previewHandler({headline: e.target.value}) } />
-                    <textarea className="blogtext" style={fontOptions} onChange={ e => props.mProps.previewHandler({text: e.target.value}) }></textarea>
+                {/* Link Modal */}
+                <section id="choose_link_pic_modal">
+                    <span onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
+                            Avbryt X
+                    </span>
+                    <form onSubmit={ e => link(e)}>
+                        Klistra in länk till bild:
+                        <input type="text" />
+                        <button>Sätt länk</button>
+                    </form>
                 </section>
-            </section>
-            {/* Preview Modal */}
-            <section className="preview_modal"   onClick={ e => {
-                    e.stopPropagation()
-                    document.querySelector('.preview_modal').style.display = 'none'
-                }}>
-                <div className="preview" style={{...fontOptions}}  onClick={ e => e.stopPropagation()}>
-                    <section style={{display: 'flex',gap: '1em'}}>
-                        <img src={props.mProps.preview.media} className="preview_insta_image" alt="" />
-                        <section style={{width: '19%'}}>
-                            <h1 className="preview_headline">{props.mProps.preview.headline}</h1>
-                            <p>{props.mProps.preview.text}</p>
-                        </section>
+                {/* Upload Media section */}
+                <section className="media_section" style={{width: '74%'}}>
+                    <section className="chosen_media_container">
+                        <img src="" id="chosen_media" alt="" />
+                        <span id="chosen_media_delete" 
+                            onClick={() => {
+                                props.mProps.chooseGalleryPic('')
+                                document.querySelector('.chosen_media_container').style.display = 'none'
+                            }}>
+                            Byt bild
+                        </span>
                     </section>
-                    <div>
-                        <span className="preview_button" onClick={ () => props.mProps.publishEntry('insta') }>
-                            Publicera
-                        </span>
-                        <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
-                            Avbryt
-                        </span>
+                    <section id="choose_media_container">
+                        <label htmlFor="choose_upload_pic" className="pic_source_choice" id="choose_upload_pic_label">Klicka här för att ladda upp bild</label>
+                        <input type="file" className="pic_source_input" id="choose_upload_pic" onChange={ e => props.mProps.uploadMedia(e.target.files) } />
+                        <div className="pic_source_choice" id="choose_gallery_pic_label" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'flex' }>
+                            Välj bild från ditt galleri
+                        </div>
+                        <div className="pic_source_choice" id="choose_link_pic_label" onClick={ () => document.getElementById('choose_link_pic_modal').style.display = 'flex' }>
+                            Klistra in länk till bild
+                        </div>
+                </section> 
+                </section>
+                {/* BlogText section */}
+                <section className="text_section" style={{width: '24%'}}>
+                    <section className="blog_text_container">
+                        <FontOptions preview={props.mProps.preview} previewHandler={props.mProps.previewHandler} />
+                        <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.mProps.previewHandler({headline: e.target.value}) } />
+                        <textarea className="blogtext" style={fontOptions} onChange={ e => props.mProps.previewHandler({text: e.target.value}) }></textarea>
+                    </section>
+                </section>
+                {/* Preview Modal */}
+                <section className="preview_modal"   onClick={ e => {
+                        e.stopPropagation()
+                        document.querySelector('.preview_modal').style.display = 'none'
+                    }}>
+                    <div className="preview" style={{...fontOptions}}  onClick={ e => e.stopPropagation()}>
+                        <section style={{display: 'flex',gap: '1em'}}>
+                            <img src={props.mProps.preview.media} className="picture_image" alt="" />
+                            <section className="picture_text_container">
+                                <h1 className="preview_headline">{props.mProps.preview.headline}</h1>
+                                <p>{props.mProps.preview.text}</p>
+                            </section>
+                        </section>
+                        <div>
+                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Picture) }>
+                                Publicera
+                            </span>
+                            <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
+                                Avbryt
+                            </span>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </div>
-            <div className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'flex'}>
-                Förhandsgranska
+                </section>
             </div>
-            <span className="preview_button" 
-                onClick={() => {
-                    document.querySelector('.share_media').style.display = 'none'
-                    props.mProps.setAlt('')
-                    }}
-                >
-                Avbryt
-            </span>
+            <section className="preview_button_container">
+                <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'flex'}>
+                    Förhandsgranska
+                </span>
+                <span className="preview_button" 
+                    onClick={() => {
+                        document.querySelector('.new_entry_modal').style.display = 'none'
+                        props.mProps.setAlt('')
+                        }}
+                    >
+                    Avbryt
+                </span>
+            </section>
         </div>
     )
 }
