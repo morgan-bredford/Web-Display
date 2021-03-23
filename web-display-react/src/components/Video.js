@@ -8,8 +8,10 @@ const Video = (props) => {
         <section className="video_container" onClick={ e => e.stopPropagation()}>
             <section style={{...props.entry.font_options,display: 'block',margin: 'auto' }}>
                 {/* <img src={props.entry.media} className="video" alt="" /> */}
-                <ReactPlayer url={props.entry.media} controls="true"/>
-                <section style={{textAlign: 'center',overflow: 'scroll'}}>
+                <div style={{width: 'max-content',margin: 'auto'}}>
+                    <ReactPlayer url={props.entry.media} controls="true"/>
+                </div>
+                <section style={{height: '25vh',textAlign: 'center',overflow: 'auto'}}>
                     <h1 className="preview_headline">{props.entry.headline}</h1>
                     <p style={{maxHeight: '10vh'}}>{props.entry.text}</p>
                 </section>

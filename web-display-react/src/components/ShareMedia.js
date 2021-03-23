@@ -20,7 +20,7 @@ const ShareMedia = () => {
         {
             entry_type: Blog,
             headline:'Headline1',
-            text: 'Blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel',
+            text: 'Blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
             background: 'rgb(150, 52, 230)',
             font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}
@@ -36,7 +36,7 @@ const ShareMedia = () => {
         {
             entry_type: Video,
             headline:'Headline3',
-            text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
+            text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
             media:'https://youtu.be/HH9MQmMtilU',
             background: 'rgb(32, 143, 158)',
             font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '36px'}
@@ -108,7 +108,11 @@ const ShareMedia = () => {
     return(
         <>
         <main>
-            <button onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'flex' }>new entry</button>
+            <section className="create_new_entry" onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'flex' }>
+                <p className="sn">
+                    skapa nytt inlägg
+                </p>
+            </section>
             <section className="entry_container">
                 {
                     entryArray.map( (entry, index) => {

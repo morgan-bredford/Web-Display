@@ -1,4 +1,32 @@
 /* --------- Entries ----------------------------------------- */
+.create_new_entry {
+  display: grid;
+  align-items: center;
+  position: absolute;
+  top: 12vw;
+  left: 4vw;
+  width: 10vw;
+  height: 10vw;
+  color: var(--background);
+  font-size: 1.8vw;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: var(--lightblue);
+  border: 4px dashed #2e323a;
+  border-radius: 50%;
+  cursor: pointer;
+  
+}
+
+.create_new_entry:hover {
+  transition: 4s linear;
+  transform: rotate(1turn);
+}
+.sn:hover {
+  transition: 2s linear;
+  transform: rotate(-1turn);
+}
 .entry_container {
   display: flex;
   flex-direction: column;
@@ -385,7 +413,7 @@
 }
 
 .blog_image {
-  width: clamp(100px, 20vw, 20vw);
+  width: clamp(100px, 18vw, 18vw);
   float: right;
   padding-left: 1vw;
   padding-bottom: 1vw;
