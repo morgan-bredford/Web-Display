@@ -37,8 +37,8 @@ const ShareMedia = () => {
             entry_type: Video,
             headline:'Headline3',
             text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
-            media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
-            background: 'rgb(21, 80, 75)',
+            media:'https://youtu.be/HH9MQmMtilU',
+            background: 'rgb(32, 143, 158)',
             font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '36px'}
         }
     ])
@@ -69,7 +69,7 @@ const ShareMedia = () => {
     const chooseMedia = (media_choice) => {
         document.querySelector('.choose_new_entry_modal').style.display = 'none'
         setAlt(media_choice)
-        setPreview({...preview,background: 'rgb(150, 52, 230)'})
+        //setPreview({...preview,background: 'rgb(150, 52, 230)'})
         document.querySelector('.new_entry_modal').style.display = 'flex'
     }
 
@@ -83,8 +83,8 @@ const ShareMedia = () => {
         setPreview({...preview, ...p})
     }
 
-    const publishEntry = (entry_type) => {
-        const entry = {...preview, entry_type}
+    const publishEntry = (entry_type, background) => {
+        const entry = {...preview, entry_type, background}
         document.querySelector('.choose_new_entry_modal').style.display = 'none'
         document.querySelector('.new_entry_modal').style.display = 'none'
         console.log(entry)

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactPlayer from 'react-player'
 import FontOptions from './FontOptions';
 import Video from './Video';
 
@@ -35,20 +36,20 @@ const Utube = (props) => {
                     }
                 </section>
                 {/* Link Modal */}
-                <section id="choose_link_pic_modal">
-                    <span onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
+                <section id="choose_link_pic_modal" onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
+                    <form className="link_form" onSubmit={ e => link(e)} onClick={ e => e.stopPropagation() }>
+                        Klistra in länk till bild:
+                        <input className="link_input" type="text" />
+                        <button className="link_button">Sätt länk</button>
+                    </form>
+                    <span className="preview_button" onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
                             Avbryt X
                     </span>
-                    <form onSubmit={ e => link(e)}>
-                        Klistra in länk till bild:
-                        <input type="text" />
-                        <button>Sätt länk</button>
-                    </form>
                 </section>
                 {/* Upload Media section */}
                 <section className="media_section" style={{height: '70%',marginBottom: '1em'}}>
                     <section className="chosen_media_container">
-                        <img src="" id="chosen_media" alt="" />
+                        <ReactPlayer id="chosen_media" url={props.mProps.preview.media} controls="true"/>
                         <span id="chosen_media_delete" 
                             onClick={() => {
                                 props.mProps.chooseGalleryPic('')
@@ -84,15 +85,15 @@ const Utube = (props) => {
                         document.querySelector('.preview_modal').style.display = 'none'
                     }}>
                     <div className="preview" style={{...fontOptions}}  onClick={ e => e.stopPropagation()}>
-                        <section style={{display: 'flex',flexDirection: 'column',gap: '1em'}}>
-                            <img src={props.mProps.preview.media} className="video" alt="" />
+                        <section style={{display: 'flex',flexDirection: 'column',alignItems: 'center',gap: '1em'}}>
+                        <ReactPlayer url={props.mProps.preview.media} controls="true"/>
                             <section style={{textAlign: 'center'}}>
                                 <h1 className="preview_headline">{props.mProps.preview.headline}</h1>
                                 <p>{props.mProps.preview.text}</p>
                             </section>
                         </section>
                         <div>
-                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Video) }>
+                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Video, 'rgb(32, 143, 158)') }>
                                 Publicera
                             </span>
                             <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>

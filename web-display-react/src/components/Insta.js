@@ -35,15 +35,15 @@ const Insta = (props) => {
                     }
                 </section>
                 {/* Link Modal */}
-                <section id="choose_link_pic_modal">
-                    <span onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
+                <section id="choose_link_pic_modal" onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
+                    <form className="link_form" onSubmit={ e => link(e)} onClick={ e => e.stopPropagation() }>
+                        Klistra in länk till bild:
+                        <input className="link_input" type="text" />
+                        <button className="link_button">Sätt länk</button>
+                    </form>
+                    <span className="preview_button" onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
                             Avbryt X
                     </span>
-                    <form onSubmit={ e => link(e)}>
-                        Klistra in länk till bild:
-                        <input type="text" />
-                        <button>Sätt länk</button>
-                    </form>
                 </section>
                 {/* Upload Media section */}
                 <section className="media_section" style={{width: '74%'}}>
@@ -90,7 +90,7 @@ const Insta = (props) => {
                             </section>
                         </section>
                         <div>
-                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Picture) }>
+                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Picture, 'rgb(39, 51, 224)') }>
                                 Publicera
                             </span>
                             <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
