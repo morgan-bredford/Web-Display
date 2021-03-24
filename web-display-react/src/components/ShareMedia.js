@@ -36,7 +36,7 @@ const ShareMedia = () => {
         {
             entry_type: Video,
             headline:'Headline3',
-            text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
+            text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
             media:'https://youtu.be/HH9MQmMtilU',
             background: 'rgb(32, 143, 158)',
             font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '36px'}
@@ -91,18 +91,24 @@ const ShareMedia = () => {
         setEntryArray([entry,...entryArray])
         console.log(entryArray)
         document.querySelector('.preview_modal').style.display = 'none'
+        reset()
+    }
+
+    const reset = () => {
         setAlt('')
         setPreview({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'} })
+        document.querySelector('.chosen_media_container').style.display = 'none'
     }
 
     const mProps = {
-        uploadMedia,
         chooseGalleryPic,
         gallery_images,
         preview,
         previewHandler,
         publishEntry,
-        setAlt
+        reset,
+        setAlt,
+        uploadMedia
     }
 
     return(

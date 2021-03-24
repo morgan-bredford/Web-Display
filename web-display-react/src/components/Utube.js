@@ -15,6 +15,39 @@ const Utube = (props) => {
     return(
         <div>
             <div className="alt" style={{flexDirection: 'column'}}>
+                {/* Upload Media section */}
+                <section className="media_section" style={{height: '70%',marginBottom: '1em'}}>
+                    <section className="chosen_media_container">
+                        <ReactPlayer id="chosen_media" url={props.mProps.preview.media} controls="true"/>
+                        <span id="chosen_media_delete" 
+                            onClick={() => {
+                                props.mProps.chooseGalleryPic('')
+                                document.querySelector('.chosen_media_container').style.display = 'none'
+                            }}>
+                            Byt bild
+                        </span>
+                    </section>
+                    <section id="choose_media_container">
+                        <label htmlFor="choose_upload_pic" className="pic_source_choice" id="choose_upload_pic_label">
+                            Klicka här för att ladda upp video
+                        </label>
+                        <input type="file" className="pic_source_input" id="choose_upload_pic" onChange={ e => props.mProps.uploadMedia(e.target.files) } />
+                        <div className="pic_source_choice" id="choose_gallery_pic_label" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'flex' }>
+                            Välj video från ditt galleri
+                        </div>
+                        <div className="pic_source_choice" id="choose_link_pic_label" onClick={ () => document.getElementById('choose_link_pic_modal').style.display = 'flex' }>
+                            Klistra in länk till video
+                        </div>
+                    </section> 
+                </section>
+                {/* BlogText section */}
+                <section className="text_section" style={{height: '30vh'}}>
+                    <section className="blog_text_container">
+                        <FontOptions preview={props.mProps.preview} previewHandler={props.mProps.previewHandler} />
+                        <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.mProps.previewHandler({headline: e.target.value}) } />
+                        <textarea className="blogtext" style={fontOptions} onChange={ e => props.mProps.previewHandler({text: e.target.value}) }></textarea>
+                    </section>
+                </section>
                 {/* Gallery Modal */}
                 <section id="choose_gallery_pic_modal" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'none'}>
                     <span>
@@ -46,50 +79,19 @@ const Utube = (props) => {
                             Avbryt X
                     </span>
                 </section>
-                {/* Upload Media section */}
-                <section className="media_section" style={{height: '70%',marginBottom: '1em'}}>
-                    <section className="chosen_media_container">
-                        <ReactPlayer id="chosen_media" url={props.mProps.preview.media} controls="true"/>
-                        <span id="chosen_media_delete" 
-                            onClick={() => {
-                                props.mProps.chooseGalleryPic('')
-                                document.querySelector('.chosen_media_container').style.display = 'none'
-                            }}>
-                            Byt bild
-                        </span>
-                    </section>
-                    <section id="choose_media_container">
-                        <label htmlFor="choose_upload_pic" className="pic_source_choice" id="choose_upload_pic_label">
-                            Klicka här för att ladda upp video
-                        </label>
-                        <input type="file" className="pic_source_input" id="choose_upload_pic" onChange={ e => props.mProps.uploadMedia(e.target.files) } />
-                        <div className="pic_source_choice" id="choose_gallery_pic_label" onClick={ () => document.getElementById('choose_gallery_pic_modal').style.display = 'flex' }>
-                            Välj video från ditt galleri
-                        </div>
-                        <div className="pic_source_choice" id="choose_link_pic_label" onClick={ () => document.getElementById('choose_link_pic_modal').style.display = 'flex' }>
-                            Klistra in länk till video
-                        </div>
-                </section> 
-                </section>
-                {/* BlogText section */}
-                <section className="text_section" style={{height: '30vh'}}>
-                    <section className="blog_text_container">
-                        <FontOptions preview={props.mProps.preview} previewHandler={props.mProps.previewHandler} />
-                        <input type="text" className="headline_input" placeholder="Rubrik (valfritt)" onChange={ e => props.mProps.previewHandler({headline: e.target.value}) } />
-                        <textarea className="blogtext" style={fontOptions} onChange={ e => props.mProps.previewHandler({text: e.target.value}) }></textarea>
-                    </section>
-                </section>
                 {/* Preview Modal */}
                 <section className="preview_modal"   onClick={ e => {
                         e.stopPropagation()
                         document.querySelector('.preview_modal').style.display = 'none'
                     }}>
-                    <div className="preview" style={{...fontOptions}}  onClick={ e => e.stopPropagation()}>
-                        <section style={{display: 'flex',flexDirection: 'column',alignItems: 'center',gap: '1em'}}>
-                        <ReactPlayer url={props.mProps.preview.media} controls="true"/>
-                            <section style={{textAlign: 'center'}}>
-                                <h1 className="preview_headline">{props.mProps.preview.headline}</h1>
-                                <p>{props.mProps.preview.text}</p>
+                    <div className="video_container" onClick={ e => e.stopPropagation()}>
+                        <section>
+                            <div style={{width: 'max-content',margin: 'auto'}}>
+                                <ReactPlayer url={props.mProps.preview.media} width="76vw" height="56vh" controls="true"/>
+                            </div>
+                            <section className="video_text_section">
+                                <h1 className="headline">{props.mProps.preview.headline}</h1>
+                                <p className="video_text">{props.mProps.preview.text}</p>
                             </section>
                         </section>
                         <div>
@@ -110,7 +112,7 @@ const Utube = (props) => {
                 <span className="preview_button" 
                     onClick={() => {
                         document.querySelector('.new_entry_modal').style.display = 'none'
-                        props.mProps.setAlt('')
+                        props.mProps.reset()
                         }}
                     >
                     Avbryt

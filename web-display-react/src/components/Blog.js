@@ -8,7 +8,7 @@ const Blog = (props) => {
             onClick={e => e.stopPropagation()}
         >
             <section>
-                <h1 className="preview_headline">{props.entry.headline}</h1>
+                <h1 className="headline">{props.entry.headline}</h1>
                 <img src={props.entry.media} className="blog_image" alt=""/>
                 <p>{props.entry.text}</p>
             </section>
