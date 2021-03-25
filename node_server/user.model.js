@@ -33,6 +33,9 @@ const userSchema = new Schema({
     },
     image: {
         type: Object,
+    },
+    entries: {
+        type: Object,
     }
 },
 {
