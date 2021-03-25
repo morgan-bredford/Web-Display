@@ -6,15 +6,15 @@
   top: 12vw;
   right: 8vw;
   width: 10vw;
-  height: 10vw;
+  height: 12vw;
   color: var(--background);
-  font-size: 1.8vw;
+  font-size: 1.2vw;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
-  background-color: rgba(97, 218, 251, 0.9);
+  background-color: rgba(97, 218, 251, 0.7);
   border: 4px dashed #2e323a;
-  border-radius: 50%;
+  border-radius: 7px;
   cursor: pointer;
 }
 .create_new_entry:hover {
@@ -104,6 +104,20 @@
   color: wheat;
   background-color: rgba(0, 0, 0, 0.7);
 }
+/* -------- Show Entry Modal --------------------------------------- */
+.entry_modal {
+  display: flex;
+  justify-content: center;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 
 /* ----- Choose Media Modal ---------------------------------- */
 .choose_new_entry_modal {
@@ -116,6 +130,7 @@
   justify-content: center;
   align-items: center;
   color: wheat;
+  text-align: center;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -131,9 +146,11 @@
 }
 
 .choose_media_look_choice {
+  margin-top: 1em;
   padding: 1em;
   color: var(--lightblue);
-  font-size: 3vh;
+  font-size: 1.5vh;
+  font-weight: 700;
   text-transform: uppercase;
   background-color: var(--background);
   border-radius: 5px;
@@ -320,12 +337,12 @@
 .preview_modal {
   display: none;
   justify-content: center;
-  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  color: black;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -402,29 +419,20 @@
 .link_button:hover {
   background-color: rgb(241, 193, 102);
 }
-/* -------- Show Entry Modal --------------------------------------- */
-.entry_modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: black;
-  background-color: rgba(0, 0, 0, 0.7);
-}
 
 /* --------- Blog Modal --------------------------------------- */
 .blog_modal {
   position: relative;
   width: max-content;
-  max-width: 50vw;
+  max-width: 60vw;
+  height: max-content;
+  margin-top: 16vh;
   padding: 1em;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
   background-color: rgb(221, 249, 251);
   border-radius: 5px;
-  z-index: 3;
+  z-index: 9;
 }
 
 .blog_image {
@@ -455,6 +463,7 @@
   width: 70vw;
   height: max-content;
   max-height: 80vh;
+  margin-top: 11vh;
   padding: 0.5em;
   /* white-space: pre-line; */
   white-space: pre-wrap;
@@ -494,6 +503,7 @@
   width: 80vw;
   height: max-content;
   max-height: 80vh;
+  margin-top: 14vh;
   padding: 0.5em;
   /* white-space: pre-line; */
   white-space: pre-wrap;
@@ -509,5 +519,6 @@
   overflow: auto;
 }
 
-.video_text {
+.cursor {
+  cursor: pointer;
 }

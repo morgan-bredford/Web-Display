@@ -6,7 +6,6 @@
     <div id="ts_answers" >
     <button class="answer" v-for="answer in randomQuestionsArray" :key="answer" v-html="answer" @click="e => this.$emit('check-answer', e.target, answer)"></button>
     </div>
-      <p>{{question.correct_answer}}</p>
   </div>
 
 </template>

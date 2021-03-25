@@ -10,7 +10,7 @@ const Blog = (props) => {
             <section>
                 <h1 className="headline">{props.entry.headline}</h1>
                 <img src={props.entry.media} className="blog_image" alt=""/>
-                <p>{props.entry.text}</p>
+                <p >{props.entry.text}</p>
             </section>
             <p className="close_entry_modal" 
                 onClick={ () => {

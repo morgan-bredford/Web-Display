@@ -8,7 +8,7 @@ const FontOptions = (props) => {
                 <option value="Times New Roman">Times New Roman</option>
             </select>
             <select className="inflex" onChange={ (e) => props.previewHandler({font_options: {...props.preview.font_options, fontSize: e.target.value}})}>
-                <option value="12px">12</option>
+                <option value="14px">14</option>
                 <option value="24px">24</option>
                 <option value="36px">36</option>
             </select>

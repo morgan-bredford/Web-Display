@@ -68,7 +68,11 @@ const WPress = (props) => {
                 </section>
                 {/* Link Modal */}
                 <section id="choose_link_pic_modal" onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
-                    <form className="link_form" onSubmit={ e => link(e)} onClick={ e => e.stopPropagation() }>
+                <form className="link_form" onSubmit={ e => {
+                        link(e)
+                        document.querySelector('.link_input').value = null
+                    }} 
+                    onClick={ e => e.stopPropagation() }>
                         Klistra in länk till bild:
                         <input className="link_input" type="text" />
                         <button className="link_button">Sätt länk</button>
@@ -83,11 +87,11 @@ const WPress = (props) => {
                         document.querySelector('.preview_modal').style.display = 'none'
                     } 
                 }>
-                    <div className="preview" style={{...fontOptions,width: 'clamp(400px,max-content,70vw)'}} onClick={ e => e.stopPropagation()}>
-                        <section style={{}}>
+                    <div className="blog_modal"  style={fontOptions} onClick={ e => e.stopPropagation()}>
+                        <section style={{marginBottom: '1em'}}>
                             <h1 className="headline">{props.mProps.preview.headline}</h1>
                             <img src={props.mProps.preview.media} className="blog_image" alt="" style={{}} />
-                            <p>{props.mProps.preview.text}</p>
+                            <p style={fontOptions}>{props.mProps.preview.text}</p>
                         </section>
                         <div>
                             <span className="preview_button" onClick={ () => props.mProps.publishEntry(Blog, 'rgb(150, 52, 230)') }>
@@ -100,7 +104,7 @@ const WPress = (props) => {
                     </div>
                 </section>
             </div>
-            <section  className="preview_button_container">
+            <section className="preview_button_container">
                 <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'flex'}>
                     Förhandsgranska
                 </span>

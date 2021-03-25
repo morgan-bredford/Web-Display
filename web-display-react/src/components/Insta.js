@@ -67,7 +67,11 @@ const Insta = (props) => {
                 </section>
                 {/* Link Modal */}
                 <section id="choose_link_pic_modal" onClick={() => document.getElementById('choose_link_pic_modal').style.display = 'none'}>
-                    <form className="link_form" onSubmit={ e => link(e)} onClick={ e => e.stopPropagation() }>
+                <form className="link_form" onSubmit={ e => {
+                        link(e)
+                        document.querySelector('.link_input').value = null
+                    }} 
+                    onClick={ e => e.stopPropagation() }>
                         Klistra in länk till bild:
                         <input className="link_input" type="text" />
                         <button className="link_button">Sätt länk</button>

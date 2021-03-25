@@ -13,7 +13,7 @@ import Video from "./Video"
 const ShareMedia = () => {
     const [alt, setAlt] = useState()
     const [gallery_images,setGalleryImages] = useState([])
-    const [preview, setPreview] = useState({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'} })
+    const [preview, setPreview] = useState({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '14px'} })
     const [ActiveEntry, setActiveEntry] = useState()
     const [showEntry, setShowEntry] = useState(false)
     const [entryArray, setEntryArray] = useState([
@@ -23,7 +23,7 @@ const ShareMedia = () => {
             text: 'Blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
             background: 'rgb(150, 52, 230)',
-            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}
+            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '14px'}
         },
         {
             entry_type: Picture,
@@ -96,7 +96,7 @@ const ShareMedia = () => {
 
     const reset = () => {
         setAlt('')
-        setPreview({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'} })
+        setPreview({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '14px'} })
         document.querySelector('.chosen_media_container').style.display = 'none'
     }
 
@@ -115,6 +115,7 @@ const ShareMedia = () => {
         <>
         <main>
             <section className="create_new_entry" onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'flex' }>
+                <img src="/images/new_entry.png" style={{width: '7vw', marginLeft: 'auto', marginRight: '3px', objectFit: 'contain'}}/>
                 <p className="sn">
                     skapa nytt inlägg
                 </p>
@@ -140,7 +141,7 @@ const ShareMedia = () => {
                 }
             </section>
             { showEntry 
-                ?<section className="entry_modal" 
+                ?<section className="entry_modal"
                     onClick={( (e) => {
                         setShowEntry(false)
                     })} ><ActiveEntry.entry_type entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
@@ -148,16 +149,24 @@ const ShareMedia = () => {
             }
             <section className="choose_new_entry_modal" onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'none' }>
                 {!alt && <div className="choose_media_look" >
-                        <p className="choose_media_look_choice" onClick={ () => chooseMedia('blog') }>
+                    <section className="cursor" onClick={ () => chooseMedia('blog') }>
+                        <img src="/images/blog.png" style={{width: '9vw', objectFit: 'contain'}}/>
+                        <p className="choose_media_look_choice">
                             skapa blogg
                         </p>
-                        
-                        <p className="choose_media_look_choice" onClick={ () => chooseMedia('picture') }>
+                    </section>
+                    <section  className="cursor" onClick={ () => chooseMedia('picture') }>
+                        <img src="/images/picture.png" style={{width: '9vw', objectFit: 'contain'}}/>
+                        <p className="choose_media_look_choice">
                             dela bild
                         </p>
-                        <p className="choose_media_look_choice" onClick={ () => chooseMedia('video') }>
+                    </section>
+                    <section  className="cursor" onClick={ () => chooseMedia('video') }>
+                        <img src="/images/video.png" style={{width: '9vw', objectFit: 'contain'}}/>
+                        <p className="choose_media_look_choice">
                             dela video
                         </p>
+                    </section>
                     </div>
                 }
             </section>
