@@ -11,7 +11,7 @@ class ImageTest extends React.Component {
     }
     handleSubmit = () => {
         console.log(this.props.user)
-        const newuser = this.props.user[0]
+        const newuser = this.props.user
         newuser.image = this.state.image
         console.log(newuser)
         axios

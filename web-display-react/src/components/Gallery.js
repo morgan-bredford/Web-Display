@@ -10,7 +10,8 @@ function Gallery(props){
     useEffect( () => {
         // If the user is logged in get the image array from the user object
         if(props.loggedIn){
-            setGalleryImages(props.user[0].galleryimages)
+            console.log(props.user)
+            setGalleryImages(props.user.galleryimages)
         }
         // If the user is not logged in get the image array from session storage
         else if(sessionStorage.getItem('imagearray')){

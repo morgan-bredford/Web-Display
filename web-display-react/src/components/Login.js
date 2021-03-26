@@ -10,8 +10,8 @@ function Login(props) {
           .get("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/find?search="+e.target[0].value)
           .then((res) => {
             if(user.password === res.data[0].password){
-              localStorage.setItem('user', JSON.stringify(res.data))
-              props.setUser(res.data)
+              localStorage.setItem('user', JSON.stringify(res.data[0]))
+              props.setUser(res.data[0])
               props.setLoggedIn(true)
             }
           })

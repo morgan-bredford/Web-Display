@@ -23,4 +23,6 @@ const Blog = (props) => {
     )
 }
 
+Blog.displayName = 'Blogg'
+
 export default Blog

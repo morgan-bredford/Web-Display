@@ -8,7 +8,7 @@ function UserPage(props) {
 
   //Inserts user info into the page form 
   useEffect( () => {
-    setForm(props.user[0])
+    setForm(props.user)
   },[])
   
   const handleChange = (e) => {
@@ -59,7 +59,7 @@ function UserPage(props) {
       <br /><br />
       { !props.loggedIn ? <Redirect to='/' /> : null }
       { 
-        props.user[0] ? 
+        props.user ? 
           <div style={{width: '30vw', margin: 'auto'}}>
             <form onSubmit={submitHandler}>
               <h1 style={{fontSize: '2vw'}} >Redigera dina uppgifter</h1>

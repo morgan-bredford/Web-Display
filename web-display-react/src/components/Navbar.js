@@ -21,7 +21,7 @@ function Navbar(props) {
           <li>skapa inlägg<img src="/images/react_logo_small.png" className="navimg" alt="logo"/></li>
         </NavLink>
         { 
-          props.loggedIn ? <NavLink to="/userpage"><li>{`inloggad som: ${props.user[0].username}`}<img src="/images/react_logo_small.png" className="navimg" alt="logo"/></li></NavLink> : <NavLink to="/login"><li>logga in<img src="/images/react_logo_small.png" className="navimg"/></li></NavLink>
+          props.loggedIn ? <NavLink to="/userpage"><li>{`inloggad som: ${props.user.username}`}<img src="/images/react_logo_small.png" className="navimg" alt="logo"/></li></NavLink> : <NavLink to="/login"><li>logga in<img src="/images/react_logo_small.png" className="navimg"/></li></NavLink>
         }
       </ul>
       <div id="vue_link">

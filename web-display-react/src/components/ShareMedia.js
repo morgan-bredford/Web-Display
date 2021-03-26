@@ -10,10 +10,10 @@ import Picture from "./Picture"
 import Video from "./Video"
 
 
-const ShareMedia = () => {
+const ShareMedia = (props) => {
     const [alt, setAlt] = useState()
     const [gallery_images,setGalleryImages] = useState([])
-    const [preview, setPreview] = useState({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '14px'} })
+    const [preview, setPreview] = useState({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '12px'}, save_date: '' })
     const [ActiveEntry, setActiveEntry] = useState()
     const [showEntry, setShowEntry] = useState(false)
     const [entryArray, setEntryArray] = useState([
@@ -23,7 +23,8 @@ const ShareMedia = () => {
             text: 'Blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
             background: 'rgb(150, 52, 230)',
-            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '14px'}
+            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '14px'},
+            save_date: 1616671086538
         },
         {
             entry_type: Picture,
@@ -31,7 +32,8 @@ const ShareMedia = () => {
             text:'Foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
             background: 'rgb(39, 51, 224)',
-            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '24px'}
+            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '24px'},
+            save_date: 1616671086538
         },
         {
             entry_type: Video,
@@ -39,13 +41,26 @@ const ShareMedia = () => {
             text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
             media:'https://youtu.be/HH9MQmMtilU',
             background: 'rgb(32, 143, 158)',
-            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '36px'}
+            font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '36px'},
+            save_date: 1616671086538
         }
     ])
 
     useEffect( () => {
-        if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
-        localStorage.setItem('entry_array',JSON.stringify(entryArray))
+        sessionStorage.setItem('x',Blog)
+        // if(props.loggedIn){
+        //     console.log(props.user)
+        //     setEntryArray(props.user.entries)
+        //     setGalleryImages(props.user.galleryimages)
+        // }else{
+        //     if(sessionStorage.getItem('entries')){
+        //         setEntryArray(JSON.parse(sessionStorage.getItem('entries')))
+        //     }else{
+        //         sessionStorage.setItem('entries', JSON.stringify(entryArray))
+        //     }
+        //     if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
+        // }
+
     },[]) 
 
     //useEffect( () => console.log('render') )
@@ -69,7 +84,6 @@ const ShareMedia = () => {
     const chooseMedia = (media_choice) => {
         document.querySelector('.choose_new_entry_modal').style.display = 'none'
         setAlt(media_choice)
-        //setPreview({...preview,background: 'rgb(150, 52, 230)'})
         document.querySelector('.new_entry_modal').style.display = 'flex'
     }
 
@@ -84,7 +98,9 @@ const ShareMedia = () => {
     }
 
     const publishEntry = (entry_type, background) => {
-        const entry = {...preview, entry_type, background}
+        const date = new Date()
+        const entry = {...preview, entry_type, background, save_date: date.getTime()}
+        addEntry(entry)
         document.querySelector('.choose_new_entry_modal').style.display = 'none'
         document.querySelector('.new_entry_modal').style.display = 'none'
         console.log(entry)
@@ -98,6 +114,36 @@ const ShareMedia = () => {
         setAlt('')
         setPreview({headline: "",text: "", media: "",background: '',font_options: {fontFamily: 'Arial', fontWeight: '500', fontSize: '14px'} })
         document.querySelector('.chosen_media_container').style.display = 'none'
+    }
+    
+    // Creates the date string thats added to the entry object 
+    const getSaveDate = entry => {
+        const date = new Date(entry.save_date)
+        return date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear();
+    }
+
+    const addEntry = (entry) => {
+        console.log(entry)
+        if(props.loggedIn)
+        {
+                const newentryarray = [entry,...props.user.entries]
+                const user = {...props.user,entries: newentryarray}
+
+                axios
+                .post("http://127.0.0.1:8080/users/update",[user])
+                .then((res) => {
+                    props.setUser(user)
+                    localStorage.setItem('user',JSON.stringify(user))
+                })
+                .catch(err => {
+                   console.log(err.response)})
+
+        }else{
+                const newentryarray = [entry, ...(JSON.parse(sessionStorage.getItem('entries')))]
+                sessionStorage.setItem('entries',JSON.stringify(newentryarray))
+        }
+      
+        
     }
 
     const mProps = {
@@ -121,23 +167,29 @@ const ShareMedia = () => {
                 </p>
             </section>
             <section className="entry_container">
-                {
+                { entryArray.length
+                    ?
                     entryArray.map( (entry, index) => {
                         return (
-                        <div className="entry" id={index} onClick={ () => {
-                            setActiveEntry(entry)
-                            setShowEntry(true)
-                            } 
-                        }>
-                            <p className="entry_label" style={{backgroundColor: entry.background}}>
-                                <p className="entry_label_text">{entry.entry_type.name}</p>
-                            </p>
-                            <p className="entry_preview" style={{...entry.font_options}}>
-                                {entry.text}
-                                <p className="entry_fade"></p>
-                            </p>
-                        </div>)
+                            <div className="entry" id={index} onClick={ () => {
+                                setActiveEntry(entry)
+                                setShowEntry(true)
+                                } 
+                            }>
+                                <section className="entry_label" style={{backgroundColor: entry.background}}>
+                                    <section className="entry_label_text_section">
+                                        <p className="entry_label_text">{entry.entry_type.displayName}</p>
+                                        <p className="entry_label_date">{getSaveDate(entry)}</p>
+                                    </section>
+                                </section>
+                                <section className="entry_preview" style={{...entry.font_options}}>
+                                    {entry.text}
+                                    <p className="entry_fade"></p>
+                                </section>
+                            </div>
+                        )
                     })
+                    : <p>du har inga inlägg</p>
                 }
             </section>
             { showEntry 

@@ -4,7 +4,7 @@
   align-items: center;
   position: absolute;
   top: 12vw;
-  right: 8vw;
+  right: 11vw;
   width: 10vw;
   height: 12vw;
   color: var(--background);
@@ -65,9 +65,16 @@
   background-color: rgb(32, 143, 158);
 }
 
+.entry_label_text_section {
+  transform: rotate(-90deg);
+}
+
 .entry_label_text {
   text-transform: uppercase;
-  transform: rotate(-90deg);
+}
+
+.entry_label_date {
+  font-size: .8vw;
 }
 
 .entry_preview {
@@ -78,6 +85,11 @@
   overflow: hidden;
   background-color: var(--lightblue);
   border-radius: 0px 10px 10px 0px;
+  transition: .3s;
+}
+
+.entry_preview:hover {
+  background-color: rgb(169, 236, 255);
 }
 
 .entry_fade {
@@ -114,7 +126,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: auto;
+ 
   color: black;
   background-color: rgba(0, 0, 0, 0.7);
 }
@@ -360,7 +372,7 @@
   /* white-space: pre-line; */
   white-space: pre-wrap;
   overflow-wrap: break-word;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgb(221, 249, 251);
   border: 2px solid black;
   border-radius: 10px;
   z-index: 9;
@@ -392,8 +404,10 @@
   margin: 1em;
   padding: 3px;
   text-transform: uppercase;
-  border: 1px solid wheat;
+  border: 1px solid black;
   border-radius: 4px;
+  color: black;
+  background-color: #fff;
   cursor: pointer;
 }
 
@@ -424,7 +438,7 @@
 .blog_modal {
   position: relative;
   width: max-content;
-  max-width: 60vw;
+  max-width: 56vw;
   height: max-content;
   margin-top: 16vh;
   padding: 1em;

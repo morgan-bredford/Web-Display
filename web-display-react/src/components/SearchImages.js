@@ -54,14 +54,14 @@ class SearchImages extends Component {
    
         if(this.props.loggedIn)
         {
-            const ids = this.props.user[0].galleryimages.map( img => img.id)
+            const ids = this.props.user.galleryimages.map( img => img.id)
             if(!ids.includes(image.id)){
                 let user = this.props.user
-                const newimagearray = [...this.props.user[0].galleryimages,imageobj]
-                user[0].galleryimages.push(imageobj)      
+                const newimagearray = [...this.props.user.galleryimages,imageobj]
+                user.galleryimages.push(imageobj)      
                 axios
-                //.post("http://127.0.0.1:8080/users/update",[{username: this.props.user[0].username, galleryimages: user[0].galleryimages}])
-                .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[this.props.user[0]])
+                //.post("http://127.0.0.1:8080/users/update",[{username: this.props.user.username, galleryimages: user.galleryimages}])
+                .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[this.props.user])
                 .then((res) => {
                     this.props.setUser(user)
                     localStorage.setItem('user',JSON.stringify(user))

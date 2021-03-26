@@ -11,7 +11,7 @@ function BuildGallery(props) {
   useEffect( () => {
     // If the user is logged in get the image array from the user object
     if(props.loggedIn){
-      setSavedimages(props.user[0].galleryimages)
+      setSavedimages(props.user.galleryimages)
     }else{
     // If the user is not logged in get the image array from session storage or if its a new user set it to empty
       if(sessionStorage.getItem('imagearray')){
@@ -41,11 +41,11 @@ function BuildGallery(props) {
 
     if(props.loggedIn){
       let user = props.user
-      user[0].galleryimages = newimagearray 
+      user.galleryimages = newimagearray 
       
       // Updates the database
       axios
-      .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[user[0]])
+      .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/update",[user])
       .then((res) => {
           props.setUser(user)
           localStorage.setItem('user',JSON.stringify(user))

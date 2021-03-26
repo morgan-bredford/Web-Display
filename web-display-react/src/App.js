@@ -51,7 +51,7 @@ function App() {
           <Route path="/buildgallery" component={() => <BuildGallery user={user} setUser={setUser} loggedIn={loggedIn} /> } />
           <Route path="/gallery" component={() => <Gallery user={user} loggedIn={loggedIn} /> } />
           <Route path="/quiz" component={() => <TsQuiz user={user} loggedIn={loggedIn} /> } />
-          <Route path="/sharemedia" component={() => <ShareMedia user={user} loggedIn={loggedIn} /> } />
+          <Route path="/sharemedia" component={() => <ShareMedia user={user}  setUser={setUser} loggedIn={loggedIn} /> } />
           <Route path="/test" component={() => <ImageTest  user={user}/> } />
           {/* Redirects to main page if url extension is invalid */}
           <Redirect to="/" />

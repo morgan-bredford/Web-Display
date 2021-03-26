@@ -8,7 +8,7 @@ const Video = (props) => {
         <section className="video_container" onClick={ e => e.stopPropagation()}>
             <section>
                 <div style={{width: 'max-content',margin: 'auto'}}>
-                    <ReactPlayer url={props.entry.media} width="76vw" height="56vh" controls="true"/>
+                    <ReactPlayer url={props.entry.media} width="76vw" height="56vh" controls={true} />
                 </div>
                 <section className="video_text_section" style={{...props.entry.font_options}}>
                     <h1 className="headline">{props.entry.headline}</h1>
@@ -25,5 +25,7 @@ const Video = (props) => {
         </section>
     )
 }
+
+Video.displayName = 'Video'
 
 export default Video

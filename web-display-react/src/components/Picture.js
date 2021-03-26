@@ -20,4 +20,6 @@ const Picture = (props) => {
     )
 }
 
+Picture.displayName = 'Bild'
+
 export default Picture

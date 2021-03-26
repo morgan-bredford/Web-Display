@@ -23,9 +23,9 @@ class UserFormClass extends React.Component {
     e.preventDefault();
 
     axios
-      .post("http://ec2-13-48-85-50.eu-north-1.compute.amazonaws.com:8080/users/add", this.state)
+      .post("http://127.0.0.1:8080/users/add", this.state)
       .then((res) => { 
-        const user = [{username: this.state.username,password: this.state.password,firstname: this.state.firstname,lastname: this.state.lastname,gender: this.state.gender,galleryimages: []}]
+        const user = {username: this.state.username,password: this.state.password,firstname: this.state.firstname,lastname: this.state.lastname,gender: this.state.gender,galleryimages: [],entries: []}
         localStorage.setItem('user', JSON.stringify(user))
         this.props.setUser(user)
         this.props.setLoggedIn(true)

@@ -18,7 +18,7 @@ const Utube = (props) => {
                 {/* Upload Media section */}
                 <section className="media_section" style={{height: '70%',marginBottom: '1em'}}>
                     <section className="chosen_media_container">
-                        <ReactPlayer id="chosen_media" url={props.mProps.preview.media} controls="true"/>
+                        <ReactPlayer id="chosen_media" url={props.mProps.preview.media} controls={true} />
                         <span id="chosen_media_delete" 
                             onClick={() => {
                                 props.mProps.chooseGalleryPic('')
@@ -90,10 +90,10 @@ const Utube = (props) => {
                         e.stopPropagation()
                         document.querySelector('.preview_modal').style.display = 'none'
                     }}>
-                    <div className="video_container" onClick={ e => e.stopPropagation()}>
+                    <div className="video_container" style={{...props.mProps.preview.font_options}} onClick={ e => e.stopPropagation()}>
                         <section>
                             <div style={{width: 'max-content',margin: 'auto'}}>
-                                <ReactPlayer url={props.mProps.preview.media} width="76vw" height="56vh" controls="true"/>
+                                <ReactPlayer url={props.mProps.preview.media} width="76vw" height="56vh" controls={true} />
                             </div>
                             <section className="video_text_section">
                                 <h1 className="headline">{props.mProps.preview.headline}</h1>
