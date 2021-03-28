@@ -47,7 +47,7 @@ const ShareMedia = (props) => {
     ])
 
     useEffect( () => {
-        sessionStorage.setItem('x',Blog)
+        
         // if(props.loggedIn){
         //     console.log(props.user)
         //     setEntryArray(props.user.entries)
@@ -58,7 +58,7 @@ const ShareMedia = (props) => {
         //     }else{
         //         sessionStorage.setItem('entries', JSON.stringify(entryArray))
         //     }
-        //     if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
+             if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
         // }
 
     },[]) 
