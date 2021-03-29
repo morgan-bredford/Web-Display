@@ -18,7 +18,7 @@ const ShareMedia = (props) => {
     const [showEntry, setShowEntry] = useState(false)
     const [entryArray, setEntryArray] = useState([
         {
-            entry_type: Blog,
+            entry_type: 'blogg',
             headline:'Headline1',
             text: 'Blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg oo exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel oo blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel blogg exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
@@ -27,7 +27,7 @@ const ShareMedia = (props) => {
             save_date: 1616671086538
         },
         {
-            entry_type: Picture,
+            entry_type: 'bild',
             headline:'Headline2',
             text:'Foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel foto exempel',
             media:'https://cdn.pixabay.com/photo/2017/10/13/14/15/fantasy-2847724_960_720.jpg',
@@ -36,7 +36,7 @@ const ShareMedia = (props) => {
             save_date: 1616671086538
         },
         {
-            entry_type: Video,
+            entry_type: 'video',
             headline:'Headline3',
             text:'Video exempel video exempel video exempel video exempel video exempel video exempel video exempel video exempel',
             media:'https://youtu.be/HH9MQmMtilU',
@@ -48,18 +48,18 @@ const ShareMedia = (props) => {
 
     useEffect( () => {
         
-        // if(props.loggedIn){
-        //     console.log(props.user)
-        //     setEntryArray(props.user.entries)
-        //     setGalleryImages(props.user.galleryimages)
-        // }else{
-        //     if(sessionStorage.getItem('entries')){
-        //         setEntryArray(JSON.parse(sessionStorage.getItem('entries')))
-        //     }else{
-        //         sessionStorage.setItem('entries', JSON.stringify(entryArray))
-        //     }
-             if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
-        // }
+        if(props.loggedIn){
+            console.log(props.user)
+            setEntryArray(props.user.entries)
+            setGalleryImages(props.user.galleryimages)
+        }else{
+            if(sessionStorage.getItem('entries')){
+                setEntryArray(JSON.parse(sessionStorage.getItem('entries')))
+            }else{
+                sessionStorage.setItem('entries', JSON.stringify(entryArray))
+            }
+            if(sessionStorage.getItem('imagearray')) setGalleryImages(JSON.parse(sessionStorage.getItem('imagearray')))
+        }
 
     },[]) 
 
@@ -178,7 +178,7 @@ const ShareMedia = (props) => {
                             }>
                                 <section className="entry_label" style={{backgroundColor: entry.background}}>
                                     <section className="entry_label_text_section">
-                                        <p className="entry_label_text">{entry.entry_type.displayName}</p>
+                                        <p className="entry_label_text">{entry.entry_type}</p>
                                         <p className="entry_label_date">{getSaveDate(entry)}</p>
                                     </section>
                                 </section>
@@ -192,12 +192,34 @@ const ShareMedia = (props) => {
                     : <p>du har inga inlägg</p>
                 }
             </section>
-            { showEntry 
+            {/* { showEntry 
                 ?<section className="entry_modal"
                     onClick={( (e) => {
                         setShowEntry(false)
                     })} ><ActiveEntry.entry_type entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
                 : null 
+            } */}
+            {
+                showEntry 
+                ?
+                    ActiveEntry.entry_type === 'blogg'
+                    ?
+                        <section className="entry_modal"
+                        onClick={( (e) => {
+                            setShowEntry(false)
+                        })} ><Blog entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
+                    : ActiveEntry.entry_type === 'bild'
+                        ?
+                            <section className="entry_modal"
+                            onClick={( (e) => {
+                                setShowEntry(false)
+                            })} ><Picture entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
+                        :   <section className="entry_modal"
+                            onClick={( (e) => {
+                                setShowEntry(false)
+                            })} ><Video entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
+                : null
+                            
             }
             <section className="choose_new_entry_modal" onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'none' }>
                 {!alt && <div className="choose_media_look" >

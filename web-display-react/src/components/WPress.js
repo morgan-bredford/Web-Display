@@ -94,7 +94,7 @@ const WPress = (props) => {
                             <p style={fontOptions}>{props.mProps.preview.text}</p>
                         </section>
                         <div>
-                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Blog, 'rgb(150, 52, 230)') }>
+                            <span className="preview_button" onClick={ () => props.mProps.publishEntry('blogg', 'rgb(150, 52, 230)') }>
                                 Publicera
                             </span>
                             <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>

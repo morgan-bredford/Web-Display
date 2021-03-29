@@ -101,7 +101,7 @@ const Utube = (props) => {
                             </section>
                         </section>
                         <div>
-                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Video, 'rgb(32, 143, 158)') }>
+                            <span className="preview_button" onClick={ () => props.mProps.publishEntry('video', 'rgb(32, 143, 158)') }>
                                 Publicera
                             </span>
                             <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>

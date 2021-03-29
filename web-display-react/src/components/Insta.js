@@ -85,16 +85,16 @@ const Insta = (props) => {
                         e.stopPropagation()
                         document.querySelector('.preview_modal').style.display = 'none'
                     }}>
-                    <div className="preview" style={{...fontOptions}}  onClick={ e => e.stopPropagation()}>
-                        <section style={{display: 'flex',gap: '1em'}}>
+                    <div style={{...fontOptions,display: 'flex', flexDirection: 'column', height: 'max-content'}}  onClick={ e => e.stopPropagation()}>
+                        <section className="picture_modal" style={{border: 'none'}}>
                             <img src={props.mProps.preview.media} className="picture_image" alt="" />
                             <section className="picture_text_container">
                                 <h1 className="headline">{props.mProps.preview.headline}</h1>
                                 <p>{props.mProps.preview.text}</p>
                             </section>
                         </section>
-                        <div>
-                            <span className="preview_button" onClick={ () => props.mProps.publishEntry(Picture, 'rgb(39, 51, 224)') }>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <span className="preview_button" onClick={ () => props.mProps.publishEntry('bild', 'rgb(39, 51, 224)') }>
                                 Publicera
                             </span>
                             <span className="preview_button" onClick={() => document.querySelector('.preview_modal').style.display = 'none'}>
