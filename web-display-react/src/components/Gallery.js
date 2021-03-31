@@ -58,7 +58,7 @@ function Gallery(props){
                             : null
                         }
                         <div id="lbimgcontainer">
-                            <img src={large_image} className="lbimg" onLoad={() => setLoading(false)} onClick={(e) => e.stopPropagation() }/>
+                            <img src={large_image} className="lbimg" onLoad={() => setLoading(false)} onClick={(e) => e.stopPropagation() } alt=""/>
                             {
                                 loading ? <span id="lbload" >loading...</span> : null
                             }
@@ -83,7 +83,7 @@ function Gallery(props){
                             setLoading(true)
                             setLargeImage(image.largeImageURL)
                             }}>
-                            <img className="prev_card_img" src={image.previewURL} id={image.id}  />
+                            <img className="prev_card_img" src={image.previewURL} id={image.id}  alt="" />
                             <div className="prev_card_info">
                                 Sökord: {image.query}<br />
                                 Sparad: {getSaveDate(image)}

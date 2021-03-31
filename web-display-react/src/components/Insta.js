@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FontOptions from './FontOptions';
-import Picture from './Picture';
 
 const Insta = (props) => {
     const fontOptions = props.mProps.preview.font_options

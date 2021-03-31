@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
@@ -38,21 +37,21 @@ function UserPage(props) {
     props.setLoggedIn(false)
   };
 
-  const uploadImage = (event) => {
-    const inpFile = event.target.files[0]
-    console.log(inpFile.files)
-    const endpoint = "./upload.php"
-    const formData = new FormData()
-    formData.append("inpFile", inpFile.files[0])
-    axios
-    .post('http://127.0.0.1:8080/users/image',formData)
-            .catch(err => {
-                console.log(err.response)})
-    const file = event.target.files[0]
-    this.setState({image: file})
-    this.setState({imageUrl: URL.createObjectURL(file)})
-    console.log(this.state.image)
-}
+//   const uploadImage = (event) => {
+//     const inpFile = event.target.files[0]
+//     console.log(inpFile.files)
+//     const endpoint = "./upload.php"
+//     const formData = new FormData()
+//     formData.append("inpFile", inpFile.files[0])
+//     axios
+//     .post('http://127.0.0.1:8080/users/image',formData)
+//             .catch(err => {
+//                 console.log(err.response)})
+//     const file = event.target.files[0]
+//     this.setState({image: file})
+//     this.setState({imageUrl: URL.createObjectURL(file)})
+//     console.log(this.state.image)
+// }
 
   return (
     <main>

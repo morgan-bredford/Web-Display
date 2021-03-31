@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Blog from './Blog';
+import React from 'react';
 import FontOptions from './FontOptions';
 
 const WPress = (props) => {

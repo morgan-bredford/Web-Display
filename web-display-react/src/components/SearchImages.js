@@ -123,7 +123,7 @@ class SearchImages extends Component {
                                 : null
                             }
                             <div id="lbimgcontainer">
-                                <img src={this.state.large_image} className="lbimg" onLoad={() => this.setState({loading: false})} onClick={(e) => {e.stopPropagation()}}/>
+                                <img src={this.state.large_image} className="lbimg" onLoad={() => this.setState({loading: false})} onClick={(e) => {e.stopPropagation()}} alt="large"/>
                                 { 
                                     this.state.loading ? <span id="lbload" >loading...</span> : null
                                 }
@@ -154,7 +154,7 @@ class SearchImages extends Component {
                                             document.body.scrollTop = 0
                                             document.documentElement.scrollTop = 0
                                             }
-                                        } />
+                                        }  alt="search"/>
                                     <div className="add_img" onClick={(e) => this.addImage(e,image)} >lägg till +</div>
                                 </div> 
                             ))

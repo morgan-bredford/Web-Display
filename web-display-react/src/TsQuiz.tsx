@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import QuestionCmp from './ts-components/QuestionCmp';
 import { Difficulty, getQuestions, Number_of_questions } from './tsApi'
 import "./tsMain.css"

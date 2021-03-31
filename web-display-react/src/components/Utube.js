@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactPlayer from 'react-player'
 import FontOptions from './FontOptions';
-import Video from './Video';
 
 const Utube = (props) => {
     const fontOptions = props.mProps.preview.font_options

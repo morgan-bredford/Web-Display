@@ -171,7 +171,7 @@ const ShareMedia = (props) => {
                     ?
                     entryArray.map( (entry, index) => {
                         return (
-                            <div className="entry" id={index} onClick={ () => {
+                            <div className="entry" key={index} onClick={ () => {
                                 setActiveEntry(entry)
                                 setShowEntry(true)
                                 } 
@@ -199,28 +199,28 @@ const ShareMedia = (props) => {
                     })} ><ActiveEntry.entry_type entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
                 : null 
             } */}
+            
             {
                 showEntry 
                 ?
-                    ActiveEntry.entry_type === 'blogg'
-                    ?
-                        <section className="entry_modal"
-                        onClick={( (e) => {
-                            setShowEntry(false)
-                        })} ><Blog entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
-                    : ActiveEntry.entry_type === 'bild'
+                <section className="entry_modal"
+                    onClick={( (e) => {
+                        setShowEntry(false)
+                    })} >
+                    {
+                        ActiveEntry.entry_type === 'blogg'
                         ?
-                            <section className="entry_modal"
-                            onClick={( (e) => {
-                                setShowEntry(false)
-                            })} ><Picture entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
-                        :   <section className="entry_modal"
-                            onClick={( (e) => {
-                                setShowEntry(false)
-                            })} ><Video entry={ActiveEntry} setShowEntry={setShowEntry} /></section>
+                            <Blog entry={ActiveEntry} setShowEntry={setShowEntry} />
+                        : ActiveEntry.entry_type === 'bild'
+                            ?
+                                <Picture entry={ActiveEntry} setShowEntry={setShowEntry} />
+                            :   <Video entry={ActiveEntry} setShowEntry={setShowEntry} />
+                    }
+                </section>
                 : null
                             
             }
+            
             <section className="choose_new_entry_modal" onClick={ () => document.querySelector('.choose_new_entry_modal').style.display = 'none' }>
                 {!alt && <div className="choose_media_look" >
                     <section className="cursor" onClick={ () => chooseMedia('blog') }>
